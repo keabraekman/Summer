@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: weave-scope-cluster-agent
+  name: uberkuber-cluster-agent
   labels:
-    name: weave-scope-cluster-agent
-    app: weave-scope
+    name: uberkuber-cluster-agent
+    app: uberkuber
     weave-cloud-component: scope
     weave-scope-component: cluster-agent
   namespace: weave
@@ -13,16 +13,16 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: weave-scope-cluster-agent
-      app: weave-scope
+      name: uberkuber-cluster-agent
+      app: uberkuber
       weave-cloud-component: scope
       weave-scope-component: cluster-agent
   revisionHistoryLimit: 2
   template:
     metadata:
       labels:
-        name: weave-scope-cluster-agent
-        app: weave-scope
+        name: uberkuber-cluster-agent
+        app: uberkuber
         weave-cloud-component: scope
         weave-scope-component: cluster-agent
     spec:
@@ -41,4 +41,4 @@ spec:
             requests:
               cpu: 100m
               memory: 100Mi
-      serviceAccountName: weave-scope
+      serviceAccountName: uberkuber
