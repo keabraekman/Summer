@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: weave-scope-app
+  name: uberkuber-app
   labels:
-    name: weave-scope-app
-    app: weave-scope
+    name: uberkuber-app
+    app: uberkuber
     weave-cloud-component: scope
     weave-scope-component: app
   namespace: weave
@@ -15,8 +15,8 @@ spec:
   template:
     metadata:
       labels:
-        name: weave-scope-app
-        app: weave-scope
+        name: uberkuber-app
+        app: uberkuber
         weave-cloud-component: scope
         weave-scope-component: app
     spec:
