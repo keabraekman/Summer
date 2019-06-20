@@ -218,6 +218,7 @@ a {
   .selectors {
     display: flex;
     position: relative;
+    min-width: 1250px;
 
     > * {
       flex: 1 1;
