@@ -160,9 +160,10 @@ a {
 
 .scope-app, .terminal-app {
   -webkit-font-smoothing: antialiased;
-  background: $body-background-color;
+  $darkgray : #1c1c1c;
+  background: $darkgray;
   bottom: 0;
-  color: $text-color;
+  color: $color-white;
   font-family: $font-family-regular;
   font-size: $font-size-small;
   height: auto;
@@ -208,8 +209,11 @@ a {
   }
 }
 
+$blue:gray;
+
 .header {
-  background-color: transparentize($color-purple-25, 0.2);
+  background-color: $blue;
+  //background-color: transparentize($color-purple-25, 0.2);
   z-index: $layer-front;
   padding: 15px 10px 0;
   position: relative;
