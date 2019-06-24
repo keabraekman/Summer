@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ViewModeButton from './view-mode-button';
 import MetricSelector from './metric-selector';
-import { setGraphView, setTableView, setResourceView } from '../actions/app-actions';
+import { setDashboardView, setGraphView, setTableView, setResourceView } from '../actions/app-actions';
 import { availableMetricsSelector } from '../selectors/node-metric';
 import {
   isResourceViewModeSelector,
@@ -32,7 +32,7 @@ class ViewModeSelector extends React.Component {
             label="Dashboard"
             icons="fa fa-tachometer"
             viewMode={DASHBOARD_VIEW_MODE}
-            onClick={this.props.setGraphView}
+            onClick={this.props.setDashboardView}
           />
           <ViewModeButton
             label="Graph"
@@ -72,5 +72,10 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { setGraphView, setResourceView, setTableView }
+  {
+    setDashboardView,
+    setGraphView,
+    setResourceView,
+    setTableView
+  }
 )(ViewModeSelector);
