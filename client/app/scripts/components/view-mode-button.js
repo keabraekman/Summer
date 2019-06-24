@@ -18,6 +18,8 @@ class ViewModeButton extends React.Component {
       parentTopologyId: this.props.currentTopology.get('parentId'),
       topologyId: this.props.currentTopology.get('id'),
     });
+    console.log(this.props.currentTopology.get('parentId'));
+    console.log(this.props.currentTopology.get('id'));
     this.props.onClick();
   }
 
@@ -28,7 +30,6 @@ class ViewModeButton extends React.Component {
     const className = classNames(`tour-step-anchor view-mode-selector-action view-${label}-action`, {
       'view-mode-selector-action-selected': isSelected,
     });
-
     return (
       <div
         className={className}

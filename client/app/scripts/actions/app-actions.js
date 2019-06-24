@@ -31,6 +31,7 @@ import {
   GRAPH_VIEW_MODE,
   TABLE_VIEW_MODE,
   RESOURCE_VIEW_MODE,
+  DASHBOARD_VIEW_MODE,
 } from '../constants/naming';
 
 
@@ -313,6 +314,16 @@ export function setResourceView() {
       getResourceViewNodesSnapshot(getState(), dispatch);
       updateRoute(getState);
     }
+  };
+}
+
+export function setDashboardView() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ActionTypes.SET_VIEW_MODE,
+      viewMode: DASHBOARD_VIEW_MODE,
+    });
+    updateRoute(getState);
   };
 }
 

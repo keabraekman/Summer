@@ -10,6 +10,7 @@ import {
   resourceViewAvailableSelector,
 } from '../selectors/topology';
 import {
+  DASHBOARD_VIEW_MODE,
   GRAPH_VIEW_MODE,
   TABLE_VIEW_MODE,
   RESOURCE_VIEW_MODE,
@@ -27,6 +28,12 @@ class ViewModeSelector extends React.Component {
     return (
       <div className="view-mode-selector">
         <div className="tour-step-anchor view-mode-selector-wrapper">
+          <ViewModeButton
+            label="Dashboard"
+            icons="fa fa-tachometer"
+            viewMode={DASHBOARD_VIEW_MODE}
+            onClick={this.props.setGraphView}
+          />
           <ViewModeButton
             label="Graph"
             icons="fa fa-sitemap"

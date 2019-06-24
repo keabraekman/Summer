@@ -6,6 +6,7 @@ import {
   RESOURCE_VIEW_MODE,
   GRAPH_VIEW_MODE,
   TABLE_VIEW_MODE,
+  DASHBOARD_VIEW_MODE
 } from '../constants/naming';
 
 
@@ -30,6 +31,13 @@ export const isResourceViewModeSelector = createSelector(
     state => state.get('topologyViewMode'),
   ],
   viewMode => viewMode === RESOURCE_VIEW_MODE
+);
+
+export const isDashboardViewModeSelector = createSelector(
+  [
+    state => state.get('topologyViewMode'),
+  ],
+  viewMode => viewMode === DASHBOARD_VIEW_MODE
 );
 
 export const resourceViewAvailableSelector = createSelector(
