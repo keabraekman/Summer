@@ -26,6 +26,7 @@ import {
   hitEsc,
   unpinMetric,
   toggleHelp,
+  setDashboardView,
   setGraphView,
   setMonitorState,
   setTableView,
@@ -154,6 +155,9 @@ class App extends React.Component {
         this.trackEvent('scope.layout.selector.keypress');
       } else if (char === 'r') {
         dispatch(setResourceView());
+        this.trackEvent('scope.layout.selector.keypress');
+      } else if (char === 'd') {
+        dispatch(setDashboardView());
         this.trackEvent('scope.layout.selector.keypress');
       } else if (char === 'q') {
         this.trackEvent('scope.metric.selector.unpin.keypress', {
