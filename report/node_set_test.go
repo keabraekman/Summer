@@ -5,8 +5,8 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test/reflect"
 )
 
 var benchmarkResult report.NodeSet

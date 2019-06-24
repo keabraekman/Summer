@@ -7,8 +7,8 @@ import (
 	"github.com/kr/pty"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/probe/controls"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/probe/controls"
 )
 
 // Control IDs used by the host integration.

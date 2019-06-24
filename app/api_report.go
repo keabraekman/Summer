@@ -6,8 +6,8 @@ import (
 
 	"context"
 
-	"github.com/weaveworks/scope/probe/host"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/host"
+	"github.com/keabraekman/Summer/report"
 )
 
 // Raw report handler

@@ -178,7 +178,7 @@ A simple way to get Scope running in a Kubernetes setting is to
 1. Clone the Scope repo:
 
    ```sh
-   git clone https://github.com/weaveworks/scope
+   git clone https://github.com/keabraekman/Summer
    cd scope
    ```
 
@@ -254,7 +254,7 @@ By default, Weave Scope is included in the minimesos cluster, and can be accesse
 If Weave Scope is removed from your minimesos cluster, you can add it back with the following command:
 
 ```
-minimesos install --marathonFile https://raw.githubusercontent.com/weaveworks/scope/master/examples/mesos/minimesos.json
+minimesos install --marathonFile https://raw.githubusercontent.com/keabraekman/Summer/master/examples/mesos/minimesos.json
 ```
 
 ### <a name="dcos"></a>DC/OS

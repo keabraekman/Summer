@@ -5,7 +5,7 @@ import (
 
 	"github.com/spaolacci/murmur3"
 
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // Merger is the type for a thing that can merge reports.

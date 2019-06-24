@@ -17,9 +17,9 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/ugorji/go/codec"
 
-	"github.com/weaveworks/scope/common/hostname"
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/common/hostname"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/report"
 )
 
 var (

@@ -11,6 +11,6 @@ ENTRYPOINT ["/home/weave/entrypoint.sh"]
 ARG revision
 LABEL maintainer="Weaveworks <help@weave.works>" \
       org.opencontainers.image.title="scope" \
-      org.opencontainers.image.source="https://github.com/weaveworks/scope" \
+      org.opencontainers.image.source="https://github.com/keabraekman/summer" \
       org.opencontainers.image.revision="${revision}" \
       org.opencontainers.image.vendor="Weaveworks"

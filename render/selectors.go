@@ -3,7 +3,7 @@ package render
 import (
 	"context"
 
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // TopologySelector selects a single topology from a report.

@@ -60,6 +60,6 @@ ENTRYPOINT ["/build.sh"]
 ARG revision
 LABEL maintainer="Weaveworks <help@weave.works>" \
       org.opencontainers.image.title="backend" \
-      org.opencontainers.image.source="https://github.com/weaveworks/scope/tree/master/backend" \
+      org.opencontainers.image.source="https://github.com/keabraekman/Summer/tree/master/backend" \
       org.opencontainers.image.revision="${revision}" \
       org.opencontainers.image.vendor="Weaveworks"

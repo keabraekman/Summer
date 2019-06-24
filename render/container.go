@@ -4,8 +4,8 @@ import (
 	"context"
 	"regexp"
 
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/report"
 )
 
 // Constants are used in the tests.

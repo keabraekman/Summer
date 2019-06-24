@@ -8,8 +8,8 @@ import (
 
 	fsouza "github.com/fsouza/go-dockerclient"
 
-	"github.com/weaveworks/scope/app"
-	"github.com/weaveworks/scope/test"
+	"github.com/keabraekman/Summer/app"
+	"github.com/keabraekman/Summer/test"
 )
 
 type mockDockerClient struct{}

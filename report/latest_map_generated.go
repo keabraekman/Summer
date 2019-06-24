@@ -202,7 +202,7 @@ func (m StringLatestMap) DeepEqual(n StringLatestMap) bool {
 // Duplicates the output for a built-in map without generating an
 // intermediate copy of the data structure, to save time.  Note this
 // means we are using undocumented, internal APIs, which could break
-// in the future.  See https://github.com/weaveworks/scope/pull/1709
+// in the future.  See https://github.com/keabraekman/Summer/pull/1709
 // for more information.
 func (m StringLatestMap) CodecEncodeSelf(encoder *codec.Encoder) {
 	z, r := codec.GenHelperEncoder(encoder)
@@ -454,7 +454,7 @@ func (m NodeControlDataLatestMap) DeepEqual(n NodeControlDataLatestMap) bool {
 // Duplicates the output for a built-in map without generating an
 // intermediate copy of the data structure, to save time.  Note this
 // means we are using undocumented, internal APIs, which could break
-// in the future.  See https://github.com/weaveworks/scope/pull/1709
+// in the future.  See https://github.com/keabraekman/Summer/pull/1709
 // for more information.
 func (m NodeControlDataLatestMap) CodecEncodeSelf(encoder *codec.Encoder) {
 	z, r := codec.GenHelperEncoder(encoder)

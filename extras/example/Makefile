@@ -11,7 +11,7 @@ qotd/qotd: qotd/qotd.o
 
 ifeq ($(BUILD_IN_CONTAINER),true)
 qotd/qotd qotd/qotd.o searchapp/searchapp shout/shout:
-	$(SUDO) docker run -ti --rm -v $(shell pwd)/../../:/go/src/github.com/weaveworks/scope -e GOARCH -e GOOS \
+	$(SUDO) docker run -ti --rm -v $(shell pwd)/../../:/go/src/github.com/keabraekman/Summer -e GOARCH -e GOOS \
 		weaveworks/scope-backend-build -C extras/example $@
 else
 qotd/qotd:

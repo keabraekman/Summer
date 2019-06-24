@@ -4,9 +4,9 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/probe/controls"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/probe/controls"
+	"github.com/keabraekman/Summer/report"
 	apimeta "k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )

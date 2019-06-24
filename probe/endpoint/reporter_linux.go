@@ -5,7 +5,7 @@ package endpoint
 import (
 	"time"
 
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // Reporter generates Reports containing the Endpoint topology.

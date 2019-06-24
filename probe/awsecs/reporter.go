@@ -5,10 +5,10 @@ import (
 	"time"
 
 	log "github.com/sirupsen/logrus"
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/probe/controls"
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/probe/controls"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/report"
 )
 
 // TaskFamily is the key that stores the task family of an ECS Task

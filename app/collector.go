@@ -12,7 +12,7 @@ import (
 	"context"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // We merge all reports received within the specified interval, and

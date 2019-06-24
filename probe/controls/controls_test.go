@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/probe/controls"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/probe/controls"
 )
 
 func TestControls(t *testing.T) {

@@ -5,9 +5,9 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/weaveworks/scope/probe/endpoint"
-	"github.com/weaveworks/scope/render"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/endpoint"
+	"github.com/keabraekman/Summer/render"
+	"github.com/keabraekman/Summer/report"
 )
 
 const (

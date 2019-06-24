@@ -21,9 +21,9 @@ import (
 
 	"github.com/weaveworks/common/backoff"
 	"github.com/weaveworks/common/fs"
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/probe/controls"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/probe/controls"
+	"github.com/keabraekman/Summer/report"
 )
 
 // Exposed for testing

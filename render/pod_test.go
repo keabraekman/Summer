@@ -5,12 +5,12 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/probe/kubernetes"
-	"github.com/weaveworks/scope/render"
-	"github.com/weaveworks/scope/render/expected"
-	"github.com/weaveworks/scope/test/fixture"
-	"github.com/weaveworks/scope/test/reflect"
-	"github.com/weaveworks/scope/test/utils"
+	"github.com/keabraekman/Summer/probe/kubernetes"
+	"github.com/keabraekman/Summer/render"
+	"github.com/keabraekman/Summer/render/expected"
+	"github.com/keabraekman/Summer/test/fixture"
+	"github.com/keabraekman/Summer/test/reflect"
+	"github.com/keabraekman/Summer/test/utils"
 )
 
 func TestPodRenderer(t *testing.T) {

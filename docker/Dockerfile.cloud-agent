@@ -8,6 +8,6 @@ ARG revision
 LABEL works.weave.role="system" \
       maintainer="Weaveworks <help@weave.works>" \
       org.opencontainers.image.title="cloud-agent" \
-      org.opencontainers.image.source="https://github.com/weaveworks/scope" \
+      org.opencontainers.image.source="https://github.com/keabraekman/Summer" \
       org.opencontainers.image.revision="${revision}" \
       org.opencontainers.image.vendor="Weaveworks"

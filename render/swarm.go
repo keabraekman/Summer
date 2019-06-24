@@ -1,7 +1,7 @@
 package render
 
 import (
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // SwarmServiceRenderer is a Renderer for Docker Swarm services

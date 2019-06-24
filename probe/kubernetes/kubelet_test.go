@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/weaveworks/scope/probe/kubernetes"
+	"github.com/keabraekman/Summer/probe/kubernetes"
 )
 
 const kubeletPodsJSONFile = "kubelet_pods.json"

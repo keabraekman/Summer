@@ -1,13 +1,13 @@
 package expected
 
 import (
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/probe/host"
-	"github.com/weaveworks/scope/probe/kubernetes"
-	"github.com/weaveworks/scope/probe/process"
-	"github.com/weaveworks/scope/render"
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test/fixture"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/probe/host"
+	"github.com/keabraekman/Summer/probe/kubernetes"
+	"github.com/keabraekman/Summer/probe/process"
+	"github.com/keabraekman/Summer/render"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test/fixture"
 )
 
 // Exported for testing.
@@ -113,7 +113,7 @@ var (
 				RenderedEndpoints[fixture.NonContainerNodeID],
 			)),
 
-		// due to https://github.com/weaveworks/scope/issues/1323 we are dropping
+		// due to https://github.com/keabraekman/Summer/issues/1323 we are dropping
 		// all non-internet pseudo nodes for now.
 		// UnknownPseudoNode1ID: unknownPseudoNode1(fixture.ServerProcessNodeID),
 		// UnknownPseudoNode2ID: unknownPseudoNode2(fixture.ServerProcessNodeID),
@@ -146,7 +146,7 @@ var (
 				RenderedProcesses[fixture.NonContainerProcessNodeID],
 			)),
 
-		// due to https://github.com/weaveworks/scope/issues/1323 we are dropping
+		// due to https://github.com/keabraekman/Summer/issues/1323 we are dropping
 		// all non-internet pseudo nodes for now.
 		// UnknownPseudoNode1ID:      unknownPseudoNode1(fixture.ServerName),
 		// UnknownPseudoNode2ID:      unknownPseudoNode2(fixture.ServerName),
@@ -368,7 +368,7 @@ var (
 				RenderedPods[fixture.ServerPodNodeID],
 			)),
 
-		// due to https://github.com/weaveworks/scope/issues/1323 we are dropping
+		// due to https://github.com/keabraekman/Summer/issues/1323 we are dropping
 		// all non-internet pseudo nodes for now.
 		// UnknownPseudoNode1ID:      unknownPseudoNode1(fixture.ServerHostNodeID),
 		// UnknownPseudoNode2ID:      unknownPseudoNode2(fixture.ServerHostNodeID),

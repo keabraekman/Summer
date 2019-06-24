@@ -8,7 +8,7 @@ import (
 
 	"github.com/bluele/gcache"
 
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // renderCache is keyed on the combination of Memoiser and report

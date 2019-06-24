@@ -21,8 +21,8 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/weaveworks/common/instrument"
-	"github.com/weaveworks/scope/app"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/app"
+	"github.com/keabraekman/Summer/report"
 )
 
 const (

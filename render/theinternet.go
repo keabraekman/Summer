@@ -7,8 +7,8 @@ import (
 
 	"github.com/camlistore/camlistore/pkg/lru"
 
-	"github.com/weaveworks/scope/probe/host"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/host"
+	"github.com/keabraekman/Summer/report"
 )
 
 var (
@@ -55,7 +55,7 @@ func purgeKnownServiceCache() {
 	knownServiceCache = lru.New(10000)
 }
 
-// TODO: Make it user-customizable https://github.com/weaveworks/scope/issues/1876
+// TODO: Make it user-customizable https://github.com/keabraekman/Summer/issues/1876
 // NB: this is a hotspot in rendering performance.
 func isKnownService(hostname string) bool {
 	if v, ok := knownServiceCache.Get(hostname); ok {
@@ -100,7 +100,7 @@ func LocalNetworks(r report.Report) report.Networks {
 //
 // The right way of fixing this is performing DNAT mapping on
 // persistent connections for which we don't have a robust solution
-// (see https://github.com/weaveworks/scope/issues/1491).
+// (see https://github.com/keabraekman/Summer/issues/1491).
 func kubeServiceNetwork(services report.Topology) *net.IPNet {
 	serviceIPs := make([]net.IP, 0, len(services.Nodes))
 	for _, md := range services.Nodes {

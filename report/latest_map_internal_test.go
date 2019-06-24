@@ -9,7 +9,7 @@ import (
 	"github.com/ugorji/go/codec"
 
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/test/reflect"
 )
 
 func TestLatestMapAdd(t *testing.T) {

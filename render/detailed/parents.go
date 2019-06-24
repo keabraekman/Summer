@@ -1,7 +1,7 @@
 package detailed
 
 import (
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // Parent is the information needed to build a link to the parent of a Node.

@@ -14,8 +14,8 @@ import (
 	"github.com/ugorji/go/codec"
 
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/app"
-	"github.com/weaveworks/scope/test/fixture"
+	"github.com/keabraekman/Summer/app"
+	"github.com/keabraekman/Summer/test/fixture"
 )
 
 type v map[string]string

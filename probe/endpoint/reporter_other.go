@@ -2,7 +2,7 @@
 
 package endpoint
 
-import "github.com/weaveworks/scope/report"
+import "github.com/keabraekman/Summer/report"
 
 // Reporter dummy
 type Reporter struct{}

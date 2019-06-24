@@ -16,8 +16,8 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/weaveworks/common/instrument"
-	"github.com/weaveworks/scope/app"
-	"github.com/weaveworks/scope/common/xfer"
+	"github.com/keabraekman/Summer/app"
+	"github.com/keabraekman/Summer/common/xfer"
 )
 
 var (

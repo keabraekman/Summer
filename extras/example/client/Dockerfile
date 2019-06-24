@@ -8,6 +8,6 @@ ENTRYPOINT ["python", "/home/weave/client.py"]
 ARG revision
 LABEL maintainer="Weaveworks <help@weave.works>" \
       org.opencontainers.image.title="example-client" \
-      org.opencontainers.image.source="https://github.com/weaveworks/scope/tree/master/extras/example/client" \
+      org.opencontainers.image.source="https://github.com/keabraekman/Summer/tree/master/extras/example/client" \
       org.opencontainers.image.revision="${revision}" \
       org.opencontainers.image.vendor="Weaveworks"

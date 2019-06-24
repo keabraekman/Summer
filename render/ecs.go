@@ -1,7 +1,7 @@
 package render
 
 import (
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // ECSTaskRenderer is a Renderer for Amazon ECS tasks.

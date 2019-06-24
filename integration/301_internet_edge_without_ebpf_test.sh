@@ -9,7 +9,7 @@ weave_on "$HOST1" launch
 scope_on "$HOST1" launch --probe.ebpf.connections=false
 
 ## Test disabled: it is currently flaky
-## https://github.com/weaveworks/scope/issues/2308
+## https://github.com/keabraekman/Summer/issues/2308
 
 # docker_on "$HOST1" run -d -p 80:80 --name nginx nginx
 #

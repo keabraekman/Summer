@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
-	"github.com/weaveworks/scope/probe/kubernetes"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/kubernetes"
+	"github.com/keabraekman/Summer/report"
 )
 
 // KubernetesVolumesRenderer is a Renderer which combines all Kubernetes

@@ -6,12 +6,12 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/render"
-	"github.com/weaveworks/scope/render/detailed"
-	"github.com/weaveworks/scope/render/expected"
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test/fixture"
-	"github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/render"
+	"github.com/keabraekman/Summer/render/detailed"
+	"github.com/keabraekman/Summer/render/expected"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test/fixture"
+	"github.com/keabraekman/Summer/test/reflect"
 )
 
 func TestParents(t *testing.T) {

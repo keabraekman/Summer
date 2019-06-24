@@ -1,7 +1,7 @@
 package detailed
 
 import (
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 func censorNodeSummary(s NodeSummary, cfg report.CensorConfig) NodeSummary {

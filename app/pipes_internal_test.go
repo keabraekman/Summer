@@ -16,10 +16,10 @@ import (
 	"github.com/gorilla/websocket"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/probe/appclient"
-	"github.com/weaveworks/scope/probe/controls"
-	"github.com/weaveworks/scope/test"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/probe/appclient"
+	"github.com/keabraekman/Summer/probe/controls"
+	"github.com/keabraekman/Summer/test"
 )
 
 func TestPipeTimeout(t *testing.T) {

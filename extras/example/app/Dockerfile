@@ -9,6 +9,6 @@ ENTRYPOINT ["python", "/home/weave/app.py"]
 ARG revision
 LABEL maintainer="Weaveworks <help@weave.works>" \
       org.opencontainers.image.title="example-app" \
-      org.opencontainers.image.source="https://github.com/weaveworks/scope/tree/master/extras/example/app" \
+      org.opencontainers.image.source="https://github.com/keabraekman/Summer/tree/master/extras/example/app" \
       org.opencontainers.image.revision="${revision}" \
       org.opencontainers.image.vendor="Weaveworks"

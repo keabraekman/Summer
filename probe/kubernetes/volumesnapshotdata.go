@@ -2,7 +2,7 @@ package kubernetes
 
 import (
 	snapshotv1 "github.com/openebs/k8s-snapshot-client/snapshot/pkg/apis/volumesnapshot/v1"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // VolumeSnapshotData represent kubernetes VolumeSnapshotData interface

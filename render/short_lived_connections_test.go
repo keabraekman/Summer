@@ -7,11 +7,11 @@ import (
 
 	"github.com/weaveworks/common/mtime"
 
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/probe/host"
-	"github.com/weaveworks/scope/render"
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test/utils"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/probe/host"
+	"github.com/keabraekman/Summer/render"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test/utils"
 )
 
 var (

@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/weaveworks/scope/probe/controls"
-	"github.com/weaveworks/scope/probe/host"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/controls"
+	"github.com/keabraekman/Summer/probe/host"
+	"github.com/keabraekman/Summer/report"
 )
 
 func TestReporter(t *testing.T) {

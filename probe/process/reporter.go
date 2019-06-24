@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // We use these keys in node metadata

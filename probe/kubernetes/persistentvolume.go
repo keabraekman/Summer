@@ -3,7 +3,7 @@ package kubernetes
 import (
 	"reflect"
 
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 	apiv1 "k8s.io/api/core/v1"
 )
 

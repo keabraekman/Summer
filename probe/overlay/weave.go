@@ -8,10 +8,10 @@ import (
 	"time"
 
 	"github.com/weaveworks/common/backoff"
-	"github.com/weaveworks/scope/common/weave"
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/probe/host"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/common/weave"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/probe/host"
+	"github.com/keabraekman/Summer/report"
 )
 
 // Keys for use in Node

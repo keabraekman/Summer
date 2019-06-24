@@ -1,7 +1,7 @@
 package kubernetes
 
 import (
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 	storagev1 "k8s.io/api/storage/v1"
 )
 

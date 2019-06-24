@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/render"
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/render"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test/reflect"
 )
 
 type renderFunc func(ctx context.Context, r report.Report) render.Nodes

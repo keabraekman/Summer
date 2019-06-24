@@ -14,12 +14,12 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/types"
 
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/probe/controls"
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/probe/kubernetes"
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/probe/controls"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/probe/kubernetes"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test/reflect"
 )
 
 var (

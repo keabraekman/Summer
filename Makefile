@@ -53,7 +53,7 @@ protoc-gen-gofast:
 
 # Use cri target to download latest cri proto files and regenerate CRI runtime files. 
 cri: update-cri protoc-gen-gofast
-	@cd $(GOPATH)/src;protoc --proto_path=$(GOPATH)/src --gofast_out=plugins=grpc:. github.com/weaveworks/scope/cri/runtime/api.proto
+	@cd $(GOPATH)/src;protoc --proto_path=$(GOPATH)/src --gofast_out=plugins=grpc:. github.com/keabraekman/Summer/cri/runtime/api.proto
 
 docker/weave:
 	curl -L https://github.com/weaveworks/weave/releases/download/v$(WEAVENET_VERSION)/weave -o docker/weave
@@ -90,7 +90,7 @@ ifeq ($(BUILD_IN_CONTAINER),true)
 $(SCOPE_EXE) $(RUNSVINIT) lint tests shell prog/staticui/staticui.go prog/externalui/externalui.go: $(SCOPE_BACKEND_BUILD_UPTODATE)
 	@mkdir -p $(shell pwd)/.pkg
 	$(SUDO) docker run $(RM) $(RUN_FLAGS) \
-		-v $(shell pwd):/go/src/github.com/weaveworks/scope \
+		-v $(shell pwd):/go/src/github.com/keabraekman/Summer \
 		-v $(shell pwd)/.pkg:/go/pkg \
 		--net=host \
 		-e GOARCH -e GOOS -e CIRCLECI -e CIRCLE_BUILD_NUM -e CIRCLE_NODE_TOTAL \

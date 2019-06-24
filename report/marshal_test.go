@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/weaveworks/scope/report"
-	s_reflect "github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/report"
+	s_reflect "github.com/keabraekman/Summer/test/reflect"
 )
 
 func TestRoundtrip(t *testing.T) {

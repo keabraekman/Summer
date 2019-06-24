@@ -8,7 +8,7 @@ import (
 
 	"github.com/typetypetype/conntrack"
 
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // This is our 'abstraction' of the endpoint that have been rewritten by NAT.

@@ -12,10 +12,10 @@ import (
 
 	"github.com/ugorji/go/codec"
 
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/probe/appclient"
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test/fixture"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/probe/appclient"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test/fixture"
 )
 
 func main() {

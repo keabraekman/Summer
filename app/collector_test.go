@@ -8,9 +8,9 @@ import (
 
 	"github.com/weaveworks/common/mtime"
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/app"
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/app"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test/reflect"
 )
 
 func TestCollector(t *testing.T) {

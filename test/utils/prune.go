@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // Prune returns a copy of the Nodes with all information not strictly

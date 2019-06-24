@@ -1,7 +1,7 @@
 package probe
 
 import (
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 type topologyTagger struct{}

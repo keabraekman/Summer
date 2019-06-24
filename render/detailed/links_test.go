@@ -5,10 +5,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/probe/kubernetes"
-	"github.com/weaveworks/scope/render/detailed"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/probe/kubernetes"
+	"github.com/keabraekman/Summer/render/detailed"
+	"github.com/keabraekman/Summer/report"
 
 	"github.com/stretchr/testify/assert"
 )

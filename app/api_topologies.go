@@ -14,10 +14,10 @@ import (
 	opentracing "github.com/opentracing/opentracing-go"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/probe/kubernetes"
-	"github.com/weaveworks/scope/render"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/probe/kubernetes"
+	"github.com/keabraekman/Summer/render"
+	"github.com/keabraekman/Summer/report"
 )
 
 const (
@@ -32,7 +32,7 @@ const (
 	kubeControllersID      = "kube-controllers"
 	servicesID             = "services"
 	hostsID                = "hosts"
-	weaveID                = "weave"
+	// weaveID                = "weave"
 	ecsTasksID             = "ecs-tasks"
 	ecsServicesID          = "ecs-services"
 	swarmServicesID        = "swarm-services"
@@ -56,14 +56,14 @@ var (
 			{Value: "hide", Label: "Hide storage", filter: render.IsPodComponent, filterPseudo: false},
 		},
 	}
-	snapshotFilter = APITopologyOptionGroup{
-		ID:      "snapshot",
-		Default: "hide",
-		Options: []APITopologyOption{
-			{Value: "show", Label: "Show snapshots", filter: nil, filterPseudo: false},
-			{Value: "hide", Label: "Hide snapshots", filter: render.IsNonSnapshotComponent, filterPseudo: false},
-		},
-	}
+	// snapshotFilter = APITopologyOptionGroup{
+	// 	ID:      "snapshot",
+	// 	Default: "hide",
+	// 	Options: []APITopologyOption{
+	// 		{Value: "show", Label: "Show snapshots", filter: nil, filterPseudo: false},
+	// 		{Value: "hide", Label: "Hide snapshots", filter: render.IsNonSnapshotComponent, filterPseudo: false},
+	// 	},
+	// }
 )
 
 // namespaceFilters generates a namespace selector option group based on the given namespaces
@@ -295,12 +295,12 @@ func MakeRegistry() *Registry {
 			Name:     "Hosts",
 			Rank:     4,
 		},
-		APITopologyDesc{
-			id:       weaveID,
-			parent:   hostsID,
-			renderer: render.WeaveRenderer,
-			Name:     "Weave Net",
-		},
+		// APITopologyDesc{
+		// 	id:       weaveID,
+		// 	parent:   hostsID,
+		// 	renderer: render.WeaveRenderer,
+		// 	Name:     "Weave Net",
+		// },
 	)
 
 	return registry

@@ -11,8 +11,8 @@ import (
 	log "github.com/sirupsen/logrus"
 	billing "github.com/weaveworks/billing-client"
 
-	"github.com/weaveworks/scope/app"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/app"
+	"github.com/keabraekman/Summer/report"
 )
 
 // BillingEmitterConfig has everything we need to make a billing emitter

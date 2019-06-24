@@ -9,9 +9,9 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/typetypetype/conntrack"
 
-	"github.com/weaveworks/scope/probe/endpoint/procspy"
-	"github.com/weaveworks/scope/probe/process"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/probe/endpoint/procspy"
+	"github.com/keabraekman/Summer/probe/process"
+	"github.com/keabraekman/Summer/report"
 )
 
 type connectionTracker struct {

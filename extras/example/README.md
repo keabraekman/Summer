@@ -7,7 +7,7 @@ $ docker-machine create -d virtualbox --virtualbox-memory=4096 scope-tastic
 $ eval $(docker-machine env scope-tastic)
 $ sudo curl -L git.io/weave -o /usr/local/bin/weave
 $ sudo chmod +x /usr/local/bin/weave
-$ curl -o run.sh https://raw.githubusercontent.com/weaveworks/scope/master/experimental/example/run.sh
+$ curl -o run.sh https://raw.githubusercontent.com/keabraekman/Summer/master/experimental/example/run.sh
 $ ./run.sh
 $ sudo curl -L git.io/scope -o /usr/local/bin/scope
 $ sudo chmod a+x /usr/local/bin/scope

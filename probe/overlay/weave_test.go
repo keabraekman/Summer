@@ -4,13 +4,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/weaveworks/scope/probe/docker"
-	"github.com/weaveworks/scope/probe/host"
-	"github.com/weaveworks/scope/probe/overlay"
-	"github.com/weaveworks/scope/report"
-	"github.com/weaveworks/scope/test"
-	"github.com/weaveworks/scope/test/reflect"
-	"github.com/weaveworks/scope/test/weave"
+	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/keabraekman/Summer/probe/host"
+	"github.com/keabraekman/Summer/probe/overlay"
+	"github.com/keabraekman/Summer/report"
+	"github.com/keabraekman/Summer/test"
+	"github.com/keabraekman/Summer/test/reflect"
+	"github.com/keabraekman/Summer/test/weave"
 )
 
 const (

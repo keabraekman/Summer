@@ -15,9 +15,9 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	"github.com/weaveworks/common/fs"
-	"github.com/weaveworks/scope/probe/endpoint/procspy"
-	"github.com/weaveworks/scope/probe/host"
-	"github.com/weaveworks/scope/probe/process"
+	"github.com/keabraekman/Summer/probe/endpoint/procspy"
+	"github.com/keabraekman/Summer/probe/host"
+	"github.com/keabraekman/Summer/probe/process"
 	"github.com/weaveworks/tcptracer-bpf/pkg/tracer"
 )
 
@@ -41,7 +41,7 @@ type EbpfTracker struct {
 
 	// debugBPF specifies if EbpfTracker must be started in debug mode. This
 	// allows to easily debug issues like:
-	// https://github.com/weaveworks/scope/issues/2650
+	// https://github.com/keabraekman/Summer/issues/2650
 	//
 	// Scope could be started this way:
 	//   $ sudo WEAVESCOPE_DOCKER_ARGS="-e SCOPE_DEBUG_BPF=1" ./scope launch
@@ -109,7 +109,7 @@ func isKernelSupported() error {
 			return nil
 		}
 		if major == 4 && minor == 4 && abiNumber >= 119 && abiNumber < 127 {
-			// https://github.com/weaveworks/scope/issues/3131
+			// https://github.com/keabraekman/Summer/issues/3131
 			// https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1763454
 			return fmt.Errorf("got Ubuntu kernel %s with known bug", release)
 		}
@@ -156,7 +156,7 @@ func (t *EbpfTracker) TCPEventV4(e tracer.TcpV4) {
 		// A kernel bug can cause the timestamps to be wrong (e.g. on Ubuntu with Linux 4.4.0-47.68)
 		// Upgrading the kernel will fix the problem. For further info see:
 		// https://github.com/iovisor/bcc/issues/790#issuecomment-263704235
-		// https://github.com/weaveworks/scope/issues/2334
+		// https://github.com/keabraekman/Summer/issues/2334
 		log.Errorf("tcp tracer received event with timestamp %v even though the last timestamp was %v. Stopping the eBPF tracker.", e.Timestamp, t.lastTimestampV4)
 		t.stop()
 		return

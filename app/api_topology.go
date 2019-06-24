@@ -9,10 +9,10 @@ import (
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/weaveworks/scope/common/xfer"
-	"github.com/weaveworks/scope/render"
-	"github.com/weaveworks/scope/render/detailed"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/keabraekman/Summer/render"
+	"github.com/keabraekman/Summer/render/detailed"
+	"github.com/keabraekman/Summer/report"
 )
 
 const (

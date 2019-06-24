@@ -3,7 +3,7 @@ package report
 import (
 	"testing"
 
-	"github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/test/reflect"
 )
 
 func TestSets(t *testing.T) {

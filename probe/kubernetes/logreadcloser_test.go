@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/weaveworks/scope/probe/kubernetes"
+	"github.com/keabraekman/Summer/probe/kubernetes"
 )
 
 func TestLogReadCloser(t *testing.T) {

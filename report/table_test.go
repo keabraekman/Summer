@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 func TestMulticolumnTables(t *testing.T) {

@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/weaveworks/common/test"
-	"github.com/weaveworks/scope/test/reflect"
+	"github.com/keabraekman/Summer/test/reflect"
 )
 
 // Poll repeatedly evaluates condition until we either timeout, or it succeeds.

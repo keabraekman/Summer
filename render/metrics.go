@@ -3,7 +3,7 @@ package render
 import (
 	"context"
 
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 // PropagateSingleMetrics creates a renderer which propagates metrics

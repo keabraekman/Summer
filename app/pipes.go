@@ -7,7 +7,7 @@ import (
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/weaveworks/scope/common/xfer"
+	"github.com/keabraekman/Summer/common/xfer"
 )
 
 // RegisterPipeRoutes registers the pipe routes

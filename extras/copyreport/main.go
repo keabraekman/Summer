@@ -6,7 +6,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/weaveworks/scope/report"
+	"github.com/keabraekman/Summer/report"
 )
 
 func main() {
