@@ -6,8 +6,8 @@ import NodesGrid from '../charts/nodes-grid';
 import NodesResources from '../components/nodes-resources';
 import Dashboard from './dashboard';
 import NodesError from '../charts/nodes-error';
-import DelayedShow from '../utils/delayed-show';
-import { Loading, getNodeType } from './loading';
+// import DelayedShow from '../utils/delayed-show';
+// import { Loading, getNodeType } from './loading';
 import {
   isTopologyNodeCountZero,
   isNodesDisplayEmpty,
@@ -20,7 +20,7 @@ import {
   isDashboardViewModeSelector,
 } from '../selectors/topology';
 
-import { TOPOLOGY_LOADER_DELAY } from '../constants/timer';
+// import { TOPOLOGY_LOADER_DELAY } from '../constants/timer';
 
 
 // TODO: The information that we already have available on the frontend should enable
@@ -55,18 +55,19 @@ class Nodes extends React.Component {
 
   render() {
     const {
-      topologiesLoaded, nodesLoaded, topologies, currentTopology, isGraphViewMode,
+      topologiesLoaded, nodesLoaded, // topologies, currentTopology,
+      isGraphViewMode,
       isTableViewMode, isResourceViewMode, isDashboardViewMode
     } = this.props;
     // TODO: Rename view mode components.
     return (
       <div className="nodes-wrapper">
-        <DelayedShow delay={TOPOLOGY_LOADER_DELAY} show={!topologiesLoaded || !nodesLoaded}>
+        {/* <DelayedShow delay={TOPOLOGY_LOADER_DELAY} show={!topologiesLoaded || !nodesLoaded}>
           <Loading itemType="topologies" show={!topologiesLoaded} />
           <Loading
             itemType={getNodeType(currentTopology, topologies)}
             show={topologiesLoaded && !nodesLoaded} />
-        </DelayedShow>
+        </DelayedShow> */}
 
         {topologiesLoaded && nodesLoaded && this.renderConditionalEmptyTopologyError()}
 

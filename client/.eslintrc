@@ -7,7 +7,7 @@
     "node": true
   },
   "rules": {
-    "linebreak-style": "off",
+    "linebreak-style": 0,
     "no-debugger": 1,
     "comma-dangle": 0,
     "global-require": 0,
