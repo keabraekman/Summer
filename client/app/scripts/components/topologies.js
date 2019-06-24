@@ -39,7 +39,7 @@ class Topologies extends React.Component {
       // Don't show matches in the resource view as searching is not supported there yet.
       'topologies-sub-item-matched': !this.props.isResourceViewMode && searchMatchCount,
     });
-    if (className !== 'WeaveNet') {
+    if (className !== 'Weave Net') {
       return (
         <div
           className={className}
