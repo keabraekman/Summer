@@ -59,6 +59,8 @@ class Nodes extends React.Component {
       isTableViewMode, isResourceViewMode, isDashboardViewMode
     } = this.props;
     // TODO: Rename view mode components.
+    console.log(isGraphViewMode);
+    console.log(isDashboardViewMode);
     return (
       <div className="nodes-wrapper">
         <DelayedShow delay={TOPOLOGY_LOADER_DELAY} show={!topologiesLoaded || !nodesLoaded}>
