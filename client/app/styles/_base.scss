@@ -18,6 +18,22 @@ a {
   text-decoration: none;
 }
 
+.filter-title {
+  font-family: $font-family-regular;
+  font-size: $font-size-large;
+  color: $color-gray-200;
+  text-align: center;
+}
+
+.modalbody {
+  display: flex;
+  align-content: center;
+}
+
+.ModalHeader {
+  font-size: $font-size-large;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: $color-gray-200;
@@ -1191,11 +1207,12 @@ a {
 
 .status {
   padding: 2px 12px;
+  margin: 0px 0px 10px 0px;
   background-color: $body-background-color;
   border-radius: $border-radius-soft;
   color: $text-secondary-color;
   display: inline-block;
-  opacity: 0.9;
+  opacity: 0.95;
 
   &-icon {
     font-size: $font-size-normal;
@@ -1214,7 +1231,7 @@ a {
 .topology-option, .metric-selector, .network-selector, .view-mode-selector, .time-control {
   font-size: $font-size-normal;
   color: $text-secondary-color;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
 
   &:last-child {
     margin-bottom: 0;
@@ -1236,7 +1253,7 @@ a {
 
   &-action {
     @extend .btn-opacity;
-    padding: 3px 12px;
+    padding: 3px 10px;
     cursor: pointer;
     display: inline-block;
     background-color: $background-color;
@@ -1327,8 +1344,7 @@ a {
   &-wrapper {
     display: inline-flex;
     flex-wrap: wrap;
-    overflow: hidden;
-    max-height: 27px;
+    overflow: visible;
     transition: max-height 0.5s 0s $base-ease;
 
     .topology-option-action {
@@ -1403,15 +1419,16 @@ a {
 }
 
 .sidebar {
-  position: fixed;
-  bottom: 11px;
-  left: 11px;
+  //OLD THINGS ARE COMMENTED OUT
+  //position: fixed;
+  //bottom: 11px;
+  //left: 11px;
+  justify-content: center;
   padding: 5px;
   font-size: $font-size-small;
   border-radius: $border-radius-soft;
   border: 1px solid transparent;
   pointer-events: none;
-  max-width: 50%;
 }
 
 .sidebar-gridmode {
