@@ -1,15 +1,16 @@
 $base-ease: ease-in-out;
 
-$background-color: $color-gray-50;
+$color-darkGray: #383838;
+$background-color: $color-darkGray;
 $background-lighter-color: $color-white;
-$background-darker-color: $color-purple-100;
-$background-darker-secondary-color: $color-gray-50;
+$background-darker-color: $color-black;
+$background-darker-secondary-color: $color-black;
 $background-dark-color: $color-purple-900;
-$text-color: $color-purple-800;
-$text-secondary-color: $color-purple-600;
-$text-tertiary-color: $color-purple-400;
-$border-light-color: $color-purple-100;
-$text-darker-color: $color-purple-900;
+$text-color: $color-white;
+$text-secondary-color: $color-white;
+$text-tertiary-color: $color-white;
+$border-light-color: $color-white;
+$text-darker-color: $color-white;
 
 $details-window-width: 420px;
 $details-window-padding-left: 30px;
