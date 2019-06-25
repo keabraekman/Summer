@@ -1809,8 +1809,9 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 60em;
+  height: 50em;
   width: 100%;
+  overflow: hidden;
 
   h1 {
     font-size: $font-size-huge;
@@ -1826,18 +1827,23 @@ a {
     .top {
       display: flex;
       width: 100%;
+      height: 50%;
 
       .dash-status {
         display: flex;
         justify-content: center;
         flex-grow: 1;
+        width: 50%;
         font-size: $font-size-large;
+        background-color: $color-blue-700;
       }
 
       .pie-charts {
         display: flex;
         justify-content: center;
         flex-grow: 1;
+        width: 50%;
+        background-color: $color-gray-200;
       }
     }
 
@@ -1852,7 +1858,7 @@ a {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 45%;
+        height: 50%;
         width: 15%;
         min-width: 140px;
         max-width: 145px;
