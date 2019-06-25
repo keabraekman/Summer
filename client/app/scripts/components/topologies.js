@@ -39,19 +39,21 @@ class Topologies extends React.Component {
       // Don't show matches in the resource view as searching is not supported there yet.
       'topologies-sub-item-matched': !this.props.isResourceViewMode && searchMatchCount,
     });
-
-    return (
-      <div
-        className={className}
-        title={title}
-        key={topologyId}
-        rel={topologyId}
-        onClick={ev => this.onTopologyClick(ev, subTopology)}>
-        <div className="topologies-sub-item-label">
-          {subTopology.get('name')}
+    if (className !== 'Weave Net') {
+      return (
+        <div
+          className={className}
+          title={title}
+          key={topologyId}
+          rel={topologyId}
+          onClick={ev => this.onTopologyClick(ev, subTopology)}>
+          <div className="topologies-sub-item-label">
+            {subTopology.get('name')}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+    return '';
   }
 
   renderTopology(topology) {

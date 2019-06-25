@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { debounce, isEqual } from 'lodash';
-
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
 import Logo from './logo';
-import Footer from './footer';
+// import Footer from './footer';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
@@ -220,7 +219,7 @@ class App extends React.Component {
             <div className="selectors">
               <div className="logo">
                 {!isIframe &&
-                  <svg width="100%" height="100%" viewBox="0 0 1089 217">
+                  <svg width="100%" height="100%" viewBox="150 -40 20 100">
                     <Logo />
                   </svg>
                 }
@@ -240,7 +239,7 @@ class App extends React.Component {
             {!isResourceViewMode && <TopologyOptions />}
           </Sidebar>
 
-          <Footer />
+          {/* <Footer /> */}
 
           <Overlay faded={timeTravelTransitioning} />
         </div>
