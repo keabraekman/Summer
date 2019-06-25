@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ErrorBar from './error-bar';
+// import ErrorBar from './error-bar';
 import Plugins from './plugins';
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import {
@@ -42,10 +42,6 @@ class Footer extends React.Component {
 
     return (
       <div className="footer">
-        <div className="footer-error-bar">
-          <ErrorBar />
-        </div>
-
         <div className="footer-status">
           {versionUpdate &&
             <a

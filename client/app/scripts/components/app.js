@@ -8,13 +8,14 @@ import { debounce, isEqual } from 'lodash';
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
+import ErrorBar from './error-bar';
 import Logo from './logo';
 import Footer from './footer';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
 import Search from './search';
-import Status from './status';
+// import Status from './status';
 import Topologies from './topologies';
 import TopologyOptions from './topology-options';
 import Overlay from './overlay';
@@ -236,7 +237,7 @@ class App extends React.Component {
 
           <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
             {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
-            {!isResourceViewMode && <Status />}
+            {!isResourceViewMode && <ErrorBar />}
             {!isResourceViewMode && <TopologyOptions />}
           </Sidebar>
 

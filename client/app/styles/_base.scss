@@ -1802,3 +1802,8 @@ a {
 @media (max-width: 1330px) {
   .view-mode-selector .label { display: none; }
 }
+
+.err-bar{
+  display: flex; 
+  align-content: flex-end;
+}
