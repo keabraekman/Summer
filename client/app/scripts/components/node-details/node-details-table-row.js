@@ -173,7 +173,7 @@ export default class NodeDetailsTableRow extends React.Component {
       focused: this.state.focused,
       selected: this.props.selected,
     });
-
+    console.log(values);
     return (
       <tr
         onClick={onClick && this.onClick}
