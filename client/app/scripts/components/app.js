@@ -9,6 +9,7 @@ import theme from 'weaveworks-ui-components/lib/theme';
 
 import Logo from './logo';
 // import Footer from './footer';
+// import Modal from './filter-modal';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
@@ -224,6 +225,7 @@ class App extends React.Component {
                   </svg>
                 }
               </div>
+              {/* <Modal /> */}
               <Search />
               <Topologies />
               <ViewModeSelector />
