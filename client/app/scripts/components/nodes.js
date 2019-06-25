@@ -55,7 +55,8 @@ class Nodes extends React.Component {
 
   render() {
     const {
-      topologiesLoaded, nodesLoaded, topologies, currentTopology, isGraphViewMode,
+      topologiesLoaded, nodesLoaded, topologies, currentTopology,
+      isGraphViewMode,
       isTableViewMode, isResourceViewMode, isDashboardViewMode
     } = this.props;
     // TODO: Rename view mode components.
@@ -73,7 +74,7 @@ class Nodes extends React.Component {
         {isGraphViewMode && <NodesChart />}
         {isTableViewMode && <NodesGrid />}
         {isResourceViewMode && <NodesResources />}
-        {isDashboardViewMode && <Dashboard />}
+        {nodesLoaded && isDashboardViewMode && <Dashboard />}
       </div>
     );
   }

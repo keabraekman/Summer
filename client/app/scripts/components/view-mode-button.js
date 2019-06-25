@@ -13,14 +13,12 @@ class ViewModeButton extends React.Component {
   }
 
   handleClick() {
+    this.props.onClick();
     trackAnalyticsEvent('scope.layout.selector.click', {
       layout: this.props.viewMode,
       parentTopologyId: this.props.currentTopology.get('parentId'),
       topologyId: this.props.currentTopology.get('id'),
     });
-    console.log(this.props.currentTopology.get('parentId'));
-    console.log(this.props.currentTopology.get('id'));
-    this.props.onClick();
   }
 
   render() {
