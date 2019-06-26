@@ -12,13 +12,13 @@ import ErrorBar from './error-bar';
 import FilterModal from './filter-modal';
 import Logo from './logo';
 import Footer from './footer';
-// import Sidebar from './sidebar';
+import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
 import Search from './search';
-// import Status from './status';
+import Status from './status';
 import Topologies from './topologies';
-// import TopologyOptions from './topology-options';
+import TopologyOptions from './topology-options';
 import Overlay from './overlay';
 import { getApiDetails } from '../utils/web-api-utils';
 import {
@@ -43,7 +43,7 @@ import Nodes from './nodes';
 import TimeControl from './time-control';
 import TimeTravelWrapper from './time-travel-wrapper';
 import ViewModeSelector from './view-mode-selector';
-// import NetworkSelector from './networks-selector';
+import NetworkSelector from './networks-selector';
 import DebugToolbar, { showingDebugToolbar, toggleDebugToolbar } from './debug-toolbar';
 import { getRouter, getUrlState } from '../utils/router-utils';
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
@@ -197,7 +197,7 @@ class App extends React.Component {
 
   render() {
     const {
-      // isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
+      isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
       showingDetails, showingHelp, showingTroubleshootingMenu,
       timeTravelTransitioning, timeTravelSupported, contrastMode,
     } = this.props;
@@ -244,9 +244,9 @@ class App extends React.Component {
 
           <Nodes />
 
-           <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
+          <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
             {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
-            {!isResourceViewMode && <ErrorBar />}
+            {isGraphViewMode && <ErrorBar />}
             {!isResourceViewMode && <TopologyOptions />}
           </Sidebar>
 
