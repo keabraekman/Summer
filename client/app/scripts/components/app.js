@@ -227,7 +227,6 @@ class App extends React.Component {
                 }
               </div>
               <Search />
-              <Dropdown />
               <Topologies />
               <ViewModeSelector />
               <TimeControl />
