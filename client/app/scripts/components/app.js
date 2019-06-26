@@ -245,9 +245,8 @@ class App extends React.Component {
           <Nodes />
 
           <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-            {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
+            {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
-            {!isResourceViewMode && <TopologyOptions />}
           </Sidebar>
 
           <Footer />
