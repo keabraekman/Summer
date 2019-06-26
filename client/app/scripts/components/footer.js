@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// import ErrorBar from './error-bar';
 import Plugins from './plugins';
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import {

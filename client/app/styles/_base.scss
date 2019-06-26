@@ -894,7 +894,7 @@ a {
 
       .min-height-constraint {
         position: absolute;
-        width: 0 !important;
+        width: 0;
         opacity: 0;
         top: 0;
       }
@@ -1109,7 +1109,7 @@ a {
     border-bottom-left-radius: $border-radius-soft;
 
     .terminal {
-      background-color: transparent !important;
+      background-color: transparent;
     }
   }
 
@@ -1821,6 +1821,18 @@ a {
   .view-mode-selector .label { display: none; }
 }
 
+.err-item{
+  display: flex; 
+  align-content: flex-end;
+}
+
+.err-bar{
+  position: absolute;
+  overflow: auto;
+  max-height: 80px;
+  bottom: 10px;
+  line-height: 120%;
+}
 // Dashboard
 .dashboard {
   display: flex;

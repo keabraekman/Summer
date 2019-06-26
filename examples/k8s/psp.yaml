@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: weave-scope
+  name: uberkuber
 spec:
   privileged: true
   hostPID: true
