@@ -1868,11 +1868,11 @@ a {
       }
 
       .pie-charts {
-        display: flex;
         justify-content: center;
         flex-grow: 1;
         width: 50%;
         background-color: $color-gray-200;
+        padding: 3%;
       }
     }
 
