@@ -1,4 +1,4 @@
-# Weave Scope - Troubleshooting & Monitoring for Docker & Kubernetes
+# UBERKUBER - Troubleshooting & Monitoring for Docker & Kubernetes
 
 [![Circle CI](https://circleci.com/gh/weaveworks/scope/tree/master.svg?style=shield)](https://circleci.com/gh/weaveworks/scope/tree/master)
 [![Coverage Status](https://coveralls.io/repos/weaveworks/scope/badge.svg)](https://coveralls.io/r/weaveworks/scope)

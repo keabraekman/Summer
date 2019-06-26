@@ -9,15 +9,16 @@ import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
 import ErrorBar from './error-bar';
+import FilterModal from './filter-modal';
 import Logo from './logo';
 import Footer from './footer';
-import Sidebar from './sidebar';
+// import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
 import Search from './search';
 // import Status from './status';
 import Topologies from './topologies';
-import TopologyOptions from './topology-options';
+// import TopologyOptions from './topology-options';
 import Overlay from './overlay';
 import { getApiDetails } from '../utils/web-api-utils';
 import {
@@ -27,6 +28,7 @@ import {
   hitEsc,
   unpinMetric,
   toggleHelp,
+  setDashboardView,
   setGraphView,
   setMonitorState,
   setTableView,
@@ -41,7 +43,7 @@ import Nodes from './nodes';
 import TimeControl from './time-control';
 import TimeTravelWrapper from './time-travel-wrapper';
 import ViewModeSelector from './view-mode-selector';
-import NetworkSelector from './networks-selector';
+// import NetworkSelector from './networks-selector';
 import DebugToolbar, { showingDebugToolbar, toggleDebugToolbar } from './debug-toolbar';
 import { getRouter, getUrlState } from '../utils/router-utils';
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
@@ -51,6 +53,7 @@ import {
   isResourceViewModeSelector,
   isTableViewModeSelector,
   isGraphViewModeSelector,
+  isDashboardViewModeSelector,
 } from '../selectors/topology';
 import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
@@ -155,6 +158,9 @@ class App extends React.Component {
       } else if (char === 'r') {
         dispatch(setResourceView());
         this.trackEvent('scope.layout.selector.keypress');
+      } else if (char === 'd') {
+        dispatch(setDashboardView());
+        this.trackEvent('scope.layout.selector.keypress');
       } else if (char === 'q') {
         this.trackEvent('scope.metric.selector.unpin.keypress', {
           metricType: this.props.pinnedMetricType
@@ -191,8 +197,8 @@ class App extends React.Component {
 
   render() {
     const {
-      isTableViewMode, isGraphViewMode, isResourceViewMode, showingDetails,
-      showingHelp, showingNetworkSelector, showingTroubleshootingMenu,
+      // isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
+      showingDetails, showingHelp, showingTroubleshootingMenu,
       timeTravelTransitioning, timeTravelSupported, contrastMode,
     } = this.props;
 
@@ -221,12 +227,15 @@ class App extends React.Component {
             <div className="selectors">
               <div className="logo">
                 {!isIframe &&
-                  <svg width="100%" height="100%" viewBox="0 0 1089 217">
+                  <svg width="100%" height="100%" viewBox="100 -40 20 100">
                     <Logo />
                   </svg>
                 }
               </div>
-              <Search />
+              <div style={{}}>
+                <Search />
+              </div>
+              <FilterModal />
               <Topologies />
               <ViewModeSelector />
               <TimeControl />
@@ -235,7 +244,7 @@ class App extends React.Component {
 
           <Nodes />
 
-          <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
+           <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
             {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
             {!isResourceViewMode && <ErrorBar />}
             {!isResourceViewMode && <TopologyOptions />}
@@ -254,6 +263,7 @@ function mapStateToProps(state) {
   return {
     contrastMode: state.get('contrastMode'),
     currentTopology: state.get('currentTopology'),
+    isDashboardViewMode: isDashboardViewModeSelector(state),
     isGraphViewMode: isGraphViewModeSelector(state),
     isResourceViewMode: isResourceViewModeSelector(state),
     isTableViewMode: isTableViewModeSelector(state),
