@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: uberkuber
+  name: weave-scope
   labels:
-    name: uberkuber
+    name: weave-scope
   namespace: weave
