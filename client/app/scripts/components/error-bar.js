@@ -17,7 +17,7 @@ export class ErrorBar extends React.Component {
     for(var key in data1[0])
     {
       console.log(data1[0][key]['metadata']);
-      if(data1[0].hasOwnProperty(key)){
+      if(data1[0].hasOwnProperty(key) && data1[0][key].hasOwnProperty('metadata') ){
         status = data1[0][key]['metadata'][0]['value'];
         if(data1[0][key]['metadata'][0]['id'] === "kubernetes_state" && status === "Running"){
           return_data[i] = {name: data1[0][key]['rank'], status: status}
