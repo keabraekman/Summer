@@ -5,20 +5,23 @@ import { Icon } from 'react-icons-kit';
 import { connect } from 'react-redux';
 import { shownNodesSelector } from '../selectors/node-filters';
 
-
 export const ErrorIcon = () => <Icon icon={warning} />;
 
 export class ErrorBar extends React.Component {
   formatData() {
-    var data1 = this.props.nodes.toList().toJS();
+    var data1 = this.props.state.get('nodesByTopology').toList().toJS();
+    console.log(data1[0]);
     var return_data = [];
-    var state;
-    for(var i = 0; i < data1.length; i++)
+    var status;
+    var i = 0;
+    for(var key in data1[0])
     {
-      if(this.props.topologies === "pods"){
-        state = data1[i]['metadata'][0]['value'];
-        if(data1[i]['metadata'][0]['id'] === "kubernetes_state" && state === "Running"){
-          return_data[i] = {name: data1[i]['rank'], state: state}
+      console.log(data1[0][key]['metadata']);
+      if(data1[0].hasOwnProperty(key)){
+        status = data1[0][key]['metadata'][0]['value'];
+        if(data1[0][key]['metadata'][0]['id'] === "kubernetes_state" && status === "Running"){
+          return_data[i] = {name: data1[0][key]['rank'], status: status}
+          i++;
         }
       }
     }
@@ -31,7 +34,7 @@ export class ErrorBar extends React.Component {
     return (
       <ListGroup className='err-bar'>
         {data.map((element) => 
-        <ListGroupItem className="err-item" href="#"><ErrorIcon /> {element.name.slice(0,15)}... {element.state}</ListGroupItem>
+        <ListGroupItem className="err-item" href="#"><ErrorIcon /> {element.name.slice(0,15)}... {element.status}</ListGroupItem>
         )}
       </ListGroup>
     );
@@ -39,12 +42,13 @@ export class ErrorBar extends React.Component {
 }
 
 function mapStatetoProps(state){
-  return {
+	return {
+    state: state,
     nodes: shownNodesSelector(state),
-    topologies: state.get('currentTopologyId')
-  };
+    // topologies: state.get('currentTopologyId'),
+	};
 }
 
 export default connect(
-  mapStatetoProps
+  mapStatetoProps,
 )(ErrorBar);
