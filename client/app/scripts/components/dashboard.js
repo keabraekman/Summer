@@ -2,10 +2,7 @@ import React from 'react';
 import { Card, CardText,
   CardTitle } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BarChart from './example-graph';
 import PieChart from './pieChart';
-import Plot from 'react-plotly.js';
-
 
 // TODO Connect to actions
 export default class Dashboard extends React.Component {
@@ -17,7 +14,6 @@ export default class Dashboard extends React.Component {
           <div className="top">
             <div className="dash-status">Everything looks good!</div>
             <div className="pie-charts">
-              {/* <BarChart data={[5,10,1,3,1,3,5,3,4,5,6]} size={[1000,250]} /> */}
               <PieChart />
             </div>
           </div>
