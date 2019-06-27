@@ -9,7 +9,9 @@ import theme from 'weaveworks-ui-components/lib/theme';
 
 import Logo from './logo';
 // import Footer from './footer';
-import Dropdown from './dropdown';
+import customDropdown from './dropdown';
+import Dropdowns from './dropdowns';
+import ProcessesDropdown from './processesDropdown';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
@@ -228,6 +230,7 @@ class App extends React.Component {
               </div>
               <Search />
               <Topologies />
+              {/* <ProcessesDropdown /> */}
               <ViewModeSelector />
               <TimeControl />
             </div>
@@ -240,8 +243,6 @@ class App extends React.Component {
             {!isResourceViewMode && <Status />}
             {!isResourceViewMode && <TopologyOptions />}
           </Sidebar>
-
-          {/* <Footer /> */}
 
           <Overlay faded={timeTravelTransitioning} />
         </div>

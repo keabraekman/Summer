@@ -7,8 +7,10 @@ import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import { isResourceViewModeSelector } from '../selectors/topology';
 import { clickTopology } from '../actions/app-actions';
 
-// import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
 
 function basicTopologyInfo(topology, searchMatchCount) {
   const info = [
@@ -37,14 +39,14 @@ export default class Example extends React.Component {
     }));
   }
 
-  onTopologyClick = (ev, topology) => {
-    ev.preventDefault();
-    trackAnalyticsEvent('scope.topology.selector.click', {
-      parentTopologyId: topology.get('parentId'),
-      topologyId: topology.get('id'),
-    });
-    this.props.topologiesProps.clickTopology(ev.currentTarget.getAttribute('rel'));
-  }
+  // onTopologyClick = (ev, topology) => {
+  //   ev.preventDefault();
+  //   trackAnalyticsEvent('scope.topology.selector.click', {
+  //     parentTopologyId: topology.get('parentId'),
+  //     topologyId: topology.get('id'),
+  //   });
+  //   this.props.topologiesProps.clickTopology(ev.currentTarget.getAttribute('rel'));
+  // }
 
   renderSubTopology(subTopology) {
     const topologyId = subTopology.get('id');
@@ -57,12 +59,7 @@ export default class Example extends React.Component {
       'topologies-sub-item-matched': !this.props.isResourceViewMode && searchMatchCount,
     });
     return (
-      <div
-        className={className}
-        title={title}
-        key={topologyId}
-        rel={topologyId}
-        onClick={ev => this.onTopologyClick(ev, subTopology)}>
+      <div>
         <DropdownItem>{subTopology.get('name')}
           </DropdownItem>>
       </div>
@@ -84,11 +81,11 @@ export default class Example extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    currentTopology: state.get('currentTopology'),
-    isResourceViewMode: isResourceViewModeSelector(state),
-    searchMatchCountByTopology: searchMatchCountByTopologySelector(state),
-    topologies: state.get('topologies'),
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     currentTopology: state.get('currentTopology'),
+//     isResourceViewMode: isResourceViewModeSelector(state),
+//     searchMatchCountByTopology: searchMatchCountByTopologySelector(state),
+//     topologies: state.get('topologies'),
+//   };
+// }
