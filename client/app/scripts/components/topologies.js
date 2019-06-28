@@ -62,7 +62,6 @@ class Topologies extends React.Component {
     });
 
     return (
-      <DropdownItem>
       <div
         className={className}
         title={title}
@@ -70,10 +69,11 @@ class Topologies extends React.Component {
         rel={topologyId}
         onClick={ev => this.onTopologyClick(ev, subTopology)}>
         <div className="topologies-sub-item-label">
+        <DropdownItem>
           {subTopology.get('name')}
+          </DropdownItem>
         </div>
       </div>
-      </DropdownItem>
     );
   }
 
