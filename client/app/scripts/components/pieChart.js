@@ -14,30 +14,9 @@ class PieChart extends React.Component {
           values: [num, 100-num],
           labels: ['CPU Usage', 'Available'],
           type: 'pie'
-          },
-          domain= {
-            row: 0,
-            column: 0
-          }
-        ]
-        [
-          {
-          values: [num, 100-num],
-          labels: ['CPU Usage', 'Available'],
-          type: 'pie'
-          },
-          domain= {
-            row: 1,
-            column: 0
           }
         ]
       }
-        
-        ultimateColors = {[
-        
-          {color:'rgb(56, 75, 126)', color:'rgb(18, 36, 37)'}
-        
-        ]}
 
         layout = {
           // {height: 200, width: 500}

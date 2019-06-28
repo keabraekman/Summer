@@ -14,7 +14,6 @@ export default class Dashboard extends React.Component {
           <div className="top">
             <div className="dash-status">Everything looks good!</div>
             <div className="pie-charts">
-              <PieChart />
             </div>
           </div>
           <div className="bottom">
