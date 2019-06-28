@@ -7,8 +7,10 @@ import PieChart from './pieChart';
 
 class Dashboard extends React.Component {
 getMetric = (metric) => {
+  console.log(this.props.state.toList().toJS());
   const { hostNodes } = this.props;
   let data = {};
+  // console.log(hostNodes);
   for (var key in hostNodes) {
    if (hostNodes.hasOwnProperty(key)){
      if (metric === 'docker_cpu_total_usage') {
@@ -63,7 +65,8 @@ render() {
 
 function mapStateToProps(state) {
 return {
-  hostNodes: state.get('nodesByTopology').toList().toJS()[0]
+  state: state,
+  hostNodes: state.get('nodesByTopology').toList().toJS()
 };
 }
 
