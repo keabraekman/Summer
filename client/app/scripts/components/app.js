@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { debounce, isEqual } from 'lodash';
 
+
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
@@ -248,12 +249,12 @@ class App extends React.Component {
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
           </Sidebar>
-
           <Footer />
 
           <Overlay faded={timeTravelTransitioning} />
         </div>
       </ThemeProvider>
+     
     );
   }
 }
