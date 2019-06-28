@@ -3,6 +3,7 @@ import { Card, CardText,
 CardTitle } from 'reactstrap';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PieChart from './pieChart';
 
 class Dashboard extends React.Component {
 getMetric = (metric) => {
