@@ -14,6 +14,7 @@ import ActionTypes from '../constants/action-types';
 import {
   GRAPH_VIEW_MODE,
   TABLE_VIEW_MODE,
+  DASHBOARD_VIEW_MODE
 } from '../constants/naming';
 import {
   graphExceedsComplexityThreshSelector,
@@ -85,7 +86,7 @@ export const initialState = makeMap({
   topologiesLoaded: false,
   topologyOptions: makeOrderedMap(), // topologyId -> options
   topologyUrlsById: makeOrderedMap(), // topologyId -> topologyUrl
-  topologyViewMode: GRAPH_VIEW_MODE,
+  topologyViewMode: DASHBOARD_VIEW_MODE,
   version: null,
   versionUpdate: null,
   // Set some initial numerical values to prevent NaN in case of edgy race conditions.

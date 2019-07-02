@@ -25,6 +25,7 @@ import {
   hitEsc,
   unpinMetric,
   toggleHelp,
+  setDashboardView,
   setGraphView,
   setMonitorState,
   setTableView,
@@ -49,6 +50,7 @@ import {
   isResourceViewModeSelector,
   isTableViewModeSelector,
   isGraphViewModeSelector,
+  isDashboardViewModeSelector,
 } from '../selectors/topology';
 import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
@@ -153,6 +155,9 @@ class App extends React.Component {
       } else if (char === 'r') {
         dispatch(setResourceView());
         this.trackEvent('scope.layout.selector.keypress');
+      } else if (char === 'd') {
+        dispatch(setDashboardView());
+        this.trackEvent('scope.layout.selector.keypress');
       } else if (char === 'q') {
         this.trackEvent('scope.metric.selector.unpin.keypress', {
           metricType: this.props.pinnedMetricType
@@ -219,7 +224,11 @@ class App extends React.Component {
             <div className="selectors">
               <div className="logo">
                 {!isIframe &&
+<<<<<<< HEAD
                   <svg width="100%" height="100%" viewBox="150 -40 20 100">
+=======
+                  <svg width="100%" height="100%" viewBox="30 -40 20 100">
+>>>>>>> master
                     <Logo />
                   </svg>
                 }
@@ -252,6 +261,7 @@ function mapStateToProps(state) {
   return {
     contrastMode: state.get('contrastMode'),
     currentTopology: state.get('currentTopology'),
+    isDashboardViewMode: isDashboardViewModeSelector(state),
     isGraphViewMode: isGraphViewModeSelector(state),
     isResourceViewMode: isResourceViewModeSelector(state),
     isTableViewMode: isTableViewModeSelector(state),
