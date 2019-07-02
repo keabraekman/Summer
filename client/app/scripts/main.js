@@ -9,6 +9,7 @@ import configureStore from './stores/configureStore';
 
 const store = configureStore();
 
+
 function renderApp() {
   const App = require('./components/app').default;
   ReactDOM.render(

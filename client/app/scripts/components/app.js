@@ -9,15 +9,14 @@ import theme from 'weaveworks-ui-components/lib/theme';
 
 import Logo from './logo';
 // import Footer from './footer';
-import customDropdown from './dropdown';
-import Dropdowns from './dropdowns';
-import ProcessesDropdown from './processesDropdown';
+import Dropdown from './dropdown';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
 import Search from './search';
 import Status from './status';
 import Topologies from './topologies';
+import Topology from './topology';
 import TopologyOptions from './topology-options';
 import Overlay from './overlay';
 import { getApiDetails } from '../utils/web-api-utils';
@@ -229,8 +228,11 @@ class App extends React.Component {
                 }
               </div>
               <Search />
-              <Topologies />
-              {/* <ProcessesDropdown /> */}
+              <Topologies/>
+              {/* <Topology name="Processes" id='processes' sub={["by Name"]} subId={['processes-by-name']}/>
+              <Topology name="Containers" id='containers' sub={["by DNS name", "by Image"]} subId={['containers-by-hostname', 'containers-by-image']}/>
+              <Topology name="Pods" id='pods' sub={["Controllers", "Services"]} subId={['kube-controllers', 'services']}/>
+              <Topology name="Hosts" id='hosts' sub={["Weave Net"]} subId={['weave']} /> */}
               <ViewModeSelector />
               <TimeControl />
             </div>

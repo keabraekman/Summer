@@ -6,12 +6,7 @@ import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import { searchMatchCountByTopologySelector } from '../selectors/search';
 import { isResourceViewModeSelector } from '../selectors/topology';
 import { clickTopology } from '../actions/app-actions';
-
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-
-
-
-
 
 function basicTopologyInfo(topology, searchMatchCount) {
   const info = [
@@ -25,7 +20,6 @@ function basicTopologyInfo(topology, searchMatchCount) {
 }
 
 class Topologies extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -41,13 +35,16 @@ class Topologies extends React.Component {
     }));
   }
 
+
   onTopologyClick = (ev, topology) => {
     ev.preventDefault();
-    trackAnalyticsEvent('scope.topology.selector.click', {
-      parentTopologyId: topology.get('parentId'),
-      topologyId: topology.get('id'),
-    });
-    this.props.clickTopology(ev.currentTarget.getAttribute('rel'));
+    // trackAnalyticsEvent('scope.topology.selector.click', {
+    //   parentTopologyId: topology.get('parentId'),
+    //   topologyId: topology.get('id'),
+    // });
+    console.log('topology.get id = ', topology.get('id'))
+    console.log("THIS THING = ", ev.currentTarget.getAttribute('rel'))
+    this.props.clickTopology(topology.get('id'));
   }
 
   renderSubTopology(subTopology) {
@@ -68,11 +65,11 @@ class Topologies extends React.Component {
         key={topologyId}
         rel={topologyId}
         onClick={ev => this.onTopologyClick(ev, subTopology)}>
+          {/* <DropdownItem> */}
         <div className="topologies-sub-item-label">
-        <DropdownItem>
           {subTopology.get('name')}
-          </DropdownItem>
         </div>
+        {/* </DropdownItem> */}
       </div>
     );
   }
@@ -89,9 +86,9 @@ class Topologies extends React.Component {
     const title = basicTopologyInfo(topology, searchMatchCount);
 
     return (
-      <Dropdown  isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+      // <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
       <div className="topologies-item" key={topologyId}>
-      <DropdownToggle caret>
+      {/* <DropdownToggle caret> */}
         <div
           className={className}
           title={title}
@@ -100,16 +97,16 @@ class Topologies extends React.Component {
           <div className="topologies-item-label">
             {topology.get('name')}
           </div>
+          
         </div>
-        </DropdownToggle>
-        <DropdownMenu>
+        {/* </DropdownToggle> */}
+        {/* <DropdownMenu> */}
         <div className="topologies-sub">
           {topology.has('sub_topologies')
             && topology.get('sub_topologies').map(subTop => this.renderSubTopology(subTop))}
         </div>
-        </DropdownMenu>
+        {/* </DropdownMenu> */}
       </div>
-      </Dropdown>
     );
   }
 
