@@ -9,7 +9,6 @@ import theme from 'weaveworks-ui-components/lib/theme';
 
 import Logo from './logo';
 // import Footer from './footer';
-import Dropdown from './dropdown';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
@@ -55,7 +54,6 @@ import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
   ESC_KEY_CODE,
 } from '../constants/key-codes';
-// import { Dropdown } from 'weaveworks-ui-components/lib/components';
 
 const keyPressLog = debug('scope:app-key-press');
 
@@ -227,7 +225,6 @@ class App extends React.Component {
                 }
               </div>
               <Search />
-              <Dropdown />
               <Topologies />
               <ViewModeSelector />
               <TimeControl />

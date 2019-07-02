@@ -519,13 +519,13 @@ $blue:gray;
 .node-details {
   height: 100%;
   width: $details-window-width;
-  background-color: transparentize($color-black, 0.14);
+  background-color: transparentize($color-white, 0.14);
   display: flex;
   flex-flow: column;
   margin-bottom: 12px;
   padding-bottom: 2px;
   border-radius: $border-radius-soft;
-  background-color: $color-black;
+  background-color: $color-white;
   @extend .shadow-2;
   // keep node-details above the terminal.
   z-index: $layer-front;
@@ -647,12 +647,12 @@ $blue:gray;
     }
 
     .node-control-button {
-      color: $color-black;
+      color: $color-white;
     }
 
     &-spinner {
       @extend .hideable;
-      color: $color-black;
+      color: $color-white;
       margin-left: 8px;
     }
 
@@ -662,7 +662,7 @@ $blue:gray;
       width: 55%;
       padding-top: 6px;
       text-align: left;
-      color: $color-black;
+      color: $color-white;
 
       &-icon {
         @extend .blinkable;
@@ -981,7 +981,7 @@ $blue:gray;
 .details-wrapper .node-details-table {
   &-node {
     &:hover, &.selected {
-      background-color: $color-black;
+      background-color: $color-white;
     }
   }
 }
@@ -1675,6 +1675,7 @@ $blue:gray;
   }
 
   .node-details-table-wrapper-wrapper {
+
     flex: 1;
     display: flex;
     flex-direction: row;

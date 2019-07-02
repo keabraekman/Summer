@@ -94,5 +94,3 @@ function mapStateToProps(state) {
 
 
 export default connect(mapStateToProps)(Nodes);
-
-console.log(NodesResources);
