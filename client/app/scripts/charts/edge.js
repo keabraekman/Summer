@@ -45,18 +45,18 @@ class Edge extends React.Component {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <path className="shadow" d={path} style={{ strokeWidth: 10 * thickness }} />
+        {/* <path className="shadow" d={path} style={{ strokeWidth: 10 * thickness }} />
         <path
           className={getAdjacencyClass(id)}
           d={path}
           style={{ strokeWidth: 5 }}
-        />
-        <path
+        /> */}
+        {/* <path
           className="link"
           d={path}
           markerEnd={shouldRenderMarker ? 'url(#end-arrow)' : null}
           style={{ strokeWidth: thickness }}
-        />
+        /> */}
       </g>
     );
   }
