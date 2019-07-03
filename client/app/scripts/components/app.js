@@ -5,9 +5,12 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { debounce, isEqual } from 'lodash';
 
+
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
+import ErrorBar from './error-bar';
+import FilterModal from './filter-modal';
 import Logo from './logo';
 import Footer from './footer';
 import Sidebar from './sidebar';
@@ -26,6 +29,7 @@ import {
   hitEsc,
   unpinMetric,
   toggleHelp,
+  setDashboardView,
   setGraphView,
   setMonitorState,
   setTableView,
@@ -50,6 +54,7 @@ import {
   isResourceViewModeSelector,
   isTableViewModeSelector,
   isGraphViewModeSelector,
+  isDashboardViewModeSelector,
 } from '../selectors/topology';
 import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
@@ -154,6 +159,9 @@ class App extends React.Component {
       } else if (char === 'r') {
         dispatch(setResourceView());
         this.trackEvent('scope.layout.selector.keypress');
+      } else if (char === 'd') {
+        dispatch(setDashboardView());
+        this.trackEvent('scope.layout.selector.keypress');
       } else if (char === 'q') {
         this.trackEvent('scope.metric.selector.unpin.keypress', {
           metricType: this.props.pinnedMetricType
@@ -190,8 +198,8 @@ class App extends React.Component {
 
   render() {
     const {
-      isTableViewMode, isGraphViewMode, isResourceViewMode, showingDetails,
-      showingHelp, showingNetworkSelector, showingTroubleshootingMenu,
+      isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
+      showingDetails, showingHelp, showingTroubleshootingMenu,
       timeTravelTransitioning, timeTravelSupported, contrastMode,
     } = this.props;
 
@@ -220,12 +228,15 @@ class App extends React.Component {
             <div className="selectors">
               <div className="logo">
                 {!isIframe &&
-                  <svg width="100%" height="100%" viewBox="0 0 1089 217">
+                  <svg width="100%" height="100%" viewBox="100 -40 20 100">
                     <Logo />
                   </svg>
                 }
               </div>
-              <Search />
+              <div style={{}}>
+                <Search />
+              </div>
+              <FilterModal />
               <Topologies />
               <ViewModeSelector />
               <TimeControl />
@@ -235,16 +246,15 @@ class App extends React.Component {
           <Nodes />
 
           <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-            {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
-            {!isResourceViewMode && <Status />}
-            {!isResourceViewMode && <TopologyOptions />}
+            {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
+            {isGraphViewMode && <ErrorBar />}
           </Sidebar>
-
           <Footer />
 
           <Overlay faded={timeTravelTransitioning} />
         </div>
       </ThemeProvider>
+     
     );
   }
 }
@@ -253,6 +263,7 @@ function mapStateToProps(state) {
   return {
     contrastMode: state.get('contrastMode'),
     currentTopology: state.get('currentTopology'),
+    isDashboardViewMode: isDashboardViewModeSelector(state),
     isGraphViewMode: isGraphViewModeSelector(state),
     isResourceViewMode: isResourceViewModeSelector(state),
     isTableViewMode: isTableViewModeSelector(state),

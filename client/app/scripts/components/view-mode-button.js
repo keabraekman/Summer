@@ -13,12 +13,12 @@ class ViewModeButton extends React.Component {
   }
 
   handleClick() {
+    this.props.onClick();
     trackAnalyticsEvent('scope.layout.selector.click', {
       layout: this.props.viewMode,
       parentTopologyId: this.props.currentTopology.get('parentId'),
       topologyId: this.props.currentTopology.get('id'),
     });
-    this.props.onClick();
   }
 
   render() {
@@ -28,7 +28,6 @@ class ViewModeButton extends React.Component {
     const className = classNames(`tour-step-anchor view-mode-selector-action view-${label}-action`, {
       'view-mode-selector-action-selected': isSelected,
     });
-
     return (
       <div
         className={className}
