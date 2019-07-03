@@ -10,6 +10,8 @@ _test
 releases
 tmp
 .cache
+node_modules
+.vscode
 
 # Architecture specific extensions/prefixes
 *.[568vq]
@@ -67,3 +69,7 @@ client/bundle
 
 # Website
 site-build
+node_modules
+node_modules
+node_modules
+node_modules

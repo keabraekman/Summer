@@ -7,6 +7,8 @@ import { debounce, isEqual } from 'lodash';
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
+import ErrorBar from './error-bar';
+import FilterModal from './filter-modal';
 import Logo from './logo';
 // import Footer from './footer';
 import Sidebar from './sidebar';
@@ -194,8 +196,8 @@ class App extends React.Component {
 
   render() {
     const {
-      isTableViewMode, isGraphViewMode, isResourceViewMode, showingDetails,
-      showingHelp, showingNetworkSelector, showingTroubleshootingMenu,
+      isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
+      showingDetails, showingHelp, showingTroubleshootingMenu,
       timeTravelTransitioning, timeTravelSupported, contrastMode,
     } = this.props;
 
@@ -229,7 +231,10 @@ class App extends React.Component {
                   </svg>
                 }
               </div>
-              <Search />
+              <div style={{}}>
+                <Search />
+              </div>
+              <FilterModal />
               <Topologies />
               <ViewModeSelector />
               <TimeControl />
@@ -239,9 +244,8 @@ class App extends React.Component {
           <Nodes />
 
           <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-            {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
-            {!isResourceViewMode && <Status />}
-            {!isResourceViewMode && <TopologyOptions />}
+            {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
+            {isGraphViewMode && <ErrorBar />}
           </Sidebar>
 
           {/* <Footer /> */}
@@ -249,6 +253,7 @@ class App extends React.Component {
           <Overlay faded={timeTravelTransitioning} />
         </div>
       </ThemeProvider>
+     
     );
   }
 }
