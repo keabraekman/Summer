@@ -3,39 +3,38 @@ import { Card, CardText,
 CardTitle } from 'reactstrap';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PieChart from './pieChart';
+import { formatData } from './error-bar';
+import { getNodesbyTopology } from '../actions/app-actions';
 
 class Dashboard extends React.Component {
-getMetric = (metric) => {
-  const { hostNodes } = this.props;
-  let data = {};
-  for (var key in hostNodes) {
-    console.log(hostNodes);
-   if (hostNodes.hasOwnProperty(key)){
-     if (metric === 'docker_cpu_total_usage') {
-       data.value = hostNodes[key]['metrics'][0]['value'];
-       data.max = hostNodes[key]['metrics'][0]['max'];
-     } else if (metric === 'docker_memory_usage') {
-       data.value = hostNodes[key]['metrics'][1]['value'];
-       data.max = hostNodes[key]['metrics'][1]['max'];
-     }
-     return data;
-   }
+ constructor() {
+   super();
+
+   this.state = {
+     finishedLoading: false
+   };
  }
+
+componentWillMount() {
+   console.log(1);
+   this.props.getNodesbyTopology("hosts");
 }
 
 render() {
-  const cpu = this.getMetric('docker_cpu_total_usage');
-  const memory = this.getMetric('docker_memory_usage');
+ const { hostNodes } = this.props;
+ const data = formatData(hostNodes, "hosts");
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
       <div className="view">
         <div className="top">
-          <div className="dash-status">Everything looks good!</div>
+          <div className="dash-status">
+           </div>
           <div className="pie-charts">
-            <div>{cpu.value}% CPU used</div>
-            <div>{memory.value} MB Memory used</div>
+             <div>
+               <div>{data.cpu.value}% CPU used</div>
+               <div>{data.memory.value} MB Memory used</div>
+             </div>
           </div>
         </div>
         <div className="bottom">
@@ -62,10 +61,14 @@ render() {
 }
 }
 
-function mapStateToProps(state) {
-  return {
-    hostNodes: state.get('nodesByTopology').toList().toJS()[0]
-  };
-}
+const mapStateToProps = (state)  => ({
+ hostNodes: state.get('nodesByTopology')
+})
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = dispatch => ({
+ getNodesbyTopology: (topoId) => dispatch(getNodesbyTopology(topoId))
+})
+
+export default connect (
+ mapStateToProps, mapDispatchToProps
+)(Dashboard);

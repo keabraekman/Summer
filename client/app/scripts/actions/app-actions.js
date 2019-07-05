@@ -1,5 +1,6 @@
 import debug from 'debug';
 import { fromJS } from 'immutable';
+import { Map as makeMap } from 'immutable';
 
 import ActionTypes from '../constants/action-types';
 import { saveGraph } from '../utils/file-utils';
@@ -200,6 +201,29 @@ export function focusSearch() {
 export function blurSearch() {
   return { type: ActionTypes.BLUR_SEARCH };
 }
+
+export function getNodesbyTopology(topoId, topologyOptions = makeMap()) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const topologyIds = [topoId];
+ 
+  state.get('topologyUrlsById')
+    .filter((_, topologyId) => topologyIds.includes(topologyId))
+    .reduce(
+      (sequence, topologyUrl, topologyId) => sequence
+        .then(() => {
+          const optionsQuery = buildUrlQuery(topologyOptions.get(topologyId), state);
+          return doRequest({ url: `${getApiPath()}${topologyUrl}?${optionsQuery}` });
+        })
+        .then(json => {
+          dispatch({
+              nodes: json.nodes,
+              topologyId,
+              type: ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY
+            })
+        }), Promise.resolve());
+      }
+ }
 
 export function changeTopologyOption(option, value, topologyId, addOrRemove) {
   return (dispatch, getState) => {
