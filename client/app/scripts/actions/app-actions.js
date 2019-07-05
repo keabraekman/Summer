@@ -15,6 +15,9 @@ import {
   stopPolling,
   teardownWebsockets,
   getNodes,
+  buildUrlQuery,
+  doRequest,
+  getApiPath
 } from '../utils/web-api-utils';
 import { isPausedSelector } from '../selectors/time-travel';
 import {

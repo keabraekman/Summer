@@ -182,7 +182,7 @@ function createWebsocket(websocketUrl, getState, dispatch) {
   * XHR wrapper. Applies a CSRF token (if it exists) and content-type to all requests.
   * Any opts that get passed in will override the defaults.
   */
-function doRequest(opts) {
+export function doRequest(opts) {
   const config = defaults(opts, {
     contentType: 'application/json',
     type: 'json'
