@@ -7,13 +7,22 @@ import { formatData } from './error-bar';
 import { getNodesbyTopology } from '../actions/app-actions';
 
 class Dashboard extends React.Component {
-componentDidMount() {
+ constructor() {
+   super();
+
+   this.state = {
+     finishedLoading: false
+   };
+ }
+
+componentWillMount() {
+   console.log(1);
    this.props.getNodesbyTopology("hosts");
 }
 
 render() {
- const { hostNodes, allNodes } = this.props;
- const hostData = formatData(hostNodes, "hosts");
+ const { hostNodes } = this.props;
+ const data = formatData(hostNodes, "hosts");
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
@@ -23,15 +32,15 @@ render() {
            </div>
           <div className="pie-charts">
              <div>
-               <div>{hostData.cpu.value}% CPU used</div>
-               <div>{hostData.memory.value} MB Memory used</div>
+               <div>{data.cpu.value}% CPU used</div>
+               <div>{data.memory.value} MB Memory used</div>
              </div>
           </div>
         </div>
         <div className="bottom">
           <Card className="card">
             <CardTitle>3</CardTitle>
-            <CardText>hosts</CardText>
+            <CardText>nodes</CardText>
           </Card>
           <Card className="card">
             <CardTitle>105</CardTitle>
@@ -43,7 +52,7 @@ render() {
           </Card>
           <Card className="card">
             <CardTitle>31</CardTitle>
-            <CardText>processes</CardText>
+            <CardText>services</CardText>
           </Card>
         </div>
       </div>
@@ -53,7 +62,7 @@ render() {
 }
 
 const mapStateToProps = (state)  => ({
- hostNodes: state.get('nodesByTopology'),
+ hostNodes: state.get('nodesByTopology')
 })
 
 const mapDispatchToProps = dispatch => ({
