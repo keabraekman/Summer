@@ -75,8 +75,7 @@ class Nodes extends React.Component {
         {isGraphViewMode && <NodesChart />}
         {isTableViewMode && <NodesGrid />}
         {isResourceViewMode && <NodesResources />}
-        {/* {nodesLoaded && isDashboardViewMode && <Dashboard />} */}
-        {isDashboardViewMode && <Dashboard/>}
+        {!this.props.nodesDisplayEmpty && nodesLoaded && isDashboardViewMode && <Dashboard />}
         
       </div>
     );
