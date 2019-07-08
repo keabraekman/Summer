@@ -3,57 +3,57 @@ import { Card, CardText,
 CardTitle } from 'reactstrap';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PieChart from './pieChart';
+import { formatData } from './error-bar';
+import { getNodesbyTopology } from '../actions/app-actions';
 
 class Dashboard extends React.Component {
-getMetric = (metric) => {
-  const { hostNodes } = this.props;
-  let data = {};
-  for (var key in hostNodes) {
-    console.log(hostNodes);
-   if (hostNodes.hasOwnProperty(key)){
-     if (metric === 'docker_cpu_total_usage') {
-       data.value = hostNodes[key]['metrics'][0]['value'];
-       data.max = hostNodes[key]['metrics'][0]['max'];
-     } else if (metric === 'docker_memory_usage') {
-       data.value = hostNodes[key]['metrics'][1]['value'];
-       data.max = hostNodes[key]['metrics'][1]['max'];
-     }
-     return data;
-   }
- }
+componentDidMount() {
+   this.props.getNodesbyTopology("hosts");
+}
+
+getOverallStats = nodes => {
+  let overallData = {Processes: 0, Containers: 0, Pods: 0, Hosts: 0};
+  for (var topoIndex in nodes) {
+    const topology = nodes[topoIndex].name;
+    overallData[topology] = nodes[topoIndex].stats.node_count;
+  }
+  return overallData;
 }
 
 render() {
-  const cpu = this.getMetric('docker_cpu_total_usage');
-  const memory = this.getMetric('docker_memory_usage');
+ const { hostNodes, allNodes } = this.props;
+ const hostData = formatData(hostNodes, "hosts");
+ const overallData = this.getOverallStats(allNodes);
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
       <div className="view">
         <div className="top">
-          <div className="dash-status">Everything looks good!</div>
+          <div className="dash-status">
+           </div>
           <div className="pie-charts">
-            <div>{cpu.value}% CPU used</div>
-            <div>{memory.value} MB Memory used</div>
+             <div>
+               <div>{hostData.cpu.value}% CPU used</div>
+               <div>{hostData.memory.value} MB Memory used</div>
+             </div>
           </div>
         </div>
         <div className="bottom">
           <Card className="card">
-            <CardTitle>3</CardTitle>
-            <CardText>nodes</CardText>
+            <CardTitle>{overallData.Hosts}</CardTitle>
+            <CardText>hosts</CardText>
           </Card>
           <Card className="card">
-            <CardTitle>105</CardTitle>
+            <CardTitle>{overallData.Pods}</CardTitle>
             <CardText>pods</CardText>
           </Card>
           <Card className="card">
-            <CardTitle>42</CardTitle>
+            <CardTitle>{overallData.Containers}</CardTitle>
             <CardText>containers</CardText>
           </Card>
           <Card className="card">
-            <CardTitle>31</CardTitle>
-            <CardText>services</CardText>
+            <CardTitle>{overallData.Processes}</CardTitle>
+            <CardText>processes</CardText>
           </Card>
         </div>
       </div>
@@ -62,10 +62,15 @@ render() {
 }
 }
 
-function mapStateToProps(state) {
-  return {
-    hostNodes: state.get('nodesByTopology').toList().toJS()[0]
-  };
-}
+const mapStateToProps = (state)  => ({
+ hostNodes: state.get('nodesByTopology'),
+ allNodes: state.get('topologies').toList().toJS(),
+})
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = dispatch => ({
+ getNodesbyTopology: (topoId) => dispatch(getNodesbyTopology(topoId))
+})
+
+export default connect (
+ mapStateToProps, mapDispatchToProps
+)(Dashboard);

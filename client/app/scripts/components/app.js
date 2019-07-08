@@ -196,7 +196,7 @@ class App extends React.Component {
 
   render() {
     const {
-      isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
+      isTableViewMode, isGraphViewMode, isResourceViewMode, isDashboardViewMode, showingNetworkSelector,
       showingDetails, showingHelp, showingTroubleshootingMenu,
       timeTravelTransitioning, timeTravelSupported, contrastMode,
     } = this.props;
@@ -235,7 +235,7 @@ class App extends React.Component {
                 <Search />
               </div>
               <FilterModal />
-              <Topologies />
+              { !isDashboardViewMode && <Topologies /> }
               <ViewModeSelector />
               <TimeControl />
             </div>
