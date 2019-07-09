@@ -1420,9 +1420,10 @@ a {
 
 .sidebar {
   //OLD THINGS ARE COMMENTED OUT
-  //position: fixed;
-  //bottom: 11px;
-  //left: 11px;
+  position: fixed;
+  bottom: 11px;
+  left: 11px;
+  height: 300px;
   justify-content: center;
   padding: 5px;
   font-size: $font-size-small;
@@ -1829,10 +1830,18 @@ a {
 .err-bar{
   position: absolute;
   overflow: auto;
-  max-height: 80px;
-  bottom: 10px;
+  height: 100%;
   line-height: 120%;
 }
+
+.err-wrapper {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  bottom: 10px;
+}
+
 // Dashboard
 .dashboard {
   display: flex;
@@ -1859,12 +1868,29 @@ a {
       height: 50%;
 
       .dash-status {
-        display: flex;
-        justify-content: center;
-        flex-grow: 1;
         width: 50%;
-        font-size: $font-size-large;
-        background-color: $color-blue-700;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        .title {
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          font-size: $font-size-large;
+        }
+        
+        .errors {
+          position: relative;
+          margin: 5px;
+          height: 80%;
+          display: flex;
+          justify-content: center;
+          flex-grow: 1;
+          
+        }
+
       }
 
       .pie-charts {
@@ -1872,7 +1898,6 @@ a {
         justify-content: center;
         flex-grow: 1;
         width: 50%;
-        background-color: $color-gray-200;
       }
     }
 

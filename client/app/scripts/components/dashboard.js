@@ -3,7 +3,7 @@ import { Card, CardText,
 CardTitle } from 'reactstrap';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { formatData } from './error-bar';
+import ErrorBar, { formatData } from './error-bar';
 import { getNodesbyTopology } from '../actions/app-actions';
 
 class Dashboard extends React.Component {
@@ -24,13 +24,20 @@ render() {
  const { hostNodes, allNodes } = this.props;
  const hostData = formatData(hostNodes, "hosts");
  const overallData = this.getOverallStats(allNodes);
+ // if error bar is empty, display an everything is all good msg
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
       <div className="view">
         <div className="top">
           <div className="dash-status">
+            <div className="title">
+              Errors:
+            </div>
+            <div className="errors">
+              <ErrorBar />
            </div>
+          </div>
           <div className="pie-charts">
              <div>
                <div>{hostData.cpu.value}% CPU used</div>
