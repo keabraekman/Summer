@@ -7,6 +7,8 @@ import { shownNodesSelector } from '../selectors/node-filters';
 import { clickNode } from '../actions/app-actions';
 import { GRAPH_VIEW_MODE } from '../constants/naming';
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
+import { isDashboardViewModeSelector } from '../selectors/topology'
+
 
 export const ErrorIcon = () => <Icon icon={warning} />;
 
@@ -27,7 +29,6 @@ export const formatData = (nodes, topologyId) => {
  else if (topologyId === "hosts")
    return_data = { cpu: { value: 0, max: 0}, memory: { value: 0, max: 0}};
 
-
  if(!nodes.get(topologyId))
    return return_data;
 
@@ -37,7 +38,7 @@ export const formatData = (nodes, topologyId) => {
  for(i = 0; i < data.length; i++){
    if(topologyId === "pods"){
      status = data[i]['metadata'][0]['value'];
-     if(status === "Running"){
+     if(status !== "Running"){
        return_data[i] = {name: data[i]['rank'], status: status, id: data[i]['id'], label: data[i]['label']};
      }
    }
@@ -74,16 +75,27 @@ export class ErrorBar extends React.Component {
  }
 
  render() {
+   const { isDashboardViewMode } = this.props;
    var nodes = this.props.state.get('nodesByTopology');
    var data = formatData(nodes, "pods");
+   var allGoodMsg = false;
+   if (data.length === 0 && isDashboardViewMode) {
+    allGoodMsg = true;
+   }
+   
    return (
      <div className='err-bar' >
-       {data.map((element) =>
-       <Toast >
-           <ToastHeader></ToastHeader>
-           <ToastBody className="err-item" onClick = {ev => this.onClickErr(ev, element, nodes)} ><ErrorIcon /> {element.name}... {element.status}</ToastBody>
-       </Toast>
-        )}
+       { allGoodMsg ? 
+       <div>You have no errors! All good!</div> :
+        <div>
+        {data.map((element) =>
+        <Toast >
+            <ToastHeader></ToastHeader>
+            <ToastBody className="err-item" onClick = {ev => this.onClickErr(ev, element, nodes)} ><ErrorIcon /> {element.name}... {element.status}</ToastBody>
+        </Toast>
+          )}
+        </div>
+       }
      </div>
 
      // <ListGroup className='err-bar' >
@@ -100,6 +112,7 @@ function mapStatetoProps(state){
    state: state,
    nodes: shownNodesSelector(state),
    currentTopology: state.get('currentTopology'),
+   isDashboardViewMode: isDashboardViewModeSelector(state)
    // topologies: state.get('currentTopologyId'),
     };
 }

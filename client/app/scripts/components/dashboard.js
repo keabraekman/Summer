@@ -24,7 +24,6 @@ render() {
  const { hostNodes, allNodes } = this.props;
  const hostData = formatData(hostNodes, "hosts");
  const overallData = this.getOverallStats(allNodes);
- // if error bar is empty, display an everything is all good msg
   return (
     <div className="dashboard">
       <h1>Dashboard</h1>
