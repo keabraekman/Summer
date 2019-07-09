@@ -3,6 +3,7 @@ import { Card, CardText,
  CardTitle } from 'reactstrap';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PieChart from './pieChart';
 
 class Dashboard extends React.Component {
  getMetric = (metric) => {
@@ -32,9 +33,11 @@ class Dashboard extends React.Component {
          <div className="top">
            <div className="dash-status">Everything looks good!</div>
            <div className="pie-charts">
-             <div>{cpu.value}% CPU used</div>
+             {/* <div>{cpu.value}% CPU used</div>
              <div>{memory.value} MB Memory used</div>
-           </div>
+             <div>{memory.max} Max Memory Available</div> */}
+             <PieChart values={[cpu.value, 100-cpu.value]} title={"HOST: CPU Usage"} />
+             <PieChart values={[memory.value,memory.max-memory.value]} title={"HOST: Memory Usage"} />           </div>
          </div>
          <div className="bottom">
            <Card className="card">
@@ -66,4 +69,4 @@ function mapStateToProps(state) {
  };
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard); 
