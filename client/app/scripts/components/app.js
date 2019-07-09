@@ -243,11 +243,16 @@ class App extends React.Component {
           </div>
 
           <Nodes />
-
-          <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
+          
+          <div>
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
-          </Sidebar>
+          </div>
+
+          {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
+            {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
+            {isGraphViewMode && <ErrorBar />}
+          </Sidebar> */}
 
           <Footer />
 
