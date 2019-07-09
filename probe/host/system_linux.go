@@ -10,7 +10,7 @@ import (
 
 	linuxproc "github.com/c9s/goprocinfo/linux"
 
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/report"
 
 	"golang.org/x/sys/unix"
 )

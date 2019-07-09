@@ -12,7 +12,7 @@ import (
 	"github.com/certifi/gocertifi"
 	"github.com/hashicorp/go-cleanhttp"
 
-	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/weaveworks/scope/common/xfer"
 )
 
 const (

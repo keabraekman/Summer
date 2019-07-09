@@ -8,9 +8,9 @@ import (
 
 	"github.com/ugorji/go/codec"
 
-	"github.com/keabraekman/Summer/render"
-	"github.com/keabraekman/Summer/report"
-	"github.com/keabraekman/Summer/test/fixture"
+	"github.com/weaveworks/scope/render"
+	"github.com/weaveworks/scope/report"
+	"github.com/weaveworks/scope/test/fixture"
 )
 
 var (

@@ -271,7 +271,7 @@ case "$COMMAND" in
             # Docker for Mac (as of beta9) does not ship vmnet driver and
             # thereby only access container ports via a tunnel, preventing
             # access to host ports of the VM.
-            # - https://github.com/keabraekman/Summer/issues/1411
+            # - https://github.com/weaveworks/scope/issues/1411
             # - https://forums.docker.com/t/ports-in-host-network-namespace-are-not-accessible/10789
             dry_run "$@"
             if check_listen_address_arg; then

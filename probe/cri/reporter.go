@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	client "github.com/keabraekman/Summer/cri/runtime"
-	"github.com/keabraekman/Summer/probe/docker"
-	"github.com/keabraekman/Summer/report"
+	client "github.com/weaveworks/scope/cri/runtime"
+	"github.com/weaveworks/scope/probe/docker"
+	"github.com/weaveworks/scope/report"
 )
 
 // Reporter generate Reports containing Container and ContainerImage topologies

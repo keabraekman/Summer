@@ -12,6 +12,6 @@ CMD ["nginx", "-g", "daemon off;"]
 ARG revision
 LABEL maintainer="Weaveworks <help@weave.works>" \
       org.opencontainers.image.title="example-frontend" \
-      org.opencontainers.image.source="https://github.com/keabraekman/Summer/tree/master/extras/example/frontend" \
+      org.opencontainers.image.source="https://github.com/weaveworks/scope/tree/master/extras/example/frontend" \
       org.opencontainers.image.revision="${revision}" \
       org.opencontainers.image.vendor="Weaveworks"

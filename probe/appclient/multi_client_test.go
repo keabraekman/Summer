@@ -6,9 +6,9 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/keabraekman/Summer/common/xfer"
-	"github.com/keabraekman/Summer/probe/appclient"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/common/xfer"
+	"github.com/weaveworks/scope/probe/appclient"
+	"github.com/weaveworks/scope/report"
 )
 
 type mockClient struct {

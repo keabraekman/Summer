@@ -5,11 +5,11 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/render"
-	"github.com/keabraekman/Summer/render/expected"
-	"github.com/keabraekman/Summer/test/fixture"
-	"github.com/keabraekman/Summer/test/reflect"
-	"github.com/keabraekman/Summer/test/utils"
+	"github.com/weaveworks/scope/render"
+	"github.com/weaveworks/scope/render/expected"
+	"github.com/weaveworks/scope/test/fixture"
+	"github.com/weaveworks/scope/test/reflect"
+	"github.com/weaveworks/scope/test/utils"
 )
 
 func TestEndpointRenderer(t *testing.T) {

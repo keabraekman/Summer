@@ -94,7 +94,7 @@ const (
 // This implementation does not use the intermediate form as that was a
 // performance issue; skipping it saved almost 10% CPU.  Note this means
 // we are using undocumented, internal APIs, which could break in the future.
-// See https://github.com/keabraekman/Summer/pull/1709 for more information.
+// See https://github.com/weaveworks/scope/pull/1709 for more information.
 func mapRead(decoder *codec.Decoder, decodeValue func(isNil bool) interface{}) ps.Map {
 	z, r := codec.GenHelperDecoder(decoder)
 	if r.TryDecodeAsNil() {

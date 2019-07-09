@@ -3,7 +3,7 @@ package controls
 import (
 	"sync"
 
-	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/weaveworks/scope/common/xfer"
 )
 
 // HandlerRegistryBackend is an interface for storing control request

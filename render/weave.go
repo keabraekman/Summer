@@ -1,8 +1,8 @@
 package render
 
 import (
-	"github.com/keabraekman/Summer/probe/overlay"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/overlay"
+	"github.com/weaveworks/scope/report"
 )
 
 // WeaveRenderer is a Renderer which produces a renderable weave topology.

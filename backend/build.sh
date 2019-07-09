@@ -2,10 +2,10 @@
 
 set -eu
 
-SCOPE_SRC=$GOPATH/src/github.com/keabraekman/Summer
+SCOPE_SRC=$GOPATH/src/github.com/weaveworks/scope
 
 # Mount the scope repo:
-#  -v $(pwd):/go/src/github.com/keabraekman/Summer
+#  -v $(pwd):/go/src/github.com/weaveworks/scope
 
 # If we run make directly, any files created on the bind mount
 # will have awkward ownership.  So we switch to a user with the

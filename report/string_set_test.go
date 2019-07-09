@@ -3,7 +3,7 @@ package report_test
 import (
 	"testing"
 
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/report"
 )
 
 func TestStringSetContains(t *testing.T) {

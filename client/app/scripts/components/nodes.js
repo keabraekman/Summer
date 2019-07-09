@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
 import NodesChart from '../charts/nodes-chart';
 import NodesGrid from '../charts/nodes-grid';
 import NodesResources from '../components/nodes-resources';
+import Dashboard from './dashboard';
 import NodesError from '../charts/nodes-error';
 import DelayedShow from '../utils/delayed-show';
 import { Loading, getNodeType } from './loading';
@@ -16,6 +18,7 @@ import {
   isGraphViewModeSelector,
   isTableViewModeSelector,
   isResourceViewModeSelector,
+  isDashboardViewModeSelector,
 } from '../selectors/topology';
 
 import { TOPOLOGY_LOADER_DELAY } from '../constants/timer';
@@ -53,10 +56,10 @@ class Nodes extends React.Component {
 
   render() {
     const {
-      topologiesLoaded, nodesLoaded, topologies, currentTopology, isGraphViewMode,
-      isTableViewMode, isResourceViewMode
+      topologiesLoaded, nodesLoaded, topologies, currentTopology,
+      isGraphViewMode,
+      isTableViewMode, isResourceViewMode, isDashboardViewMode
     } = this.props;
-
     // TODO: Rename view mode components.
     return (
       <div className="nodes-wrapper">
@@ -72,6 +75,8 @@ class Nodes extends React.Component {
         {isGraphViewMode && <NodesChart />}
         {isTableViewMode && <NodesGrid />}
         {isResourceViewMode && <NodesResources />}
+        {!this.props.nodesDisplayEmpty && nodesLoaded && isDashboardViewMode && <Dashboard />}
+        
       </div>
     );
   }
@@ -81,6 +86,7 @@ class Nodes extends React.Component {
 function mapStateToProps(state) {
   return {
     currentTopology: state.get('currentTopology'),
+    isDashboardViewMode: isDashboardViewModeSelector(state),
     isGraphViewMode: isGraphViewModeSelector(state),
     isResourceViewMode: isResourceViewModeSelector(state),
     isTableViewMode: isTableViewModeSelector(state),
@@ -94,5 +100,3 @@ function mapStateToProps(state) {
 
 
 export default connect(mapStateToProps)(Nodes);
-
-console.log(NodesResources);

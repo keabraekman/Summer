@@ -8,7 +8,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/keabraekman/Summer/probe/process"
+	"github.com/weaveworks/scope/probe/process"
 )
 
 const (

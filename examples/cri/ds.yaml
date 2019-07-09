@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: weave-scope-agent
+  name: uberkuber-agent
   labels:
-    name: weave-scope-agent
-    app: weave-scope
+    name: uberkuber-agent
+    app: uberkuber
     weave-cloud-component: scope
     weave-scope-component: agent
   namespace: weave
@@ -14,8 +14,8 @@ spec:
   template:
     metadata:
       labels:
-        name: weave-scope-agent
-        app: weave-scope
+        name: uberkuber-agent
+        app: uberkuber
         weave-cloud-component: scope
         weave-scope-component: agent
     spec:

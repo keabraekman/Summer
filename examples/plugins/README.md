@@ -248,7 +248,7 @@ have IDs formatted as `${host};${pid}`. The easiest way to
 discover how the nodes are named are:
 
 1. Read the code in
-  [report/id.go](https://github.com/keabraekman/Summer/blob/master/report/id.go).
+  [report/id.go](https://github.com/weaveworks/scope/blob/master/report/id.go).
 2. Browse the Weave Scope GUI, select some node and search for an `id`
   key in the `nodeDetails` array in the address bar.
   - For example in the

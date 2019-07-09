@@ -6,7 +6,7 @@ import (
 	opentracing "github.com/opentracing/opentracing-go"
 	otlog "github.com/opentracing/opentracing-go/log"
 
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/report"
 )
 
 // MapFunc is anything which can take an arbitrary Node and

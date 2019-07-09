@@ -8,10 +8,10 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/ugorji/go/codec"
 
-	"github.com/keabraekman/Summer/app"
-	"github.com/keabraekman/Summer/render/detailed"
-	"github.com/keabraekman/Summer/render/expected"
-	"github.com/keabraekman/Summer/test/fixture"
+	"github.com/weaveworks/scope/app"
+	"github.com/weaveworks/scope/render/detailed"
+	"github.com/weaveworks/scope/render/expected"
+	"github.com/weaveworks/scope/test/fixture"
 )
 
 func TestAll(t *testing.T) {

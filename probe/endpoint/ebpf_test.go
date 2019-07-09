@@ -11,7 +11,7 @@ import (
 
 	"github.com/weaveworks/tcptracer-bpf/pkg/tracer"
 
-	"github.com/keabraekman/Summer/probe/host"
+	"github.com/weaveworks/scope/probe/host"
 )
 
 func newMockEbpfTracker() *EbpfTracker {

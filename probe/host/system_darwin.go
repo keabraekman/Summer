@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/report"
 )
 
 var (

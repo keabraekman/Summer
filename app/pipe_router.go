@@ -10,7 +10,7 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/weaveworks/scope/common/xfer"
 )
 
 const (

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/keabraekman/Summer/probe/host"
+	"github.com/weaveworks/scope/probe/host"
 
 	"golang.org/x/sys/unix"
 )

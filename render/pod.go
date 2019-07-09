@@ -4,9 +4,9 @@ import (
 	"context"
 	"strings"
 
-	"github.com/keabraekman/Summer/probe/docker"
-	"github.com/keabraekman/Summer/probe/kubernetes"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/docker"
+	"github.com/weaveworks/scope/probe/kubernetes"
+	"github.com/weaveworks/scope/report"
 )
 
 // Constants are used in the tests.

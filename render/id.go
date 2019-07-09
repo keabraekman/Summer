@@ -3,7 +3,7 @@ package render
 import (
 	"strings"
 
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/report"
 )
 
 // Constants are used in the tests.
@@ -71,7 +71,7 @@ func pseudoNodeID(rpt report.Report, n report.Node, local report.Networks) (stri
 		return id, ok
 	}
 
-	// due to https://github.com/keabraekman/Summer/issues/1323 we are dropping
+	// due to https://github.com/weaveworks/scope/issues/1323 we are dropping
 	// all non-external pseudo nodes for now.
 	return "", false
 }
@@ -80,7 +80,7 @@ func pseudoNodeID(rpt report.Report, n report.Node, local report.Networks) (stri
 func externalNodeID(rpt report.Report, n report.Node, addr string, local report.Networks) (string, bool) {
 	// First, check if it's a known service and emit a a specific node if it
 	// is. This needs to be done before checking IPs since known services can
-	// live in the same network, see https://github.com/keabraekman/Summer/issues/2163
+	// live in the same network, see https://github.com/weaveworks/scope/issues/2163
 	if hostname, found := rpt.DNS.FirstMatch(n.ID, isKnownService); found {
 		return ServiceNodeIDPrefix + hostname, true
 	}

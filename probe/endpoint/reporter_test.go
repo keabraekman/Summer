@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/keabraekman/Summer/probe/endpoint"
-	"github.com/keabraekman/Summer/probe/endpoint/procspy"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/endpoint"
+	"github.com/weaveworks/scope/probe/endpoint/procspy"
+	"github.com/weaveworks/scope/report"
 )
 
 var (

@@ -6,7 +6,7 @@ import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import { searchMatchCountByTopologySelector } from '../selectors/search';
 import { isResourceViewModeSelector } from '../selectors/topology';
 import { clickTopology } from '../actions/app-actions';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
 
 function basicTopologyInfo(topology, searchMatchCount) {
   const info = [
@@ -20,31 +20,13 @@ function basicTopologyInfo(topology, searchMatchCount) {
 }
 
 class Topologies extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      dropdownOpen: false
-    };
-  }
-
-  toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }));
-  }
-
-
   onTopologyClick = (ev, topology) => {
     ev.preventDefault();
-    // trackAnalyticsEvent('scope.topology.selector.click', {
-    //   parentTopologyId: topology.get('parentId'),
-    //   topologyId: topology.get('id'),
-    // });
-    console.log('topology.get id = ', topology.get('id'))
-    console.log("THIS THING = ", ev.currentTarget.getAttribute('rel'))
-    this.props.clickTopology(topology.get('id'));
+    trackAnalyticsEvent('scope.topology.selector.click', {
+      parentTopologyId: topology.get('parentId'),
+      topologyId: topology.get('id'),
+    });
+    this.props.clickTopology(ev.currentTarget.getAttribute('rel'));
   }
 
   renderSubTopology(subTopology) {
@@ -57,21 +39,21 @@ class Topologies extends React.Component {
       // Don't show matches in the resource view as searching is not supported there yet.
       'topologies-sub-item-matched': !this.props.isResourceViewMode && searchMatchCount,
     });
-
-    return (
-      <div
-        className={className}
-        title={title}
-        key={topologyId}
-        rel={topologyId}
-        onClick={ev => this.onTopologyClick(ev, subTopology)}>
-          {/* <DropdownItem> */}
-        <div className="topologies-sub-item-label">
-          {subTopology.get('name')}
+    if (className !== 'Weave Net') {
+      return (
+        <div
+          className={className}
+          title={title}
+          key={topologyId}
+          rel={topologyId}
+          onClick={ev => this.onTopologyClick(ev, subTopology)}>
+          <div className="topologies-sub-item-label">
+            {subTopology.get('name')}
+          </div>
         </div>
-        {/* </DropdownItem> */}
-      </div>
-    );
+      );
+    }
+    return '';
   }
 
   renderTopology(topology) {
@@ -86,9 +68,7 @@ class Topologies extends React.Component {
     const title = basicTopologyInfo(topology, searchMatchCount);
 
     return (
-      // <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
       <div className="topologies-item" key={topologyId}>
-      {/* <DropdownToggle caret> */}
         <div
           className={className}
           title={title}
@@ -97,15 +77,11 @@ class Topologies extends React.Component {
           <div className="topologies-item-label">
             {topology.get('name')}
           </div>
-          
         </div>
-        {/* </DropdownToggle> */}
-        {/* <DropdownMenu> */}
         <div className="topologies-sub">
           {topology.has('sub_topologies')
             && topology.get('sub_topologies').map(subTop => this.renderSubTopology(subTop))}
         </div>
-        {/* </DropdownMenu> */}
       </div>
     );
   }

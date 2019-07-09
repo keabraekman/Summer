@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/render"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/render"
+	"github.com/weaveworks/scope/report"
 )
 
 type mockRenderer struct {

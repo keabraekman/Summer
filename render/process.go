@@ -3,9 +3,9 @@ package render
 import (
 	"context"
 
-	"github.com/keabraekman/Summer/probe/endpoint"
-	"github.com/keabraekman/Summer/probe/process"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/endpoint"
+	"github.com/weaveworks/scope/probe/process"
+	"github.com/weaveworks/scope/report"
 )
 
 // Constants are used in the tests.

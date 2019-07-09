@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/keabraekman/Summer/test"
+	"github.com/weaveworks/scope/test"
 )
 
 func TestReverseResolver(t *testing.T) {

@@ -8,7 +8,7 @@ import (
 
 	fs_hook "github.com/weaveworks/common/fs"
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/probe/process"
+	"github.com/weaveworks/scope/probe/process"
 )
 
 func TestLinuxConnections(t *testing.T) {

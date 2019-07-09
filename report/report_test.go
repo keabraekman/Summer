@@ -7,8 +7,8 @@ import (
 
 	"github.com/weaveworks/common/mtime"
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/report"
-	s_reflect "github.com/keabraekman/Summer/test/reflect"
+	"github.com/weaveworks/scope/report"
+	s_reflect "github.com/weaveworks/scope/test/reflect"
 )
 
 func newu64(value uint64) *uint64 { return &value }

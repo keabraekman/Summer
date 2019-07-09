@@ -16,7 +16,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/ugorji/go/codec"
 
-	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/weaveworks/scope/common/xfer"
 )
 
 const (

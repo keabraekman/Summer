@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/keabraekman/Summer/probe/controls"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/controls"
+	"github.com/weaveworks/scope/report"
 )
 
 // Keys for use in Node.Latest.

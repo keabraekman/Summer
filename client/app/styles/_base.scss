@@ -18,6 +18,22 @@ a {
   text-decoration: none;
 }
 
+.filter-title {
+  font-family: $font-family-regular;
+  font-size: $font-size-large;
+  color: $color-gray-200;
+  text-align: center;
+}
+
+.modalbody {
+  display: flex;
+  align-content: center;
+}
+
+.ModalHeader {
+  font-size: $font-size-large;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: $color-gray-200;
@@ -519,13 +535,13 @@ $blue:gray;
 .node-details {
   height: 100%;
   width: $details-window-width;
-  background-color: transparentize($color-black, 0.14);
+  background-color: transparentize($color-white, 0.14);
   display: flex;
   flex-flow: column;
   margin-bottom: 12px;
   padding-bottom: 2px;
   border-radius: $border-radius-soft;
-  background-color: $color-black;
+  background-color: $color-white;
   @extend .shadow-2;
   // keep node-details above the terminal.
   z-index: $layer-front;
@@ -647,12 +663,12 @@ $blue:gray;
     }
 
     .node-control-button {
-      color: $color-black;
+      color: $color-white;
     }
 
     &-spinner {
       @extend .hideable;
-      color: $color-black;
+      color: $color-white;
       margin-left: 8px;
     }
 
@@ -662,7 +678,7 @@ $blue:gray;
       width: 55%;
       padding-top: 6px;
       text-align: left;
-      color: $color-black;
+      color: $color-white;
 
       &-icon {
         @extend .blinkable;
@@ -882,7 +898,7 @@ $blue:gray;
 
       .min-height-constraint {
         position: absolute;
-        width: 0 !important;
+        width: 0;
         opacity: 0;
         top: 0;
       }
@@ -981,7 +997,7 @@ $blue:gray;
 .details-wrapper .node-details-table {
   &-node {
     &:hover, &.selected {
-      background-color: $color-black;
+      background-color: $color-white;
     }
   }
 }
@@ -1097,7 +1113,7 @@ $blue:gray;
     border-bottom-left-radius: $border-radius-soft;
 
     .terminal {
-      background-color: transparent !important;
+      background-color: transparent;
     }
   }
 
@@ -1195,11 +1211,12 @@ $blue:gray;
 
 .status {
   padding: 2px 12px;
+  margin: 0px 0px 10px 0px;
   background-color: $body-background-color;
   border-radius: $border-radius-soft;
   color: $text-secondary-color;
   display: inline-block;
-  opacity: 0.9;
+  opacity: 0.95;
 
   &-icon {
     font-size: $font-size-normal;
@@ -1218,7 +1235,7 @@ $blue:gray;
 .topology-option, .metric-selector, .network-selector, .view-mode-selector, .time-control {
   font-size: $font-size-normal;
   color: $text-secondary-color;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
 
   &:last-child {
     margin-bottom: 0;
@@ -1240,7 +1257,7 @@ $blue:gray;
 
   &-action {
     @extend .btn-opacity;
-    padding: 3px 12px;
+    padding: 3px 10px;
     cursor: pointer;
     display: inline-block;
     background-color: $background-color;
@@ -1331,8 +1348,7 @@ $blue:gray;
   &-wrapper {
     display: inline-flex;
     flex-wrap: wrap;
-    overflow: hidden;
-    max-height: 27px;
+    overflow: visible;
     transition: max-height 0.5s 0s $base-ease;
 
     .topology-option-action {
@@ -1407,15 +1423,16 @@ $blue:gray;
 }
 
 .sidebar {
-  position: fixed;
-  bottom: 11px;
-  left: 11px;
+  //OLD THINGS ARE COMMENTED OUT
+  //position: fixed;
+  //bottom: 11px;
+  //left: 11px;
+  justify-content: center;
   padding: 5px;
   font-size: $font-size-small;
   border-radius: $border-radius-soft;
   border: 1px solid transparent;
   pointer-events: none;
-  max-width: 50%;
 }
 
 .sidebar-gridmode {
@@ -1675,6 +1692,7 @@ $blue:gray;
   }
 
   .node-details-table-wrapper-wrapper {
+
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -1806,3 +1824,94 @@ $blue:gray;
 @media (max-width: 1330px) {
   .view-mode-selector .label { display: none; }
 }
+
+.err-item{
+  display: flex; 
+  align-content: flex-end;
+}
+
+.err-bar{
+  position: absolute;
+  overflow: auto;
+  max-height: 80px;
+  bottom: 10px;
+  line-height: 120%;
+}
+// Dashboard
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50em;
+  width: 100%;
+  overflow: hidden;
+
+  h1 {
+    font-size: $font-size-huge;
+  }
+
+  .view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+
+    .top {
+      display: flex;
+      width: 100%;
+      height: 50%;
+
+      .dash-status {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        width: 50%;
+        font-size: $font-size-large;
+        background-color: $color-blue-700;
+      }
+
+      .pie-charts {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        width: 50%;
+        background-color: $color-gray-200;
+      }
+    }
+
+
+    .bottom {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 50%;
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        width: 15%;
+        min-width: 140px;
+        max-width: 145px;
+        margin: 30px;
+
+        $font-size-extra-extra-large: 3rem;
+        .card-title {
+          padding: 1rem;
+          color: $color-blue-400;
+          font-size: $font-size-extra-extra-large;
+          font-weight: 900;
+        }
+
+        .card-text {
+          font-weight: 500;
+          font-size: $font-size-large;
+        }
+      }
+    }
+  }
+}
+

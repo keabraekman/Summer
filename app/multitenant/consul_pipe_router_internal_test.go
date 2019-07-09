@@ -11,9 +11,9 @@ import (
 
 	"context"
 
-	"github.com/keabraekman/Summer/app"
-	"github.com/keabraekman/Summer/common/xfer"
-	"github.com/keabraekman/Summer/probe/appclient"
+	"github.com/weaveworks/scope/app"
+	"github.com/weaveworks/scope/common/xfer"
+	"github.com/weaveworks/scope/probe/appclient"
 )
 
 type adapter struct {

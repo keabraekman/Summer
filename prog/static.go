@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/keabraekman/Summer/prog/externalui"
-	"github.com/keabraekman/Summer/prog/staticui"
+	"github.com/weaveworks/scope/prog/externalui"
+	"github.com/weaveworks/scope/prog/staticui"
 )
 
 // GetFS obtains the UI code

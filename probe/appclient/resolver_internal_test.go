@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/keabraekman/Summer/common/xfer"
-	"github.com/keabraekman/Summer/test"
+	"github.com/weaveworks/scope/common/xfer"
+	"github.com/weaveworks/scope/test"
 )
 
 func TestResolverCases(t *testing.T) {

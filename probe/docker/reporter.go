@@ -7,9 +7,9 @@ import (
 	humanize "github.com/dustin/go-humanize"
 	docker_client "github.com/fsouza/go-dockerclient"
 
-	"github.com/keabraekman/Summer/probe"
-	"github.com/keabraekman/Summer/probe/host"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe"
+	"github.com/weaveworks/scope/probe/host"
+	"github.com/weaveworks/scope/report"
 )
 
 // Keys for use in Node

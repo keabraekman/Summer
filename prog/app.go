@@ -26,11 +26,11 @@ import (
 	"github.com/weaveworks/common/signals"
 	"github.com/weaveworks/common/tracing"
 	"github.com/weaveworks/go-checkpoint"
-	"github.com/keabraekman/Summer/app"
-	"github.com/keabraekman/Summer/app/multitenant"
-	"github.com/keabraekman/Summer/common/weave"
-	"github.com/keabraekman/Summer/common/xfer"
-	"github.com/keabraekman/Summer/probe/docker"
+	"github.com/weaveworks/scope/app"
+	"github.com/weaveworks/scope/app/multitenant"
+	"github.com/weaveworks/scope/common/weave"
+	"github.com/weaveworks/scope/common/xfer"
+	"github.com/weaveworks/scope/probe/docker"
 )
 
 const (

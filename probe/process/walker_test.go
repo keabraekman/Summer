@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/probe/process"
+	"github.com/weaveworks/scope/probe/process"
 )
 
 func TestBasicWalk(t *testing.T) {

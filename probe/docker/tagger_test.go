@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/keabraekman/Summer/probe/docker"
-	"github.com/keabraekman/Summer/probe/process"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/docker"
+	"github.com/weaveworks/scope/probe/process"
+	"github.com/weaveworks/scope/report"
 )
 
 type mockProcessTree struct {

@@ -8,7 +8,7 @@ import (
 	"github.com/ugorji/go/codec"
 	"github.com/weaveworks/ps"
 
-	"github.com/keabraekman/Summer/test/reflect"
+	"github.com/weaveworks/scope/test/reflect"
 )
 
 // NodeSet is a set of nodes keyed on ID. Clients must use

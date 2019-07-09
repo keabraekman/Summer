@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/report"
 
 	apiv1 "k8s.io/api/core/v1"
 )

@@ -7,7 +7,7 @@ import (
 
 	"context"
 
-	"github.com/keabraekman/Summer/common/xfer"
+	"github.com/weaveworks/scope/common/xfer"
 )
 
 // ControlRouter is a thing that can route control requests and responses

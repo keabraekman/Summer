@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/keabraekman/Summer/probe/host"
+	"github.com/weaveworks/scope/probe/host"
 )
 
 func TestGetKernelVersion(t *testing.T) {

@@ -10,8 +10,8 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/keabraekman/Summer/common/xfer"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/common/xfer"
+	"github.com/weaveworks/scope/report"
 )
 
 const maxConcurrentGET = 10

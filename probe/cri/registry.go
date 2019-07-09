@@ -8,7 +8,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	client "github.com/keabraekman/Summer/cri/runtime"
+	client "github.com/weaveworks/scope/cri/runtime"
 )
 
 const (

@@ -7,16 +7,16 @@ import { debounce, isEqual } from 'lodash';
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
+import ErrorBar from './error-bar';
+import FilterModal from './filter-modal';
 import Logo from './logo';
 // import Footer from './footer';
-import Dropdown from './dropdown';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
 import Search from './search';
 import Status from './status';
 import Topologies from './topologies';
-import Topology from './topology';
 import TopologyOptions from './topology-options';
 import Overlay from './overlay';
 import { getApiDetails } from '../utils/web-api-utils';
@@ -27,6 +27,7 @@ import {
   hitEsc,
   unpinMetric,
   toggleHelp,
+  setDashboardView,
   setGraphView,
   setMonitorState,
   setTableView,
@@ -51,12 +52,12 @@ import {
   isResourceViewModeSelector,
   isTableViewModeSelector,
   isGraphViewModeSelector,
+  isDashboardViewModeSelector,
 } from '../selectors/topology';
 import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
   ESC_KEY_CODE,
 } from '../constants/key-codes';
-// import { Dropdown } from 'weaveworks-ui-components/lib/components';
 
 const keyPressLog = debug('scope:app-key-press');
 
@@ -156,6 +157,9 @@ class App extends React.Component {
       } else if (char === 'r') {
         dispatch(setResourceView());
         this.trackEvent('scope.layout.selector.keypress');
+      } else if (char === 'd') {
+        dispatch(setDashboardView());
+        this.trackEvent('scope.layout.selector.keypress');
       } else if (char === 'q') {
         this.trackEvent('scope.metric.selector.unpin.keypress', {
           metricType: this.props.pinnedMetricType
@@ -192,8 +196,8 @@ class App extends React.Component {
 
   render() {
     const {
-      isTableViewMode, isGraphViewMode, isResourceViewMode, showingDetails,
-      showingHelp, showingNetworkSelector, showingTroubleshootingMenu,
+      isTableViewMode, isGraphViewMode, isResourceViewMode, isDashboardViewMode, showingNetworkSelector,
+      showingDetails, showingHelp, showingTroubleshootingMenu,
       timeTravelTransitioning, timeTravelSupported, contrastMode,
     } = this.props;
 
@@ -222,17 +226,16 @@ class App extends React.Component {
             <div className="selectors">
               <div className="logo">
                 {!isIframe &&
-                  <svg width="100%" height="100%" viewBox="130 -40 20 100">
+                  <svg width="100%" height="100%" viewBox="150 -40 20 100">
                     <Logo />
                   </svg>
                 }
               </div>
-              <Search />
-              <Topologies/>
-              {/* <Topology name="Processes" id='processes' sub={["by Name"]} subId={['processes-by-name']}/>
-              <Topology name="Containers" id='containers' sub={["by DNS name", "by Image"]} subId={['containers-by-hostname', 'containers-by-image']}/>
-              <Topology name="Pods" id='pods' sub={["Controllers", "Services"]} subId={['kube-controllers', 'services']}/>
-              <Topology name="Hosts" id='hosts' sub={["Weave Net"]} subId={['weave']} /> */}
+              <div style={{}}>
+                <Search />
+              </div>
+              <FilterModal />
+              { !isDashboardViewMode && <Topologies /> }
               <ViewModeSelector />
               <TimeControl />
             </div>
@@ -241,14 +244,16 @@ class App extends React.Component {
           <Nodes />
 
           <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-            {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
-            {!isResourceViewMode && <Status />}
-            {!isResourceViewMode && <TopologyOptions />}
+            {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
+            {isGraphViewMode && <ErrorBar />}
           </Sidebar>
+
+          {/* <Footer /> */}
 
           <Overlay faded={timeTravelTransitioning} />
         </div>
       </ThemeProvider>
+     
     );
   }
 }
@@ -257,6 +262,7 @@ function mapStateToProps(state) {
   return {
     contrastMode: state.get('contrastMode'),
     currentTopology: state.get('currentTopology'),
+    isDashboardViewMode: isDashboardViewModeSelector(state),
     isGraphViewMode: isGraphViewModeSelector(state),
     isResourceViewMode: isResourceViewModeSelector(state),
     isTableViewMode: isTableViewModeSelector(state),

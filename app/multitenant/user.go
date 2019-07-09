@@ -6,7 +6,7 @@ import (
 
 	"context"
 
-	"github.com/keabraekman/Summer/app"
+	"github.com/weaveworks/scope/app"
 )
 
 // ErrUserIDNotFound should be returned by a UserIDer when it fails to ID the

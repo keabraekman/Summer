@@ -3,7 +3,7 @@ package weave
 import (
 	"net"
 
-	"github.com/keabraekman/Summer/common/weave"
+	"github.com/weaveworks/scope/common/weave"
 )
 
 // Constants used for testing

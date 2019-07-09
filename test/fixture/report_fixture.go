@@ -3,12 +3,12 @@ package fixture
 import (
 	"time"
 
-	"github.com/keabraekman/Summer/probe/docker"
-	"github.com/keabraekman/Summer/probe/host"
-	"github.com/keabraekman/Summer/probe/kubernetes"
-	"github.com/keabraekman/Summer/probe/process"
-	"github.com/keabraekman/Summer/render/detailed"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/docker"
+	"github.com/weaveworks/scope/probe/host"
+	"github.com/weaveworks/scope/probe/kubernetes"
+	"github.com/weaveworks/scope/probe/process"
+	"github.com/weaveworks/scope/render/detailed"
+	"github.com/weaveworks/scope/report"
 )
 
 // This is an example Report:

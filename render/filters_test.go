@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/render"
-	"github.com/keabraekman/Summer/report"
-	"github.com/keabraekman/Summer/test/reflect"
+	"github.com/weaveworks/scope/render"
+	"github.com/weaveworks/scope/report"
+	"github.com/weaveworks/scope/test/reflect"
 )
 
 var filterBar = render.Transformers([]render.Transformer{

@@ -8,15 +8,15 @@ import (
 
 	"github.com/weaveworks/common/mtime"
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/probe/docker"
-	"github.com/keabraekman/Summer/probe/host"
-	"github.com/keabraekman/Summer/probe/process"
-	"github.com/keabraekman/Summer/render"
-	"github.com/keabraekman/Summer/render/detailed"
-	"github.com/keabraekman/Summer/render/expected"
-	"github.com/keabraekman/Summer/report"
-	"github.com/keabraekman/Summer/test/fixture"
-	"github.com/keabraekman/Summer/test/reflect"
+	"github.com/weaveworks/scope/probe/docker"
+	"github.com/weaveworks/scope/probe/host"
+	"github.com/weaveworks/scope/probe/process"
+	"github.com/weaveworks/scope/render"
+	"github.com/weaveworks/scope/render/detailed"
+	"github.com/weaveworks/scope/render/expected"
+	"github.com/weaveworks/scope/report"
+	"github.com/weaveworks/scope/test/fixture"
+	"github.com/weaveworks/scope/test/reflect"
 )
 
 func TestSummaries(t *testing.T) {

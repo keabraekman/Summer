@@ -15,13 +15,13 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	billing "github.com/weaveworks/billing-client"
-	"github.com/keabraekman/Summer/app"
-	"github.com/keabraekman/Summer/app/multitenant"
-	"github.com/keabraekman/Summer/common/xfer"
-	"github.com/keabraekman/Summer/probe/appclient"
-	"github.com/keabraekman/Summer/probe/host"
-	"github.com/keabraekman/Summer/probe/kubernetes"
-	"github.com/keabraekman/Summer/render"
+	"github.com/weaveworks/scope/app"
+	"github.com/weaveworks/scope/app/multitenant"
+	"github.com/weaveworks/scope/common/xfer"
+	"github.com/weaveworks/scope/probe/appclient"
+	"github.com/weaveworks/scope/probe/host"
+	"github.com/weaveworks/scope/probe/kubernetes"
+	"github.com/weaveworks/scope/render"
 	"github.com/weaveworks/weave/common"
 )
 

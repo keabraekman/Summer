@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/weaveworks/common/mtime"
-	"github.com/keabraekman/Summer/probe/process"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/process"
+	"github.com/weaveworks/scope/report"
 )
 
 type mockWalker struct {

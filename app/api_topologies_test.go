@@ -14,16 +14,16 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/app"
-	"github.com/keabraekman/Summer/probe/docker"
-	"github.com/keabraekman/Summer/probe/kubernetes"
-	"github.com/keabraekman/Summer/render"
-	"github.com/keabraekman/Summer/render/detailed"
-	"github.com/keabraekman/Summer/render/expected"
-	"github.com/keabraekman/Summer/report"
-	"github.com/keabraekman/Summer/test/fixture"
-	"github.com/keabraekman/Summer/test/reflect"
-	"github.com/keabraekman/Summer/test/utils"
+	"github.com/weaveworks/scope/app"
+	"github.com/weaveworks/scope/probe/docker"
+	"github.com/weaveworks/scope/probe/kubernetes"
+	"github.com/weaveworks/scope/render"
+	"github.com/weaveworks/scope/render/detailed"
+	"github.com/weaveworks/scope/render/expected"
+	"github.com/weaveworks/scope/report"
+	"github.com/weaveworks/scope/test/fixture"
+	"github.com/weaveworks/scope/test/reflect"
+	"github.com/weaveworks/scope/test/utils"
 )
 
 const (

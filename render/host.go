@@ -1,7 +1,7 @@
 package render
 
 import (
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/report"
 )
 
 // HostRenderer is a Renderer which produces a renderable host

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/keabraekman/Summer/report"
-	"github.com/keabraekman/Summer/test/reflect"
+	"github.com/weaveworks/scope/report"
+	"github.com/weaveworks/scope/test/reflect"
 )
 
 func TestSetsAdd(t *testing.T) {

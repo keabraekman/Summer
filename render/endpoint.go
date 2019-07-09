@@ -3,7 +3,7 @@ package render
 import (
 	"context"
 
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/report"
 )
 
 // Pseudo is the topology for nodes that aren't "real" nodes inside a

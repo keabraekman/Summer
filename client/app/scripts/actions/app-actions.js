@@ -1,5 +1,6 @@
 import debug from 'debug';
 import { fromJS } from 'immutable';
+import { Map as makeMap } from 'immutable';
 
 import ActionTypes from '../constants/action-types';
 import { saveGraph } from '../utils/file-utils';
@@ -14,6 +15,9 @@ import {
   stopPolling,
   teardownWebsockets,
   getNodes,
+  buildUrlQuery,
+  doRequest,
+  getApiPath
 } from '../utils/web-api-utils';
 import { isPausedSelector } from '../selectors/time-travel';
 import {
@@ -31,6 +35,7 @@ import {
   GRAPH_VIEW_MODE,
   TABLE_VIEW_MODE,
   RESOURCE_VIEW_MODE,
+  DASHBOARD_VIEW_MODE,
 } from '../constants/naming';
 
 
@@ -200,6 +205,29 @@ export function blurSearch() {
   return { type: ActionTypes.BLUR_SEARCH };
 }
 
+export function getNodesbyTopology(topoId, topologyOptions = makeMap()) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const topologyIds = [topoId];
+ 
+  state.get('topologyUrlsById')
+    .filter((_, topologyId) => topologyIds.includes(topologyId))
+    .reduce(
+      (sequence, topologyUrl, topologyId) => sequence
+        .then(() => {
+          const optionsQuery = buildUrlQuery(topologyOptions.get(topologyId), state);
+          return doRequest({ url: `${getApiPath()}${topologyUrl}?${optionsQuery}` });
+        })
+        .then(json => {
+          dispatch({
+              nodes: json.nodes,
+              topologyId,
+              type: ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY
+            })
+        }), Promise.resolve());
+      }
+ }
+
 export function changeTopologyOption(option, value, topologyId, addOrRemove) {
   return (dispatch, getState) => {
     dispatch({
@@ -313,6 +341,16 @@ export function setResourceView() {
       getResourceViewNodesSnapshot(getState(), dispatch);
       updateRoute(getState);
     }
+  };
+}
+
+export function setDashboardView() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ActionTypes.SET_VIEW_MODE,
+      viewMode: DASHBOARD_VIEW_MODE,
+    });
+    updateRoute(getState);
   };
 }
 

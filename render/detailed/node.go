@@ -6,11 +6,11 @@ import (
 
 	"github.com/ugorji/go/codec"
 
-	"github.com/keabraekman/Summer/probe/awsecs"
-	"github.com/keabraekman/Summer/probe/docker"
-	"github.com/keabraekman/Summer/probe/kubernetes"
-	"github.com/keabraekman/Summer/probe/process"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/probe/awsecs"
+	"github.com/weaveworks/scope/probe/docker"
+	"github.com/weaveworks/scope/probe/kubernetes"
+	"github.com/weaveworks/scope/probe/process"
+	"github.com/weaveworks/scope/report"
 )
 
 // Node is the data type that's yielded to the JavaScript layer when

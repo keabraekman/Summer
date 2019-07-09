@@ -14,7 +14,7 @@ import (
 	"github.com/coocood/freecache"
 
 	"github.com/weaveworks/common/fs"
-	"github.com/keabraekman/Summer/probe/host"
+	"github.com/weaveworks/scope/probe/host"
 )
 
 type walker struct {

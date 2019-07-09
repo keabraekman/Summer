@@ -11,8 +11,8 @@ import (
 
 	"github.com/weaveworks/common/mtime"
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/report"
-	"github.com/keabraekman/Summer/test/reflect"
+	"github.com/weaveworks/scope/report"
+	"github.com/weaveworks/scope/test/reflect"
 )
 
 type mockFlowWalker struct {

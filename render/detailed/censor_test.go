@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/weaveworks/common/test"
-	"github.com/keabraekman/Summer/render/detailed"
-	"github.com/keabraekman/Summer/report"
+	"github.com/weaveworks/scope/render/detailed"
+	"github.com/weaveworks/scope/report"
 )
 
 func TestCensorNode(t *testing.T) {

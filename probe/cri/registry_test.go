@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/bmizerany/assert"
-	"github.com/keabraekman/Summer/probe/cri"
+	"github.com/weaveworks/scope/probe/cri"
 )
 
 var nonUnixSocketsTest = []struct {
