@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PieChart from './pieChart';
 
 class Dashboard extends React.Component {
+<<<<<<< HEAD
  getMetric = (metric) => {
    const { hostNodes } = this.props;
    let data = {};
@@ -20,6 +21,18 @@ class Dashboard extends React.Component {
       }
       return data;
     }
+=======
+  //latest version of Dashboard
+componentDidMount() {
+   this.props.getNodesbyTopology("hosts");
+}
+
+getOverallStats = nodes => {
+  let overallData = {Processes: 0, Containers: 0, Pods: 0, Hosts: 0};
+  for (var topoIndex in nodes) {
+    const topology = nodes[topoIndex].name;
+    overallData[topology] = nodes[topoIndex].stats.node_count;
+>>>>>>> master
   }
  }
 
