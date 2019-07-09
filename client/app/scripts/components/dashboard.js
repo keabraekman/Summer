@@ -7,6 +7,7 @@ import { formatData } from './error-bar';
 import { getNodesbyTopology } from '../actions/app-actions';
 
 class Dashboard extends React.Component {
+  //latest version of Dashboard
 componentDidMount() {
    this.props.getNodesbyTopology("hosts");
 }
