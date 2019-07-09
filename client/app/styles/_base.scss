@@ -176,10 +176,9 @@ a {
 
 .scope-app, .terminal-app {
   -webkit-font-smoothing: antialiased;
-  $darkgray : #1c1c1c;
-  background: $darkgray;
+  background: $body-background-color;
   bottom: 0;
-  color: $color-white;
+  color: $text-color;
   font-family: $font-family-regular;
   font-size: $font-size-small;
   height: auto;
@@ -225,11 +224,8 @@ a {
   }
 }
 
-$blue:gray;
-
 .header {
-  background-color: $blue;
-  //background-color: transparentize($color-purple-25, 0.2);
+  background-color: transparentize($color-purple-25, 0.2);
   z-index: $layer-front;
   padding: 15px 10px 0;
   position: relative;
@@ -1424,9 +1420,10 @@ $blue:gray;
 
 .sidebar {
   //OLD THINGS ARE COMMENTED OUT
-  //position: fixed;
-  //bottom: 11px;
-  //left: 11px;
+  position: fixed;
+  bottom: 11px;
+  left: 11px;
+  height: 300px;
   justify-content: center;
   padding: 5px;
   font-size: $font-size-small;
@@ -1831,12 +1828,13 @@ $blue:gray;
 }
 
 .err-bar{
-  position: absolute;
+  position: static;
   overflow: auto;
-  max-height: 80px;
+  height: 100%;
   bottom: 10px;
   line-height: 120%;
 }
+
 // Dashboard
 .dashboard {
   display: flex;
@@ -1863,12 +1861,29 @@ $blue:gray;
       height: 50%;
 
       .dash-status {
-        display: flex;
-        justify-content: center;
-        flex-grow: 1;
         width: 50%;
-        font-size: $font-size-large;
-        background-color: $color-blue-700;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        .title {
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          font-size: $font-size-large;
+        }
+        
+        .errors {
+          position: relative;
+          margin: 5px;
+          height: 80%;
+          display: flex;
+          justify-content: center;
+          flex-grow: 1;
+          
+        }
+
       }
 
       .pie-charts {
@@ -1876,7 +1891,6 @@ $blue:gray;
         justify-content: center;
         flex-grow: 1;
         width: 50%;
-        background-color: $color-gray-200;
       }
     }
 
