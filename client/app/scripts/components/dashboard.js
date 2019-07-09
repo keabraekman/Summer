@@ -6,22 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PieChart from './pieChart';
 
 class Dashboard extends React.Component {
-<<<<<<< HEAD
- getMetric = (metric) => {
-   const { hostNodes } = this.props;
-   let data = {};
-   for (var key in hostNodes) {
-    if (hostNodes.hasOwnProperty(key)){
-      if (metric === 'docker_cpu_total_usage') {
-        data.value = hostNodes[key]['metrics'][0]['value'];
-        data.max = hostNodes[key]['metrics'][0]['max'];
-      } else if (metric === 'docker_memory_usage') {
-        data.value = hostNodes[key]['metrics'][1]['value'];
-        data.max = hostNodes[key]['metrics'][1]['max'];
-      }
-      return data;
-    }
-=======
   //latest version of Dashboard
 componentDidMount() {
    this.props.getNodesbyTopology("hosts");
@@ -32,7 +16,6 @@ getOverallStats = nodes => {
   for (var topoIndex in nodes) {
     const topology = nodes[topoIndex].name;
     overallData[topology] = nodes[topoIndex].stats.node_count;
->>>>>>> master
   }
  }
 
