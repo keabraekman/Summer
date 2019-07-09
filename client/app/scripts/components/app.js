@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { debounce, isEqual } from 'lodash';
 
+
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
@@ -197,7 +198,7 @@ class App extends React.Component {
 
   render() {
     const {
-      isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
+      isTableViewMode, isGraphViewMode, isResourceViewMode, isDashboardViewMode, showingNetworkSelector,
       showingDetails, showingHelp, showingTroubleshootingMenu,
       timeTravelTransitioning, timeTravelSupported, contrastMode,
     } = this.props;
@@ -236,7 +237,7 @@ class App extends React.Component {
                 <Search />
               </div>
               <FilterModal />
-              <Topologies />
+              { !isDashboardViewMode && <Topologies /> }
               <ViewModeSelector />
               <TimeControl />
             </div>
@@ -248,12 +249,12 @@ class App extends React.Component {
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
           </Sidebar>
-
           <Footer />
 
           <Overlay faded={timeTravelTransitioning} />
         </div>
       </ThemeProvider>
+     
     );
   }
 }
