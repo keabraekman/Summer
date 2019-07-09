@@ -10,6 +10,8 @@ _test
 releases
 tmp
 .cache
+node_modules/
+.vscode
 
 # Architecture specific extensions/prefixes
 *.[568vq]
