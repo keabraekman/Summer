@@ -3,9 +3,9 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { statement } from '@babel/template';
 import { clickNode } from '../actions/app-actions';
 import { connect } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class BreadCrumb extends React.Component{
-
   getLabel(){
     if(this.props.details.toList().toJS()[0]){
       if(this.props.details.toList().toJS()[0]['details']){
@@ -13,11 +13,7 @@ export class BreadCrumb extends React.Component{
         return (this.props.details.toList().toJS()[0]['details']['label'])
       }
     }
-    // else{
-    //   return ''
-    // }
   }
-
 
   makeBreadcrumb(level){
     if(this.props.details.toList().toJS()[0]){
@@ -47,9 +43,6 @@ export class BreadCrumb extends React.Component{
           else if(level == 'processes'){
             if(this.props.details.toList().toJS()[0]['details']['parents'][0] && this.props.details.toList().toJS()[0]['details']['parents'][2]){
               return(<div>
-                {/* <BreadcrumbItem>{this.props.details.toList().toJS()[0]['details']['parents'][
-                  this.props.details.toList().toJS()[0]['details']['parents'].length - 1
-                ]['label'].toString()}</BreadcrumbItem> */}
                 <BreadcrumbItem>{this.props.details.toList().toJS()[0]['details']['parents'][2]['label'].toString()}</BreadcrumbItem>
                 <BreadcrumbItem>{this.props.details.toList().toJS()[0]['details']['parents'][1]['label'].toString()}</BreadcrumbItem>
                 <BreadcrumbItem>{this.getLabel()}</BreadcrumbItem>
@@ -72,26 +65,14 @@ export class BreadCrumb extends React.Component{
     }
   }
 
-  getParent(){
-    if(this.props.details.toList().toJS()[0])
-      if(this.props.details.toList().toJS()[0]['details'])
-      console.log(this.props.details.toList().toJS()[0]['details']['parents'][2]['label'])
-  }
-
   render() {
     let label = this.getLabel();
-    // let parent1 = this.getParent();
     if(this.props.details.toList().toJS()[0]){
       if(this.props.details.toList().toJS()[0]['details']){
-
         return (
           <div>
             <Breadcrumb>
               {this.makeBreadcrumb(this.props.details.toList().toJS()[0]['topologyId'])}
-              {/* <BreadcrumbItem><a href="#">Host Level</a></BreadcrumbItem>
-              <BreadcrumbItem><a href="#">Pod Level</a></BreadcrumbItem>
-              <BreadcrumbItem><a href='#'>Container Level</a></BreadcrumbItem>
-              <BreadcrumbItem active>{label}</BreadcrumbItem> */}
             </Breadcrumb>
           </div>
         );
