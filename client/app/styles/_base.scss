@@ -1430,6 +1430,7 @@ a {
   border-radius: $border-radius-soft;
   border: 1px solid transparent;
   pointer-events: none;
+  z-index: $layer-front;
 }
 
 .sidebar-gridmode {
@@ -1833,6 +1834,8 @@ a {
   height: 100%;
   bottom: 10px;
   line-height: 120%;
+  z-index: $layer-modal;
+  cursor: pointer;
 }
 
 // Dashboard
@@ -1928,4 +1931,3 @@ a {
     }
   }
 }
-
