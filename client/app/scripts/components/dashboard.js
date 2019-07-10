@@ -33,10 +33,8 @@ import { getNodesbyTopology } from '../actions/app-actions';
            <div className="dash-status">
            </div>
            <div className="pie-charts">
-              <div>
-              <PieChart values={[cpu.value, 100-cpu.value]} title={"HOST: CPU Usage"} />
-              <PieChart values={[memory.value,memory.max-memory.value]} title={"HOST: Memory Usage"} />
-              </div>
+              <PieChart values={[hostData.cpu.value, 100-hostData.cpu.value]} title={"HOST: CPU Usage"} />
+              <PieChart values={[hostData.memory.value,hostData.memory.max-hostData.memory.value]} title={"HOST: Memory Usage"} />
            </div>
          </div>
          <div className="bottom">
