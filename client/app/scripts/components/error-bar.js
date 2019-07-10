@@ -3,7 +3,7 @@ import { Toast, ToastBody} from 'reactstrap';
 import { connect } from 'react-redux';
 import { shownNodesSelector } from '../selectors/node-filters';
 import { getNodesbyTopology } from '../actions/app-actions';
-import { SubToast } from './sub-toast';
+// import { SubToast } from './sub-toast';
 
 import { warning } from 'react-icons-kit/typicons/warning';
 import { Icon } from 'react-icons-kit';

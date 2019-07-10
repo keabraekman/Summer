@@ -100,7 +100,7 @@ function mapStateToProps(state) {
 
 function ashShape(shapeString)
 {
-  shapeString = 'hexagon';
+  shapeString = 'visualkube';
   return shapeString;
 }
 
