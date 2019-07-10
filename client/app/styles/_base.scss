@@ -1931,3 +1931,15 @@ a {
   }
 }
 
+// breadcrumb
+
+.breadcrumb{
+  // margin-right: $grid-gutter-width-base / 2;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  .breadcrumbitem{
+    float: none;
+    display: inline;
+  }
+}
