@@ -24,35 +24,35 @@ export class BreadCrumb extends React.Component{
           if(level == 'pods'){
             return(
               <div>
-              <BreadcrumbItem className = "breadcrumbitem">{this.props.details.toList().toJS()[0]['details']['parents'][
+              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][
                 this.props.details.toList().toJS()[0]['details']['parents'].length-1
-              ]['label'].toString()}</BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem">{this.getLabel()}</BreadcrumbItem>
+              ]['label'].toString()}</a></BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
               </div>
             );
           }
           else if(level == 'containers'){
             return(
               <div>
-              <BreadcrumbItem className = "breadcrumbitem">{this.props.details.toList().toJS()[0]['details']['parents'][2]['label']}</BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem">{this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem">{this.getLabel()}</BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][2]['label']}</a></BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</a></BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
               </div>
             );
           }
           else if(level == 'processes'){
             if(this.props.details.toList().toJS()[0]['details']['parents'][0] && this.props.details.toList().toJS()[0]['details']['parents'][2]){
               return(<div>
-                <BreadcrumbItem className = "breadcrumbitem">{this.props.details.toList().toJS()[0]['details']['parents'][2]['label'].toString()}</BreadcrumbItem>
-                <BreadcrumbItem className = "breadcrumbitem">{this.props.details.toList().toJS()[0]['details']['parents'][1]['label'].toString()}</BreadcrumbItem>
-                <BreadcrumbItem className = "breadcrumbitem">{this.getLabel()}</BreadcrumbItem>
+                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][2]['label'].toString()}</a></BreadcrumbItem>
+                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][1]['label'].toString()}</a></BreadcrumbItem>
+                <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
                 </div>)
             }
             else{
               return(
                 <div>
-                <BreadcrumbItem className = "breadcrumbitem">{this.props.details.toList().toJS()[0]['details']['parents'][0]['label']}</BreadcrumbItem>
-                <BreadcrumbItem className = "breadcrumbitem">{this.getLabel()}</BreadcrumbItem>
+                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][0]['label']}</a></BreadcrumbItem>
+                <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
                 </div>
               );
             }
