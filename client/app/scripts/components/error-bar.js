@@ -85,7 +85,6 @@ export class ErrorBar extends React.Component {
     this.error_data = data;
   }
   onClickErr(ev, node, nodes) {
-    console.log(node)
     trackAnalyticsEvent('scope.node.click', {
       layout: GRAPH_VIEW_MODE,
       parentTopologyId: nodes.get('parentId'),
@@ -94,10 +93,11 @@ export class ErrorBar extends React.Component {
     this.props.clickNode(node.id, node.label, ev.target.getBoundingClientRect());
   }
   render() {
+    const { isDashboardViewMode } = this.props;
     var nodes = this.props.current_nodes;
     var data = formatData(nodes, "pods");
     var allGoodMsg = false;
-   if (data.length === 0 && isDashboardViewMode) {
+   if (data.size === 0 && isDashboardViewMode) {
     allGoodMsg = true;
    }
     return (
@@ -117,22 +117,18 @@ export class ErrorBar extends React.Component {
   }
 }
 
-function mapStatetoProps(state){
-	return {
-    state: state,
-    current_nodes: state.get('nodesByTopology'),
-    nodes: shownNodesSelector(state),
-    currentTopology: state.get('currentTopology'),
-    isDashboardViewMode: isDashboardViewModeSelector(state)
-	};
-}
+const mapStatetoProps = (state) => ({
+  state: state,
+  current_nodes: state.get('nodesByTopology'),
+  nodes: shownNodesSelector(state),
+  currentTopology: state.get('currentTopology'),
+  isDashboardViewMode: isDashboardViewModeSelector(state)
+	})
 
-function mapDispatchToProps(dispatch){
-  return{
+const mapDispatchToProps = (dispatch) => ({
     getNodesbyTopology: (topoId) => dispatch(getNodesbyTopology(topoId)),
-    clickNode: dataEntry => dispatch(clickNode(dataEntry))
-  };
-}
+    clickNode: (dataEntry) => dispatch(clickNode(dataEntry))
+})
 
 export default connect(
   mapStatetoProps, mapDispatchToProps
