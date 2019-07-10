@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import { Toast, ToastBody} from 'reactstrap';
 import { connect } from 'react-redux';
 import { shownNodesSelector } from '../selectors/node-filters';
@@ -11,16 +10,6 @@ import { Icon } from 'react-icons-kit';
 import { GRAPH_VIEW_MODE } from '../constants/naming';
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import { clickNode } from '../actions/app-actions';
-=======
-import {  Button, Toast, ToastBody, ToastHeader } from 'reactstrap';
-import { warning } from 'react-icons-kit/typicons/warning';
-import { Icon } from 'react-icons-kit';
-import { connect } from 'react-redux';
-import { shownNodesSelector } from '../selectors/node-filters';
-import { clickNode } from '../actions/app-actions';
-import { GRAPH_VIEW_MODE } from '../constants/naming';
-import { trackAnalyticsEvent } from '../utils/tracking-utils';
->>>>>>> master
 
 export const ErrorIcon = () => <Icon icon={warning} />;
 
@@ -95,7 +84,6 @@ export const formatData = (nodes, topologyId) => {
 }
 
 export class ErrorBar extends React.Component {
-<<<<<<< HEAD
   constructor(props){
     super(props);
     this.error_data = new Map();
@@ -155,61 +143,6 @@ function mapStatetoProps(state){
     nodes: shownNodesSelector(state),
     currentTopology: state.get('currentTopology')
 	};
-=======
- constructor(props) {
-   super(props);
-   this.state = {
-     show: false
-   };
-
-   this.toggle = this.toggle.bind(this);
- }
-
- toggle() {
-   this.setState({
-     show: !this.state.show
-   });
- }
-
- onClickErr(ev, node, nodes) {
-   trackAnalyticsEvent('scope.node.click', {
-     layout: GRAPH_VIEW_MODE,
-     parentTopologyId: nodes.get('parentId'),
-     topologyId: nodes.get('id'),
-   });
-   this.props.clickNode(node.id, node.label, ev.target.getBoundingClientRect());
- }
-
- render() {
-   var nodes = this.props.state.get('nodesByTopology');
-   var data = formatData(nodes, "pods");
-   return (
-     <div className='err-bar' >
-       {data.map((element) =>
-       <Toast >
-           <ToastHeader></ToastHeader>
-           <ToastBody className="err-item" onClick = {ev => this.onClickErr(ev, element, nodes)} ><ErrorIcon /> {element.name}... {element.status}</ToastBody>
-       </Toast>
-        )}
-     </div>
-
-     // <ListGroup className='err-bar' >
-     //   {data.map((element) =>
-     //   <ListGroupItem className="err-item" onClick = {ev => this.onClickErr(ev, element, nodes)} ><ErrorIcon /> {element.name}... {element.status}</ListGroupItem>
-     //   )}
-     // </ListGroup>
-   );
- }
-}
-
-function mapStatetoProps(state){
-    return {
-   state: state,
-   nodes: shownNodesSelector(state),
-   currentTopology: state.get('currentTopology'),
-   // topologies: state.get('currentTopologyId'),
-    };
->>>>>>> master
 }
 
 function mapDispatchToProps(dispatch){
@@ -220,11 +153,5 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(
-<<<<<<< HEAD
   mapStatetoProps, mapDispatchToProps
 )(ErrorBar);   
-=======
- mapStatetoProps,
- { clickNode }
-)(ErrorBar);
->>>>>>> master
