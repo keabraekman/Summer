@@ -14,6 +14,7 @@ import MatchedResults from '../components/matched-results';
 import { GRAPH_VIEW_MODE } from '../constants/naming';
 
 import NodeNetworksOverlay from './node-networks-overlay';
+import { rgb } from 'polished';
 
 class NodeContainer extends React.Component {
   saveRef = (ref) => {
@@ -66,7 +67,8 @@ class NodeContainer extends React.Component {
         labelOffset={labelOffset}
         stacked={this.props.stacked}
         highlighted={this.props.highlighted}
-        color={getNodeColor(rank, label, pseudo)}
+        color={ashColor(rank, label, pseudo)}
+        // color={getNodeColor(rank, label, pseudo)}
         size={this.props.size}
         isAnimated={this.props.isAnimated}
         contrastMode={this.props.contrastMode}
@@ -102,6 +104,11 @@ function ashShape(shapeString)
 {
   shapeString = 'visualkube';
   return shapeString;
+}
+
+function ashColor(rank, label, pseudo)
+{
+  return rgb(0, 0, 0);
 }
 
 export default connect(
