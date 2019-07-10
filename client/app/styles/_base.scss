@@ -1934,11 +1934,12 @@ a {
 // breadcrumb
 
 .breadcrumb{
-  // margin-right: $grid-gutter-width-base / 2;
+  background-color: $label-background-color;
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   .breadcrumbitem{
+    font-size: $font-size-normal;
     float: none;
     display: inline;
   }
