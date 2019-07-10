@@ -24,34 +24,6 @@ export const index_topoById = (topo, data) => {
 }
 
 export const formatData = (nodes, topologyId) => {
- var return_data;
- if(topologyId === "pods")
-   return_data = [];
- else if (topologyId === "hosts")
-   return_data = { cpu: { value: 0, max: 0}, memory: { value: 0, max: 0}};
-
-
- if(!nodes.get(topologyId))
-   return return_data;
-
- var data = nodes.get(topologyId).toList().toJS();
- var i;
- var status;
- for(i = 0; i < data.length; i++){
-   if(topologyId === "pods"){
-     status = data[i]['metadata'][0]['value'];
-     if(status === "Running"){
-       return_data[i] = {name: data[i]['rank'], status: status, id: data[i]['id'], label: data[i]['label']};
-     }
-   }
-   else if(topologyId === "hosts"){
-     return_data={cpu: {value: data[i]['metrics'][0]['value'], max: data[i]['metrics'][0]['max']}, memory: {value: data[i]['metrics'][1]['value'], max: data[i]['metrics'][1]['max']}}
-   }
- }
- return return_data;
-}
-
-export const formatData = (nodes, topologyId) => {
   var return_data;
   if(topologyId === "pods")
     return_data = new Map();
