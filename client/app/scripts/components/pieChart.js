@@ -1,8 +1,6 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-const num = 56; 
-
 class PieChart extends React.Component {
   
   constructor(props) {

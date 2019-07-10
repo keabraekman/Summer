@@ -137,7 +137,7 @@ export function updateRoute(getState) {
 }
 
 // Temporarily detect old topology options to avoid breaking things between releases
-// Related to https://github.com/weaveworks/scope/pull/2404
+// Related to https://github.com/keabraekman/Summer/pull/2404
 function detectOldOptions(topologyOptions) {
   let bad = false;
   each(topologyOptions, (topology) => {

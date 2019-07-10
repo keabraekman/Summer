@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+
 import NodesChart from '../charts/nodes-chart';
 import NodesGrid from '../charts/nodes-grid';
 import NodesResources from '../components/nodes-resources';
@@ -74,7 +75,8 @@ class Nodes extends React.Component {
         {isGraphViewMode && <NodesChart />}
         {isTableViewMode && <NodesGrid />}
         {isResourceViewMode && <NodesResources />}
-        {nodesLoaded && isDashboardViewMode && <Dashboard />}
+        {!this.props.nodesDisplayEmpty && nodesLoaded && isDashboardViewMode && <Dashboard />}
+        
       </div>
     );
   }

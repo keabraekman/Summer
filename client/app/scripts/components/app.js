@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { debounce, isEqual } from 'lodash';
-
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
@@ -197,7 +196,7 @@ class App extends React.Component {
 
   render() {
     const {
-      isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
+      isTableViewMode, isGraphViewMode, isResourceViewMode, isDashboardViewMode, showingNetworkSelector,
       showingDetails, showingHelp, showingTroubleshootingMenu,
       timeTravelTransitioning, timeTravelSupported, contrastMode,
     } = this.props;
@@ -227,7 +226,7 @@ class App extends React.Component {
             <div className="selectors">
               <div className="logo">
                 {!isIframe &&
-                  <svg width="100%" height="100%" viewBox="100 -40 20 100">
+                  <svg width="100%" height="100%" viewBox="150 -40 20 100">
                     <Logo />
                   </svg>
                 }
@@ -236,7 +235,7 @@ class App extends React.Component {
                 <Search />
               </div>
               <FilterModal />
-              <Topologies />
+              { !isDashboardViewMode && <Topologies /> }
               <ViewModeSelector />
               <TimeControl />
             </div>
@@ -259,6 +258,7 @@ class App extends React.Component {
           <Overlay faded={timeTravelTransitioning} />
         </div>
       </ThemeProvider>
+     
     );
   }
 }

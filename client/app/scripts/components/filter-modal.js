@@ -34,11 +34,8 @@ class FilterModal extends React.Component {
           <ModalHeader toggle={this.toggle}><h1 className="ModalHeader">Filters:</h1></ModalHeader>
           <ModalBody>
             <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-              {/* <h3 className="filter-title">Toggle:</h3> */}
               {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
-              {/* <h3 className="filter-title">Status:</h3> */}
               {!isResourceViewMode && <Status />}
-              {/* <h3 className="filter-title">Display:</h3> */}
               {!isResourceViewMode && <TopologyOptions />}
             </Sidebar>
           </ModalBody>
