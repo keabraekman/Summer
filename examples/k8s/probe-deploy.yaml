@@ -35,7 +35,7 @@ spec:
             - 'weave-scope-app.weave.svc.cluster.local.:80'
           command:
             - /home/weave/scope
-          image: weaveworks/scope:latest
+          image: 'weaveworks/scope:latest'
           imagePullPolicy: IfNotPresent
           resources:
             requests:

@@ -1430,6 +1430,7 @@ a {
   border-radius: $border-radius-soft;
   border: 1px solid transparent;
   pointer-events: none;
+  z-index: $layer-front;
 }
 
 .sidebar-gridmode {
@@ -1828,10 +1829,12 @@ a {
 }
 
 .err-bar{
-  position: absolute;
+  position: static;
   overflow: auto;
   height: 100%;
   line-height: 120%;
+  z-index: $layer-modal;
+  cursor: pointer;
 }
 
 .err-wrapper {
@@ -1935,4 +1938,3 @@ a {
     }
   }
 }
-
