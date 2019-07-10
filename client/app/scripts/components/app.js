@@ -10,7 +10,7 @@ import theme from 'weaveworks-ui-components/lib/theme';
 import ErrorBar from './error-bar';
 import FilterModal from './filter-modal';
 import Logo from './logo';
-// import Footer from './footer';
+import Footer from './footer';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
@@ -248,7 +248,7 @@ class App extends React.Component {
             {isGraphViewMode && <ErrorBar />}
           </Sidebar>
 
-          {/* <Footer /> */}
+          <Footer />
 
           <Overlay faded={timeTravelTransitioning} />
         </div>

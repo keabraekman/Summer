@@ -36,7 +36,6 @@ const shapeTypes = {
   square: ['Process', 'Processes']
 };
 
-
 const LABEL_PREFIXES = range('A'.charCodeAt(), 'Z'.charCodeAt() + 1)
   .map(n => String.fromCharCode(n));
 
