@@ -25,6 +25,10 @@ import { getNodesbyTopology } from '../actions/app-actions';
   const { hostNodes, allNodes } = this.props;
   const hostData = formatData(hostNodes, "hosts");
   const overallData = this.getOverallStats(allNodes);
+  let hostDataReceived = false;
+  if (!hostDataReceived && hostData.memory.max !== 0 && hostData.cpu.value !== 0) {
+    hostDataReceived = true;
+  }
    return (
      <div className="dashboard">
        <h1>Dashboard</h1>
@@ -38,10 +42,14 @@ import { getNodesbyTopology } from '../actions/app-actions';
               <ErrorBar />
            </div>
            </div>
-           <div className="pie-charts">
-              <PieChart values={[hostData.cpu.value, 100-hostData.cpu.value]} title={"HOST: CPU Usage"} />
-              <PieChart values={[hostData.memory.value,hostData.memory.max-hostData.memory.value]} title={"HOST: Memory Usage"} />
-           </div>
+             { hostDataReceived ?  
+              <div className="pie-charts">
+                <PieChart values={[hostData.cpu.value, 100-hostData.cpu.value]} title={"HOST: CPU Usage"} />
+                <PieChart values={[hostData.memory.value, hostData.memory.max-hostData.memory.value]} title={"HOST: Memory Usage"} />
+              </div>
+              :
+              <div></div>
+             }
          </div>
          <div className="bottom">
            <Card className="card">
