@@ -242,17 +242,14 @@ class App extends React.Component {
           </div>
 
           <Nodes />
-          
-          <div>
+          <div className='err-wrapper'>
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
           </div>
-
+          
           {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-            {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
-            {isGraphViewMode && <ErrorBar />}
+            
           </Sidebar> */}
-
           <Footer />
 
           <Overlay faded={timeTravelTransitioning} />
