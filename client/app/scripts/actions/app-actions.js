@@ -209,7 +209,6 @@ export function getNodesbyTopology(topoId, topologyOptions = makeMap()) {
   return (dispatch, getState) => {
     const state = getState();
     const topologyIds = [topoId];
- 
   state.get('topologyUrlsById')
     .filter((_, topologyId) => topologyIds.includes(topologyId))
     .reduce(

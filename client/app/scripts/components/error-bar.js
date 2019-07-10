@@ -3,12 +3,13 @@ import { Toast, ToastBody} from 'reactstrap';
 import { connect } from 'react-redux';
 import { shownNodesSelector } from '../selectors/node-filters';
 import { getNodesbyTopology } from '../actions/app-actions';
-import { SubToast } from './sub-toast';
 
 import { warning } from 'react-icons-kit/typicons/warning';
 import { Icon } from 'react-icons-kit';
 import { GRAPH_VIEW_MODE } from '../constants/naming';
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
+import { isDashboardViewModeSelector } from '../selectors/topology'
+
 import { clickNode } from '../actions/app-actions';
 
 export const ErrorIcon = () => <Icon icon={warning} />;
@@ -26,7 +27,7 @@ export const index_topoById = (topo, data) => {
 export const formatData = (nodes, topologyId) => {
   var return_data;
   if(topologyId === "pods")
-    return_data = new Map();
+    return_data = [];
   else if (topologyId === "hosts")
     return_data = { cpu: { value: 0, max: 0}, memory: { value: 0, max: 0}};
  
@@ -46,7 +47,7 @@ export const formatData = (nodes, topologyId) => {
       //   console.log(json)
       // })
 
-      return_data[data[i]['rank']] = {status: data[i]['metadata'][0]['value'], id: data[i]['id'], label: data[i]['label']};
+      return_data[i]={name: data[i]['rank'], status: data[i]['metadata'][0]['value'], id: data[i]['id'], label: data[i]['label']};
     }
     else if(topologyId === "hosts"){
       return_data={cpu: {value: data[i]['metrics'][0]['value'], max: data[i]['metrics'][0]['max']}, memory: {value: data[i]['metrics'][1]['value'], max: data[i]['metrics'][1]['max']}}
@@ -90,39 +91,46 @@ export class ErrorBar extends React.Component {
       parentTopologyId: nodes.get('parentId'),
       topologyId: nodes.get('id'),
     });
-    this.props.clickNode(node.id, node.label, ev.target.getBoundingClientRect());
+    this.props.clickNode(node.id, node.label, ev.target.getBoundingClientRect(), 'pods');
   }
   render() {
+    const { isDashboardViewMode } = this.props;
     var nodes = this.props.current_nodes;
     var data = formatData(nodes, "pods");
+    var allGoodMsg = false;
+   if (data.length === 0 && isDashboardViewMode) {
+    allGoodMsg = true;
+   }
+   console.log(nodes);
     return (
       <div className='err-bar' >
-        {[...Object.keys(data)].map((element) => 
-        <Toast >
-            <ToastBody className="err-item" onClick={ev => this.onClickErr(ev, data[element],nodes)} ><ErrorIcon />{element}... {data.status}</ToastBody>      
-        </Toast>
-         )}
-        
+        { allGoodMsg ? 
+          <div>You have no errors! All good!</div> :
+          <div>
+            {data.map((element) => 
+              <Toast >
+                <ToastBody className="err-item" onClick={ev => this.onClickErr(ev, element,nodes)} ><ErrorIcon />{element.name}... {element.status}</ToastBody>      
+              </Toast>
+            )}
+          </div>
+       }  
       </div>
     );
   }
 }
 
-function mapStatetoProps(state){
-	return {
-    state: state,
-    current_nodes: state.get('nodesByTopology'),
-    nodes: shownNodesSelector(state),
-    currentTopology: state.get('currentTopology')
-	};
-}
+const mapStatetoProps = (state) => ({
+  state: state,
+  current_nodes: state.get('nodesByTopology'),
+  nodes: shownNodesSelector(state),
+  currentTopology: state.get('currentTopology'),
+  isDashboardViewMode: isDashboardViewModeSelector(state)
+	})
 
-function mapDispatchToProps(dispatch){
-  return{
+const mapDispatchToProps = (dispatch) => ({
     getNodesbyTopology: (topoId) => dispatch(getNodesbyTopology(topoId)),
-    clickNode: dataEntry => dispatch(clickNode(dataEntry))
-  };
-}
+    clickNode: (id, label, ev, pod) => dispatch(clickNode(id, label, ev, pod))
+})
 
 export default connect(
   mapStatetoProps, mapDispatchToProps

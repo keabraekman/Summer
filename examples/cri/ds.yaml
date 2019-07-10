@@ -15,7 +15,7 @@ spec:
     metadata:
       labels:
         name: weave-scope-agent
-        app: uberkuber
+        app: weave-scope
         weave-cloud-component: scope
         weave-scope-component: agent
     spec:
