@@ -85,7 +85,6 @@ export class ErrorBar extends React.Component {
     this.error_data = data;
   }
   onClickErr(ev, node, nodes) {
-    console.log(node)
     trackAnalyticsEvent('scope.node.click', {
       layout: GRAPH_VIEW_MODE,
       parentTopologyId: nodes.get('parentId'),
@@ -101,7 +100,6 @@ export class ErrorBar extends React.Component {
    if (data.length === 0 && isDashboardViewMode) {
     allGoodMsg = true;
    }
-   console.log(nodes);
     return (
       <div className='err-bar' >
         { allGoodMsg ? 

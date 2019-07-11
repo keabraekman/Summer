@@ -198,7 +198,9 @@ export function doRequest(opts) {
  * Does a one-time fetch of all the nodes for a custom list of topologies.
  */
 function getNodesForTopologies(state, dispatch, topologyIds, topologyOptions = makeMap()) {
+  debugger;
   // fetch sequentially
+  console.log(state.get('topologyUrlsById'));
   state.get('topologyUrlsById')
     .filter((_, topologyId) => topologyIds.contains(topologyId))
     .reduce(
@@ -234,6 +236,8 @@ function getNodesOnce(getState, dispatch) {
  * Gets nodes for all topologies (for search).
  */
 export function getAllNodes(state, dispatch) {
+  console.log(14);
+  //debugger;
   const topologyOptions = state.get('topologyOptions');
   const topologyIds = state.get('topologyUrlsById').keySeq();
   getNodesForTopologies(state, dispatch, topologyIds, topologyOptions);
@@ -360,6 +364,7 @@ export function getTopologies(getState, dispatch, forceRequest) {
 }
 
 export function getNodes(getState, dispatch, forceRequest = false) {
+  console.log(2);
   if (isPausedSelector(getState())) {
     getNodesOnce(getState, dispatch);
   } else {

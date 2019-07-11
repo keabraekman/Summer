@@ -611,6 +611,9 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.RECEIVE_NODES: {
+      //debugger;
+      // this doesn't print- why????
+      console.log(6);
       state = state.set('timeTravelTransitioning', false);
       state = state.set('nodes', fromJS(action.nodes));
       state = state.set('nodesLoaded', true);
@@ -618,6 +621,7 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY: {
+      console.log(12);
       return state.setIn(['nodesByTopology', action.topologyId], fromJS(action.nodes));
     }
 
