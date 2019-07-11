@@ -26,6 +26,7 @@ class FilterModal extends React.Component {
     const {
       isTableViewMode, isGraphViewMode, isResourceViewMode, showingNetworkSelector,
     } = this.props;
+    {console.log("1")}
 
     return (
       <div>
@@ -33,11 +34,14 @@ class FilterModal extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}><h1 className="ModalHeader">Filters:</h1></ModalHeader>
           <ModalBody>
-            <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-              {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
-              {!isResourceViewMode && <Status />}
-              {!isResourceViewMode && <TopologyOptions />}
-            </Sidebar>
+          <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
+            {console.log('showingNetworkSelector && isGraphViewMode && <NetworkSelector /> = ', showingNetworkSelector && isGraphViewMode && <NetworkSelector />)}
+            {showingNetworkSelector && isGraphViewMode && <NetworkSelector />}
+            {console.log('!isResourceViewMode && <Status /> ', !isResourceViewMode && <Status />)}
+            {!isResourceViewMode && <Status />}
+            {console.log('!isResourceViewMode ', !isResourceViewMode)}
+            {!isResourceViewMode && <TopologyOptions />}
+          </Sidebar>
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.toggle}>Set</Button>

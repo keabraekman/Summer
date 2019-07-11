@@ -41,7 +41,7 @@ export const highlightedNodeIdsSelector = createSelector(
 
     if (mouseOverNodeId) {
       highlightedNodeIds = highlightedNodeIds.add(mouseOverNodeId);
-      // highlightedNodeIds = highlightedNodeIds.union(adjacentToHoveredNodeIds);
+      highlightedNodeIds = highlightedNodeIds.union(adjacentToHoveredNodeIds);
     }
 
     return highlightedNodeIds;

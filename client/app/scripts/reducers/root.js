@@ -302,6 +302,7 @@ export function rootReducer(state = initialState, action) {
 
       // click on sibling closes all
       state = closeAllNodeDetails(state);
+
       // select new node if it's not the same (in that case just delesect)
       if (prevDetailsStackSize > 1 || prevSelectedNodeId !== action.nodeId) {
         // dont set origin if a node was already selected, suppresses animation

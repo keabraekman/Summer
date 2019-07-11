@@ -10,7 +10,7 @@ import theme from 'weaveworks-ui-components/lib/theme';
 import ErrorBar from './error-bar';
 import FilterModal from './filter-modal';
 import Logo from './logo';
-import Footer from './footer';
+// import Footer from './footer';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
@@ -244,15 +244,13 @@ class App extends React.Component {
           <Breadcrumb />
 
           <Nodes />
-          <div className='err-wrapper'>
+
+          <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
-          </div>
-          
-          {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-            
-          </Sidebar> */}
-          <Footer />
+          </Sidebar>
+
+          {/* <Footer /> */}
 
           <Overlay faded={timeTravelTransitioning} />
         </div>

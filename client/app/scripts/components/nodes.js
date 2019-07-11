@@ -42,11 +42,11 @@ const renderCauses = causes => (
 
 class Nodes extends React.Component {
   renderConditionalEmptyTopologyError() {
-    const { topologyNodeCountZero, nodesDisplayEmpty, isDashboardViewMode } = this.props;
+    const { topologyNodeCountZero, nodesDisplayEmpty } = this.props;
 
     return (
-      <NodesError faIconClass="far fa-circle" hidden={!nodesDisplayEmpty || isDashboardViewMode}>
-        <div className="heading">Nothing to sshow. This can have any of these reasons:</div>
+      <NodesError faIconClass="far fa-circle" hidden={!nodesDisplayEmpty}>
+        <div className="heading">Nothing to show. This can have any of these reasons:</div>
         {topologyNodeCountZero ?
           renderCauses(NODES_STATS_COUNT_ZERO_CAUSES) :
           renderCauses(NODES_NOT_DISPLAYED_CAUSES)}
@@ -75,7 +75,7 @@ class Nodes extends React.Component {
         {isGraphViewMode && <NodesChart />}
         {isTableViewMode && <NodesGrid />}
         {isResourceViewMode && <NodesResources />}
-        {nodesLoaded && isDashboardViewMode && <Dashboard />}
+        {!this.props.nodesDisplayEmpty && nodesLoaded && isDashboardViewMode && <Dashboard />}
         
       </div>
     );
