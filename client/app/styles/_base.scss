@@ -157,7 +157,9 @@ a {
 .hide {
   opacity: 0;
 }
+// breadcrumb {
 
+// }
 .scope-app, .terminal-app {
   -webkit-font-smoothing: antialiased;
   background: $body-background-color;
@@ -1402,9 +1404,12 @@ a {
 }
 
 .sidebar {
-  position: fixed;
-  bottom: 11px;
-  left: 11px;
+  //OLD THINGS ARE COMMENTED OUT
+  // position: fixed;
+  // bottom: 11px;
+  // left: 11px;
+  height: 300px;
+  justify-content: center;
   padding: 5px;
   font-size: $font-size-small;
   border-radius: $border-radius-soft;
@@ -1801,4 +1806,125 @@ a {
 
 @media (max-width: 1330px) {
   .view-mode-selector .label { display: none; }
+}
+
+.err-item{
+  display: flex; 
+  align-content: flex-end;
+}
+
+.err-bar{
+  position: static;
+  overflow: auto;
+  height: 100%;
+  bottom: 10px;
+  line-height: 120%;
+}
+
+// Dashboard
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50em;
+  width: 100%;
+  overflow: hidden;
+
+  h1 {
+    font-size: $font-size-huge;
+  }
+
+  .view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+
+    .top {
+      display: flex;
+      width: 100%;
+      height: 50%;
+
+      .dash-status {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        .title {
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          font-size: $font-size-large;
+        }
+        
+        .errors {
+          position: relative;
+          margin: 5px;
+          height: 80%;
+          display: flex;
+          justify-content: center;
+          flex-grow: 1;
+          
+        }
+
+      }
+
+      .pie-charts {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        width: 50%;
+      }
+    }
+
+
+    .bottom {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 50%;
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+        width: 15%;
+        min-width: 140px;
+        max-width: 145px;
+        margin: 30px;
+
+        $font-size-extra-extra-large: 3rem;
+        .card-title {
+          padding: 1rem;
+          color: $color-blue-400;
+          font-size: $font-size-extra-extra-large;
+          font-weight: 900;
+        }
+
+        .card-text {
+          font-weight: 500;
+          font-size: $font-size-large;
+        }
+      }
+    }
+  }
+}
+
+// breadcrumb
+
+.breadcrumb{
+  background-color: $label-background-color;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  .breadcrumbitem{
+    font-size: $font-size-normal;
+    float: none;
+    display: inline;
+  }
 }
