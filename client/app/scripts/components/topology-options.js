@@ -99,7 +99,7 @@ class TopologyOptions extends React.Component {
       value: ''
     });
     return (
-      <div className="topology-option" key={optionId} hidden>
+      <div className="topology-option" key={optionId}>
         <div className="topology-option-wrapper">
           {option.get('selectType') === 'union' &&
             <TopologyOptionAction
