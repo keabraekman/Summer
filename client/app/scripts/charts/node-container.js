@@ -83,8 +83,8 @@ class NodeContainer extends React.Component {
         onMouseLeave={this.props.leaveNode}
         onClick={this.handleMouseClick}
         graphNodeRef={this.saveRef}
-        x={this.props.x}
-        y={this.props.y}
+        x={ashX(this.props.x)}
+        y={ashY(this.props.y)}
       />
     );
   }
@@ -97,6 +97,7 @@ function mapStateToProps(state) {
     exportingGraph: state.get('exportingGraph'),
     searchTerms: [state.get('searchQuery')],
     showingNetworks: state.get('showingNetworks'),
+    nodeDetails: state.get('nodeDetails')
   };
 }
 
@@ -109,6 +110,22 @@ function ashShape(shapeString)
 function ashColor(rank, label, pseudo)
 {
   return rgb(0, 0, 0);
+}
+
+function ashX(x)
+{
+  // if (nodeDetails)
+  // {
+  //   // console.log(nodeDetails.toList().toJS());
+  //   console.log(1);
+  // }
+  
+  return x;
+}
+
+function ashY(y)
+{
+  return y;
 }
 
 export default connect(

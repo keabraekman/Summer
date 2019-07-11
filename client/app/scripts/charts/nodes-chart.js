@@ -64,7 +64,7 @@ class NodesChart extends React.Component {
           limitsSelector={graphLimitsSelector}
           zoomStateSelector={graphZoomStateSelector}
           disabled={this.props.selectedNodeId}>
-          {transform => this.renderContent(transform)}
+          {transform => this.renderContent(transform)} 
         </ZoomableCanvas>
       </div>
     );

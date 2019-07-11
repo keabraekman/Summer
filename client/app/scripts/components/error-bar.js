@@ -3,10 +3,6 @@ import { Toast, ToastBody} from 'reactstrap';
 import { connect } from 'react-redux';
 import { shownNodesSelector } from '../selectors/node-filters';
 import { getNodesbyTopology } from '../actions/app-actions';
-<<<<<<< HEAD
-// import { SubToast } from './sub-toast';
-=======
->>>>>>> master
 
 import { warning } from 'react-icons-kit/typicons/warning';
 import { Icon } from 'react-icons-kit';
@@ -89,7 +85,6 @@ export class ErrorBar extends React.Component {
     this.error_data = data;
   }
   onClickErr(ev, node, nodes) {
-    console.log(node)
     trackAnalyticsEvent('scope.node.click', {
       layout: GRAPH_VIEW_MODE,
       parentTopologyId: nodes.get('parentId'),
@@ -105,7 +100,6 @@ export class ErrorBar extends React.Component {
    if (data.length === 0 && isDashboardViewMode) {
     allGoodMsg = true;
    }
-   console.log(nodes);
     return (
       <div className='err-bar' >
         { allGoodMsg ? 
