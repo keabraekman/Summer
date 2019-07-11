@@ -18,22 +18,6 @@ a {
   text-decoration: none;
 }
 
-.filter-title {
-  font-family: $font-family-regular;
-  font-size: $font-size-large;
-  color: $color-gray-200;
-  text-align: center;
-}
-
-.modalbody {
-  display: flex;
-  align-content: center;
-}
-
-.ModalHeader {
-  font-size: $font-size-large;
-}
-
 .browsehappy {
   margin: 0.2em 0;
   background: $color-gray-200;
@@ -173,7 +157,9 @@ a {
 .hide {
   opacity: 0;
 }
+// breadcrumb {
 
+// }
 .scope-app, .terminal-app {
   -webkit-font-smoothing: antialiased;
   background: $body-background-color;
@@ -234,7 +220,6 @@ a {
   .selectors {
     display: flex;
     position: relative;
-    min-width: 1250px;
 
     > * {
       flex: 1 1;
@@ -894,7 +879,7 @@ a {
 
       .min-height-constraint {
         position: absolute;
-        width: 0;
+        width: 0 !important;
         opacity: 0;
         top: 0;
       }
@@ -1109,7 +1094,7 @@ a {
     border-bottom-left-radius: $border-radius-soft;
 
     .terminal {
-      background-color: transparent;
+      background-color: transparent !important;
     }
   }
 
@@ -1207,12 +1192,11 @@ a {
 
 .status {
   padding: 2px 12px;
-  margin: 0px 0px 10px 0px;
   background-color: $body-background-color;
   border-radius: $border-radius-soft;
   color: $text-secondary-color;
   display: inline-block;
-  opacity: 0.95;
+  opacity: 0.9;
 
   &-icon {
     font-size: $font-size-normal;
@@ -1231,7 +1215,7 @@ a {
 .topology-option, .metric-selector, .network-selector, .view-mode-selector, .time-control {
   font-size: $font-size-normal;
   color: $text-secondary-color;
-  margin-bottom: 16px;
+  margin-bottom: 6px;
 
   &:last-child {
     margin-bottom: 0;
@@ -1253,7 +1237,7 @@ a {
 
   &-action {
     @extend .btn-opacity;
-    padding: 3px 10px;
+    padding: 3px 12px;
     cursor: pointer;
     display: inline-block;
     background-color: $background-color;
@@ -1344,7 +1328,8 @@ a {
   &-wrapper {
     display: inline-flex;
     flex-wrap: wrap;
-    overflow: visible;
+    overflow: hidden;
+    max-height: 27px;
     transition: max-height 0.5s 0s $base-ease;
 
     .topology-option-action {
@@ -1420,9 +1405,15 @@ a {
 
 .sidebar {
   //OLD THINGS ARE COMMENTED OUT
+<<<<<<< HEAD
+  // position: fixed;
+  // bottom: 11px;
+  // left: 11px;
+=======
   position: fixed;
   bottom: 11px;
   left: 11px;
+>>>>>>> master
   height: 300px;
   justify-content: center;
   padding: 5px;
@@ -1430,7 +1421,11 @@ a {
   border-radius: $border-radius-soft;
   border: 1px solid transparent;
   pointer-events: none;
+<<<<<<< HEAD
+  max-width: 50%;
+=======
   z-index: $layer-front;
+>>>>>>> master
 }
 
 .sidebar-gridmode {
@@ -1832,11 +1827,17 @@ a {
   position: static;
   overflow: auto;
   height: 100%;
+<<<<<<< HEAD
+  bottom: 10px;
+=======
+>>>>>>> master
   line-height: 120%;
   z-index: $layer-modal;
   cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
 .err-wrapper {
   position: absolute;
   width: 400px;
@@ -1845,6 +1846,7 @@ a {
   bottom: 10px;
 }
 
+>>>>>>> master
 // Dashboard
 .dashboard {
   display: flex;
@@ -1886,7 +1888,10 @@ a {
         
         .errors {
           position: relative;
+<<<<<<< HEAD
+=======
           min-width: 520px;
+>>>>>>> master
           margin: 5px;
           height: 80%;
           display: flex;
@@ -1939,3 +1944,20 @@ a {
     }
   }
 }
+<<<<<<< HEAD
+
+// breadcrumb
+
+.breadcrumb{
+  background-color: $label-background-color;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  .breadcrumbitem{
+    font-size: $font-size-normal;
+    float: none;
+    display: inline;
+  }
+}
+=======
+>>>>>>> master

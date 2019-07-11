@@ -37,6 +37,7 @@ import {
   setViewportDimensions,
   getTopologiesWithInitialPoll,
 } from '../actions/app-actions';
+import Breadcrumb from './Breadcrumb.js';
 import Details from './details';
 import Nodes from './nodes';
 import TimeControl from './time-control';
@@ -240,6 +241,7 @@ class App extends React.Component {
               <TimeControl />
             </div>
           </div>
+          <Breadcrumb />
 
           <Nodes />
           <div className='err-wrapper'>
