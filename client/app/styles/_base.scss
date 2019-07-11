@@ -1405,9 +1405,15 @@ a {
 
 .sidebar {
   //OLD THINGS ARE COMMENTED OUT
+<<<<<<< HEAD
   // position: fixed;
   // bottom: 11px;
   // left: 11px;
+=======
+  position: fixed;
+  bottom: 11px;
+  left: 11px;
+>>>>>>> master
   height: 300px;
   justify-content: center;
   padding: 5px;
@@ -1415,7 +1421,11 @@ a {
   border-radius: $border-radius-soft;
   border: 1px solid transparent;
   pointer-events: none;
+<<<<<<< HEAD
   max-width: 50%;
+=======
+  z-index: $layer-front;
+>>>>>>> master
 }
 
 .sidebar-gridmode {
@@ -1817,10 +1827,26 @@ a {
   position: static;
   overflow: auto;
   height: 100%;
+<<<<<<< HEAD
   bottom: 10px;
+=======
+>>>>>>> master
   line-height: 120%;
+  z-index: $layer-modal;
+  cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
+.err-wrapper {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  bottom: 10px;
+}
+
+>>>>>>> master
 // Dashboard
 .dashboard {
   display: flex;
@@ -1862,6 +1888,10 @@ a {
         
         .errors {
           position: relative;
+<<<<<<< HEAD
+=======
+          min-width: 520px;
+>>>>>>> master
           margin: 5px;
           height: 80%;
           display: flex;
@@ -1914,6 +1944,7 @@ a {
     }
   }
 }
+<<<<<<< HEAD
 
 // breadcrumb
 
@@ -1928,3 +1959,5 @@ a {
     display: inline;
   }
 }
+=======
+>>>>>>> master

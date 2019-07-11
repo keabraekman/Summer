@@ -1,9 +1,13 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
-const num = 56; 
-
 class PieChart extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = { data: [], layout: {}, frames: [], config: {} };
+  }
+
   render() {
     return (
 
@@ -11,16 +15,16 @@ class PieChart extends React.Component {
         data={
         [
           {
-          values: [num, 100-num],
-          labels: ['CPU Usage', 'Available'],
-          type: 'pie'
+          values: this.props.values,
+          labels: ['Used', 'Available'],
+          type: 'pie',
           }
         ]
-      }
-
+       }
+       
         layout = {
-          // {height: 200, width: 500}
-          {title: 'HOST: CPU Usage'}
+          {height: 280, width: 300,
+          title: this.props.title}
         }
       />
 
