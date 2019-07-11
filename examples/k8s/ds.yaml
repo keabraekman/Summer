@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: uberkuber-agent
+  name: weave-scope-agent
   labels:
-    name: uberkuber-agent
-    app: uberkuber
+    name: weave-scope-agent
+    app: weave-scope
     weave-cloud-component: scope
     weave-scope-component: agent
   namespace: weave
@@ -13,12 +13,12 @@ spec:
   minReadySeconds: 5
   selector:
     matchLabels:
-      app: uberkuber
+      app: weave-scope
   template:
     metadata:
       labels:
-        name: uberkuber-agent
-        app: uberkuber
+        name: weave-scope-agent
+        app: weave-scope
         weave-cloud-component: scope
         weave-scope-component: agent
     spec:
@@ -30,7 +30,7 @@ spec:
             - '--probe.kubernetes.role=host'
             - '--probe.docker.bridge=docker0'
             - '--probe.docker=true'
-            - 'uberkuber-app.weave.svc.cluster.local.:80'
+            - 'weave-scope-app.weave.svc.cluster.local.:80'
           image: weaveworks/scope:1.11.2
           imagePullPolicy: IfNotPresent
           resources:
