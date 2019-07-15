@@ -42,6 +42,8 @@ const topologySorter = topology => topology.get('rank');
 // Initial values
 
 export const initialState = makeMap({
+  viewingNodeId: null,
+  topoBox: false,
   capabilities: makeMap(),
   contrastMode: false,
   controlPipes: makeOrderedMap(), // pipeId -> controlPipe
@@ -262,6 +264,9 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.SET_VIEW_MODE: {
+      if (action.viewMode === 'topo') {
+        state = state.set('topoBox', false);
+      }
       return state.set('topologyViewMode', action.viewMode);
     }
 
@@ -611,10 +616,12 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.RECEIVE_NODES: {
-      //debugger;
-      // this doesn't print- why????
       console.log(6);
+      console.log(action.nodes);
       state = state.set('timeTravelTransitioning', false);
+      if (state.get('currentTopology') === 'topo' && !state.get('topoBox')) {
+        nodes = fromJS(action.nodes);
+      }
       state = state.set('nodes', fromJS(action.nodes));
       state = state.set('nodesLoaded', true);
       return updateStateFromNodes(state);
@@ -622,6 +629,7 @@ export function rootReducer(state = initialState, action) {
 
     case ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY: {
       console.log(12);
+      console.log(action.nodes);
       return state.setIn(['nodesByTopology', action.topologyId], fromJS(action.nodes));
     }
 

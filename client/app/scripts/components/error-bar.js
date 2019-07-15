@@ -35,6 +35,8 @@ export const formatData = (nodes, topologyId) => {
     return return_data;
 
   var data = nodes.get(topologyId).toList().toJS();
+  // console.log(16);
+  // console.log(data);
   var i;
   for(i = 0; i < data.length; i++){
     if(topologyId === "pods" && data[i].hasOwnProperty("parents") && data[i]['metadata'][0]['value'] === "Running"){
@@ -49,7 +51,7 @@ export const formatData = (nodes, topologyId) => {
 
       return_data[i]={name: data[i]['rank'], status: data[i]['metadata'][0]['value'], id: data[i]['id'], label: data[i]['label']};
     }
-    else if(topologyId === "hosts"){
+    else if(topologyId === "hosts" && data[i]['metrics']){
       return_data={cpu: {value: data[i]['metrics'][0]['value'], max: data[i]['metrics'][0]['max']}, memory: {value: data[i]['metrics'][1]['value'], max: data[i]['metrics'][1]['max']}}
     }
   }
@@ -62,6 +64,7 @@ export class ErrorBar extends React.Component {
     this.error_data = new Map();
   }
   componentDidMount() {
+    console.log(18);
     this.props.getNodesbyTopology("pods");
   }
   makeToastable(data){

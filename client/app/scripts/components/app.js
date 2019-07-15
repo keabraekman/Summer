@@ -246,7 +246,7 @@ class App extends React.Component {
           <Nodes />
           <div className='err-wrapper'>
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
-            {isGraphViewMode && <ErrorBar />}
+            {/* {isGraphViewMode && <ErrorBar />} */}
           </div>
           
           {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>

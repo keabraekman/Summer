@@ -40,11 +40,11 @@ class NodesChart extends React.Component {
     this.handleMouseClick = this.handleMouseClick.bind(this);
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.receiveAllNodes(); 
-    }, 2000);
-  }
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.props.receiveAllNodes(); 
+  //   }, 2000);
+  // }
 
   handleMouseClick() {
     if (this.props.selectedNodeId) {
@@ -63,6 +63,7 @@ class NodesChart extends React.Component {
 
   render() {
     console.log(7);
+    // console.log(this.props.topo1);
     // console.log(this.props.nodes.toList().toJS());
     //this.props.focusSearch();
     return (
@@ -85,17 +86,18 @@ function mapStateToProps(state) {
   return {
     selectedNodeId: state.get('selectedNodeId'),
     clickBackground: clickBackground(),
-    nodes: state.get('nodes')
+    nodes: state.get('nodes'),
+    topo1: state.get('topo1')
   };
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  receiveAllNodes: () => dispatch(receiveAllNodes()),
-  focusSearch: () => dispatch(focusSearch()),
+// const mapDispatchToProps = (dispatch) => ({
+//   receiveAllNodes: () => dispatch(receiveAllNodes()),
+//   focusSearch: () => dispatch(focusSearch()),
 
-})
+// })
 
 
 export default connect(
-  mapStateToProps, mapDispatchToProps, 
+  mapStateToProps
 )(NodesChart);

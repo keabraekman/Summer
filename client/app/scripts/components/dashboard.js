@@ -9,6 +9,7 @@ import { getNodesbyTopology } from '../actions/app-actions';
   
   class Dashboard extends React.Component {
   componentDidMount() {
+    console.log(17);  
     this.props.getNodesbyTopology("hosts");
   }
   
@@ -23,12 +24,15 @@ import { getNodesbyTopology } from '../actions/app-actions';
   
   render() {
   const { hostNodes, allNodes } = this.props;
+  console.log(18);
+  console.log(hostNodes.toList().toJS());
   const hostData = formatData(hostNodes, "hosts");
   const overallData = this.getOverallStats(allNodes);
   let hostDataReceived = false;
   if (!hostDataReceived && hostData.memory.max !== 0 && hostData.cpu.value !== 0) {
     hostDataReceived = true;
   }
+  // console.log(this.props.topo1);
    return (
      <div className="dashboard">
        <h1>Dashboard</h1>
@@ -78,6 +82,7 @@ import { getNodesbyTopology } from '../actions/app-actions';
   const mapStateToProps = (state)  => ({
   hostNodes: state.get('nodesByTopology'),
   allNodes: state.get('topologies').toList().toJS(),
+  topo1: state.get('topo1')
   })
   
   const mapDispatchToProps = dispatch => ({

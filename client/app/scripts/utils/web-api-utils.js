@@ -117,8 +117,15 @@ export function getWebsocketUrl(host = window.location.host, pathname = window.l
 }
 
 function buildWebsocketUrl(topologyUrl, topologyOptions = makeMap(), state) {
+  if (state.get('topologyViewMode') === "topo" && state.get('topoBox') === false) {
+    console.log(18);
+    console.log(getWebsocketUrl());
+    return `${getWebsocketUrl()}/api/topology/containers/ws?`;
+  }
   topologyOptions = topologyOptions.set('t', updateFrequency);
   const optionsQuery = buildUrlQuery(topologyOptions, state);
+  console.log(19);
+  console.log(getWebsocketUrl());
   return `${getWebsocketUrl()}${topologyUrl}/ws?${optionsQuery}`;
 }
 
@@ -219,7 +226,17 @@ function getNodesOnce(getState, dispatch) {
   const topologyUrl = getCurrentTopologyUrl(state);
   const topologyOptions = activeTopologyOptionsSelector(state);
   const optionsQuery = buildUrlQuery(topologyOptions, state);
-  const url = `${getApiPath()}${topologyUrl}?${optionsQuery}`;
+  let url = `${getApiPath()}${topologyUrl}?${optionsQuery}`;
+  console.log(url);
+  if (state.get('topologyViewMode') === "topo" && !state.get('topoBox')) {
+    url = `${getApiPath()}/api/topology/containers`;
+    console.log(url);
+  } else if (state.get('topologyViewMode') === "topo" && state.get('topoBox')) {
+    const viewNodeId = state.get('viewingNodeId');
+    
+    url = `${getAPipath()}/api/topology`
+  }
+  
   doRequest({
     error: (req) => {
       log(`Error in nodes request: ${req.responseText}`);
@@ -299,6 +316,8 @@ function updateWebsocketChannel(getState, dispatch, forceRequest) {
   const topologyUrl = getCurrentTopologyUrl(getState());
   const topologyOptions = activeTopologyOptionsSelector(getState());
   const websocketUrl = buildWebsocketUrl(topologyUrl, topologyOptions, getState());
+  console.log(20);
+  console.log(websocketUrl);
   // Only recreate websocket if url changed or if forced (weave cloud instance reload);
   const isNewUrl = websocketUrl !== currentUrl;
   // `topologyUrl` can be undefined initially, so only create a socket if it is truthy
