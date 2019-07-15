@@ -20,9 +20,9 @@ export class BreadCrumb extends React.Component{
     if(details){
       if(details['details']){
         if(details['details']['parents']){
-          parentsIndex = details['details']['parents'].length-1
           // the host is the last element in the array
           if(level == 'pods'){
+            const parentsIndex = details['details']['parents'].length-1
             return(
               <div>
               <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][

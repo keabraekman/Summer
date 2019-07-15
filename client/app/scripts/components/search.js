@@ -20,7 +20,7 @@ const SearchWrapper = styled.div`
 
 const SearchContainer = styled.div`
   display: inline-block;
-  position: relative;
+  position: static;
   pointer-events: all;
   line-height: 100%;
   max-width: 400px;
