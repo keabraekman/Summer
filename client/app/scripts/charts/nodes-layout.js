@@ -18,7 +18,7 @@ export const DEFAULT_MARGINS = { left: 0, top: 0 };
 // Pretend the nodes are bigger than they are so that the edges would not enter
 // them under a high curvature which would cause arrow heads to be misplaced.
 const NODE_SIZE_FACTOR = 1.5 * NODE_BASE_SIZE;
-const NODE_SEPARATION_FACTOR = 1 * NODE_BASE_SIZE;
+const NODE_SEPARATION_FACTOR = 1.5 * NODE_BASE_SIZE;
 const RANK_SEPARATION_FACTOR = 2 * NODE_BASE_SIZE;
 const NODE_CENTERS_SEPARATION_FACTOR = NODE_SIZE_FACTOR + NODE_SEPARATION_FACTOR;
 let layoutRuns = 0;
@@ -87,6 +87,8 @@ function layoutSingleNodes(layout, opts) {
   const graphHeight = layout.graphHeight || layout.height;
   const graphWidth = layout.graphWidth || layout.width;
   const aspectRatio = graphHeight ? graphWidth / graphHeight : 1;
+
+  ashSetGraphWidth(graphWidth);
 
   let { nodes } = layout;
 
@@ -263,6 +265,17 @@ function setSimpleEdgePoints(edge, nodeCache) {
     {x: source.get('x'), y: source.get('y')},
     {x: target.get('x'), y: target.get('y')}
   ]));
+}
+
+var totalWidth = 0;
+
+export function ashSetGraphWidth(graphWidth) {
+  totalWidth = graphWidth;
+  return 0;
+}
+export function ashGetGraphWidth()
+{
+  return totalWidth;
 }
 
 /**

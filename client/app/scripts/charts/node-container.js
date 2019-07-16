@@ -16,7 +16,14 @@ import { GRAPH_VIEW_MODE } from '../constants/naming';
 import NodeNetworksOverlay from './node-networks-overlay';
 import { rgb } from 'polished';
 
+import { ashGetGraphWidth } from './nodes-layout';
+
+var ashColorCode = 0;
+var ashId = '';
+var ashLabel = '';
+
 class NodeContainer extends React.Component {
+
   saveRef = (ref) => {
     this.ref = ref;
   };
@@ -30,6 +37,101 @@ class NodeContainer extends React.Component {
     });
     this.props.clickNode(nodeId, this.props.label, this.ref.getBoundingClientRect());
   };
+
+  ashId(idString)
+  {
+    ashId = idString;
+    return idString;
+  }
+
+  ashLabel(labelString)
+  {
+    ashLabel = labelString;
+    return labelString;
+  }
+
+  ashShape(ashShapeString)
+  {
+    if (ashShapeString === 'square')
+    {
+      ashColorCode = 1;
+    }
+    else if (ashShapeString === 'hexagon')
+    {
+      ashColorCode = 2;
+    }
+    else if (ashShapeString === 'heptagon')
+    {
+      ashColorCode = 3;
+    }
+    else if (ashShapeString === 'circle')
+    {
+      ashColorCode = 4;
+    }
+
+    ashShapeString = 'visualkube';
+    return ashShapeString;
+  }
+
+  ashColor(rank, label, pseudo)
+  {
+    if (ashColorCode === 1)
+    {
+      return rgb(112, 234, 251);
+    }
+    else if (ashColorCode === 2)
+    {
+      return rgb(135, 245, 153);
+    }
+    else if (ashColorCode === 3)
+    {
+      return rgb(173, 206, 255);
+    }
+    else if (ashColorCode === 4)
+    {
+      return rgb(151, 255, 205);
+    }
+    else {
+      return rgb(0,0,0);
+    }
+  }
+
+  ashX(x)
+  {
+    if (this.props.nodeDetails) 
+    {
+      if (this.props.nodeDetails.toList().toJS())
+      {
+        if (this.props.nodeDetails.toList().toJS()[0])
+        {
+          if (this.props.nodeDetails.toList().toJS()[0]['details'])
+          {
+            if (this.props.nodeDetails.toList().toJS()[0]['details']['children'])
+            {
+              if (this.props.nodeDetails.toList().toJS()[0]['details']['children'][0])
+              {
+                if (this.props.nodeDetails.toList().toJS()[0]['details']['children'][0]['nodes'])
+                {
+          
+                  var index = this.props.nodeDetails.toList().toJS()[0]['details']['children'][0]['nodes'].indexOf(ashLabel);
+              
+                  var myX = index*ashGetGraphWidth()/(this.props.nodeDetails.toList().toJS()[0]['details']['children'][0]['nodes'].length);
+                  x = myX;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return x;
+  }
+
+  ashY(y)
+  {
+    return y;
+  }
 
   renderPrependedInfo = () => {
     const { showingNetworks, networks } = this.props;
@@ -59,15 +161,15 @@ class NodeContainer extends React.Component {
 
     return (
       <GraphNode
-        id={this.props.id}
-        shape={ashShape(this.props.shape)}
+        id={this.ashId(this.props.id)}
+        shape={this.ashShape(this.props.shape)}
         tag={this.props.tag}
-        label={this.props.label}
+        label={this.ashLabel(this.props.label)}
         labelMinor={this.props.labelMinor}
         labelOffset={labelOffset}
         stacked={this.props.stacked}
         highlighted={this.props.highlighted}
-        color={ashColor(rank, label, pseudo)}
+        color={this.ashColor(rank, label, pseudo)}
         // color={getNodeColor(rank, label, pseudo)}
         size={this.props.size}
         isAnimated={this.props.isAnimated}
@@ -83,8 +185,8 @@ class NodeContainer extends React.Component {
         onMouseLeave={this.props.leaveNode}
         onClick={this.handleMouseClick}
         graphNodeRef={this.saveRef}
-        x={ashX(this.props.x)}
-        y={ashY(this.props.y)}
+        x={this.ashX(this.props.x)}
+        y={this.ashY(this.props.y)}
       />
     );
   }
@@ -97,35 +199,8 @@ function mapStateToProps(state) {
     exportingGraph: state.get('exportingGraph'),
     searchTerms: [state.get('searchQuery')],
     showingNetworks: state.get('showingNetworks'),
-    nodeDetails: state.get('nodeDetails')
+    nodeDetails: state.get('nodeDetails'),
   };
-}
-
-function ashShape(shapeString)
-{
-  shapeString = 'visualkube';
-  return shapeString;
-}
-
-function ashColor(rank, label, pseudo)
-{
-  return rgb(0, 0, 0);
-}
-
-function ashX(x)
-{
-  // if (nodeDetails)
-  // {
-  //   // console.log(nodeDetails.toList().toJS());
-  //   console.log(1);
-  // }
-  
-  return x;
-}
-
-function ashY(y)
-{
-  return y;
 }
 
 export default connect(
