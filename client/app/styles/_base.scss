@@ -1837,11 +1837,14 @@ a {
   cursor: pointer;
 }
 
+.err-toggle {
+  width: 332px;
+}
+
 .err-wrapper {
   position: absolute;
-  width: 400px;
+  width: 350px;
   height: 400px;
-  display: flex;
   bottom: 10px;
 }
 

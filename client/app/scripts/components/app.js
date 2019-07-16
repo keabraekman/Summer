@@ -7,6 +7,7 @@ import { debounce, isEqual } from 'lodash';
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
+import ErrorToggle from './error-toggle';
 import ErrorBar from './error-bar';
 import FilterModal from './filter-modal';
 import Logo from './logo';
@@ -242,7 +243,9 @@ class App extends React.Component {
           </div>
 
           <Nodes />
+        
           <div className='err-wrapper'>
+          <ErrorToggle />
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
           </div>
