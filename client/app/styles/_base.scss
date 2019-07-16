@@ -173,9 +173,7 @@ a {
 .hide {
   opacity: 0;
 }
-// breadcrumb {
 
-// }
 .scope-app, .terminal-app {
   -webkit-font-smoothing: antialiased;
   background: $body-background-color;
@@ -1422,16 +1420,16 @@ a {
 
 .sidebar {
   //OLD THINGS ARE COMMENTED OUT
-  // position: fixed;
-  // bottom: 11px;
-  // left: 11px;
-  height: 300px;
+  //position: fixed;
+  //bottom: 11px;
+  //left: 11px;
   justify-content: center;
   padding: 5px;
   font-size: $font-size-small;
   border-radius: $border-radius-soft;
   border: 1px solid transparent;
   pointer-events: none;
+  z-index: $layer-front;
 }
 
 .sidebar-gridmode {
@@ -1830,13 +1828,14 @@ a {
 }
 
 .err-bar{
-  position: static;
+  position: absolute;
   overflow: auto;
-  height: 100%;
+  max-height: 80px;
   bottom: 10px;
   line-height: 120%;
+  z-index: $layer-modal;
+  cursor: pointer;
 }
-
 // Dashboard
 .dashboard {
   display: flex;
@@ -1863,29 +1862,12 @@ a {
       height: 50%;
 
       .dash-status {
-        width: 50%;
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        align-content: center;
-
-        .title {
-          display: flex;
-          justify-content: center;
-          align-content: center;
-          font-size: $font-size-large;
-        }
-        
-        .errors {
-          position: relative;
-          margin: 5px;
-          height: 80%;
-          display: flex;
-          justify-content: center;
-          flex-grow: 1;
-          
-        }
-
+        flex-grow: 1;
+        width: 50%;
+        font-size: $font-size-large;
+        background-color: $color-blue-700;
       }
 
       .pie-charts {
@@ -1893,9 +1875,9 @@ a {
         justify-content: center;
         flex-grow: 1;
         width: 50%;
+        background-color: $color-gray-200;
       }
     }
-
 
     .bottom {
       display: flex;
@@ -1934,6 +1916,7 @@ a {
 // breadcrumb
 
 .breadcrumb{
+  z-index: $layer-modal;
   background-color: $label-background-color;
   overflow-x: hidden;
   text-overflow: ellipsis;
