@@ -245,11 +245,12 @@ class App extends React.Component {
           <Nodes />
         
           <div className='err-wrapper'>
-          <ErrorToggle />
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
           </div>
           
+          {isGraphViewMode && <ErrorToggle /> }
+
           {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
             
           </Sidebar> */}

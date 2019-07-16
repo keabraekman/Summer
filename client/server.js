@@ -6,7 +6,7 @@ const HttpProxyRules = require('http-proxy-rules');
 
 const app = express();
 
-const BACKEND_HOST = process.env.BACKEND_HOST || 'localhost';
+const BACKEND_HOST = process.env.BACKEND_HOST || '10.194.70.72';
 
 /*
 *

@@ -1837,8 +1837,16 @@ a {
   cursor: pointer;
 }
 
-.err-toggle {
+.err-toggle-open {
   width: 332px;
+  position: absolute;
+  bottom: 410px;
+}
+
+.err-toggle-closed { 
+  width: 332px;
+  position: absolute;
+  bottom: 10px;
 }
 
 .err-wrapper {
