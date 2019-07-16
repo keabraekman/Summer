@@ -7,26 +7,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class BreadCrumb extends React.Component{
   getLabel(){
-    const details = this.props.details.toList().toJS()[0]
-    if(details){
-      if(details['details']){
-        return (details['details']['label'])
+    if(this.props.details.toList().toJS()[0]){
+      if(this.props.details.toList().toJS()[0]['details']){
+        // console.log(this.props.details.toList().toJS()[0]['details']['label'])
+        return (this.props.details.toList().toJS()[0]['details']['label'])
       }
     }
   }
 
   makeBreadcrumb(level){
-    const details = this.props.details.toList().toJS()[0]
-    if(details){
-      if(details['details']){
-        if(details['details']['parents']){
+    if(this.props.details.toList().toJS()[0]){
+      if(this.props.details.toList().toJS()[0]['details']){
+        if(this.props.details.toList().toJS()[0]['details']['parents']){
+          console.log(this.props.details.toList().toJS()[0]['details']['parents'])
           // the host is the last element in the array
           if(level == 'pods'){
-            const parentsIndex = details['details']['parents'].length-1
             return(
               <div>
-              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][
-                parentsIndex
+              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][
+                this.props.details.toList().toJS()[0]['details']['parents'].length-1
               ]['label'].toString()}</a></BreadcrumbItem>
               <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
               </div>
@@ -35,24 +34,24 @@ export class BreadCrumb extends React.Component{
           else if(level == 'containers'){
             return(
               <div>
-              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][2]['label']}</a></BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][1]['label']}</a></BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][2]['label']}</a></BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</a></BreadcrumbItem>
               <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
               </div>
             );
           }
           else if(level == 'processes'){
-            if(details['details']['parents'][0] && details['details']['parents'][2]){
+            if(this.props.details.toList().toJS()[0]['details']['parents'][0] && this.props.details.toList().toJS()[0]['details']['parents'][2]){
               return(<div>
-                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][2]['label'].toString()}</a></BreadcrumbItem>
-                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][1]['label'].toString()}</a></BreadcrumbItem>
+                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][2]['label'].toString()}</a></BreadcrumbItem>
+                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][1]['label'].toString()}</a></BreadcrumbItem>
                 <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
                 </div>)
             }
             else{
               return(
                 <div>
-                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][0]['label']}</a></BreadcrumbItem>
+                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][0]['label']}</a></BreadcrumbItem>
                 <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
                 </div>
               );
@@ -67,14 +66,13 @@ export class BreadCrumb extends React.Component{
   }
 
   render() {
-    const details = this.props.details.toList().toJS()[0]
     let label = this.getLabel();
-    if(details){
-      if(details['details']){
+    if(this.props.details.toList().toJS()[0]){
+      if(this.props.details.toList().toJS()[0]['details']){
         return (
           <div>
             <Breadcrumb className = "breadcrumb">
-              {this.makeBreadcrumb(details['topologyId'])}
+              {this.makeBreadcrumb(this.props.details.toList().toJS()[0]['topologyId'])}
             </Breadcrumb>
           </div>
         );

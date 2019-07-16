@@ -227,7 +227,7 @@ class App extends React.Component {
             <div className="selectors">
               <div className="logo">
                 {!isIframe &&
-                  <svg width="100%" height="100%" viewBox="100 -40 20 100">
+                  <svg width="100%" height="100%" viewBox="150 -40 20 100">
                     <Logo />
                   </svg>
                 }
