@@ -101,10 +101,7 @@ export function getUrlState(state) {
     topologyId: state.get('currentTopologyId'),
     topologyOptions: topologyOptionsDiff,
     topologyViewMode: state.get('topologyViewMode'),
-    topoBox: state.get('topoBox')
   };
-
-  console.log(state.get('topoBox'));
 
   if (state.get('showingNetworks')) {
     urlState.showingNetworks = true;

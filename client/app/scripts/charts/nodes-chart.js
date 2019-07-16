@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import NodesChartElements from './nodes-chart-elements';
 import ZoomableCanvas from '../components/zoomable-canvas';
 import { transformToString } from '../utils/transform-utils';
-import { clickBackground, receiveAllNodes } from '../actions/app-actions';
+import { clickBackground } from '../actions/app-actions';
 import {
   graphLimitsSelector,
   graphZoomStateSelector,
@@ -62,10 +62,6 @@ class NodesChart extends React.Component {
   }
 
   render() {
-    console.log(7);
-    // console.log(this.props.topo1);
-    // console.log(this.props.nodes.toList().toJS());
-    //this.props.focusSearch();
     return (
       <div className="nodes-chart">
         <ZoomableCanvas
@@ -87,15 +83,8 @@ function mapStateToProps(state) {
     selectedNodeId: state.get('selectedNodeId'),
     clickBackground: clickBackground(),
     nodes: state.get('nodes'),
-    topo1: state.get('topo1')
   };
 }
-
-// const mapDispatchToProps = (dispatch) => ({
-//   receiveAllNodes: () => dispatch(receiveAllNodes()),
-//   focusSearch: () => dispatch(focusSearch()),
-
-// })
 
 
 export default connect(

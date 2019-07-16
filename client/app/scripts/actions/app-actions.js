@@ -587,8 +587,6 @@ export function resumeTime() {
 }
 
 export function receiveAllNodes() {
-  debugger;
-  console.log(5);
   return (dispatch, getState) => {
     getAllNodes(getState(), dispatch);
     console.log(getState().toList().toJS());
@@ -600,8 +598,6 @@ export function receiveAllNodes() {
 }
 
 export function receiveNodes(nodes) {
-  //debugger;
-  // console.log(nodes.toList().toJS());
   return {
     nodes,
     type: ActionTypes.RECEIVE_NODES,

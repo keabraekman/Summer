@@ -43,7 +43,6 @@ const topologySorter = topology => topology.get('rank');
 
 export const initialState = makeMap({
   viewingNodeId: null,
-  topoBox: false,
   capabilities: makeMap(),
   contrastMode: false,
   controlPipes: makeOrderedMap(), // pipeId -> controlPipe
@@ -264,9 +263,6 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.SET_VIEW_MODE: {
-      if (action.viewMode === 'topo') {
-        state = state.set('topoBox', false);
-      }
       return state.set('topologyViewMode', action.viewMode);
     }
 
@@ -350,13 +346,16 @@ export function rootReducer(state = initialState, action) {
         'nodeDetails',
         nodeDetails => nodeDetails.filter((v, k) => k === action.nodeId)
       );
+      console.log(23);
       state = state.update('controlPipes', controlPipes => controlPipes.clear());
       state = state.set('selectedNodeId', action.nodeId);
-
-      if (action.topologyId !== state.get('currentTopologyId')) {
-        state = setTopology(state, action.topologyId);
-        state = clearNodes(state);
-      }
+      state = closeAllNodeDetails(state);
+      state = state.set('viewingNodeId', action.nodeId);
+      
+      // if (action.topologyId !== state.get('currentTopologyId')) {
+      //   state = setTopology(state, action.topologyId);
+      //   state = clearNodes(state);
+      // }
 
       return state;
     }
@@ -619,9 +618,6 @@ export function rootReducer(state = initialState, action) {
       console.log(6);
       console.log(action.nodes);
       state = state.set('timeTravelTransitioning', false);
-      if (state.get('currentTopology') === 'topo' && !state.get('topoBox')) {
-        nodes = fromJS(action.nodes);
-      }
       state = state.set('nodes', fromJS(action.nodes));
       state = state.set('nodesLoaded', true);
       return updateStateFromNodes(state);

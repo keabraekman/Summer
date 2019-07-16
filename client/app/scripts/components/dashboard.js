@@ -24,15 +24,12 @@ import { getNodesbyTopology } from '../actions/app-actions';
   
   render() {
   const { hostNodes, allNodes } = this.props;
-  console.log(18);
-  console.log(hostNodes.toList().toJS());
   const hostData = formatData(hostNodes, "hosts");
   const overallData = this.getOverallStats(allNodes);
   let hostDataReceived = false;
   if (!hostDataReceived && hostData.memory.max !== 0 && hostData.cpu.value !== 0) {
     hostDataReceived = true;
   }
-  // console.log(this.props.topo1);
    return (
      <div className="dashboard">
        <h1>Dashboard</h1>
