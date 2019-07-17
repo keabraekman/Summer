@@ -49,7 +49,7 @@ export const formatData = (nodes, topologyId) => {
 
       return_data[i]={name: data[i]['rank'], status: data[i]['metadata'][0]['value'], id: data[i]['id'], label: data[i]['label']};
     }
-    else if(topologyId === "hosts"){
+    else if(topologyId === "hosts" && data[i]['metrics']){
       return_data={cpu: {value: data[i]['metrics'][0]['value'], max: data[i]['metrics'][0]['max']}, memory: {value: data[i]['metrics'][1]['value'], max: data[i]['metrics'][1]['max']}}
     }
   }
@@ -85,7 +85,6 @@ export class ErrorBar extends React.Component {
     this.error_data = data;
   }
   onClickErr(ev, node, nodes) {
-    console.log(node)
     trackAnalyticsEvent('scope.node.click', {
       layout: GRAPH_VIEW_MODE,
       parentTopologyId: nodes.get('parentId'),
@@ -101,7 +100,6 @@ export class ErrorBar extends React.Component {
    if (data.length === 0 && isDashboardViewMode) {
     allGoodMsg = true;
    }
-   console.log(nodes);
     return (
       <div className='err-bar' >
         { allGoodMsg ? 

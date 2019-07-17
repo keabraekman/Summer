@@ -12,10 +12,10 @@ export const nodeNetworksSelector = createMapSelector(
     state => state.get('nodes'),
   ],
   (node) => {
+    // console.log(node.toJS());
     const metadata = node.get('metadata', makeList());
     const networks = metadata.find(f => f.get('id') === NETWORKS_ID) || makeMap();
     const networkValues = networks.has('value') ? networks.get('value').split(', ') : [];
-
     return fromJS(networkValues.map(network => ({
       colorKey: network, id: network, label: network
     })));

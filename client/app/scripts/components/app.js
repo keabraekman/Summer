@@ -36,6 +36,7 @@ import {
   shutdown,
   setViewportDimensions,
   getTopologiesWithInitialPoll,
+  getNodesbyTopology
 } from '../actions/app-actions';
 import Details from './details';
 import Nodes from './nodes';
@@ -92,6 +93,8 @@ class App extends React.Component {
       this.props.dispatch(getTopologiesWithInitialPoll());
     }
     getApiDetails(this.props.dispatch);
+
+    this.props.dispatch(getNodesbyTopology("hosts"));
   }
 
   componentWillUnmount() {
@@ -198,15 +201,16 @@ class App extends React.Component {
     const {
       isTableViewMode, isGraphViewMode, isResourceViewMode, isDashboardViewMode, showingNetworkSelector,
       showingDetails, showingHelp, showingTroubleshootingMenu,
-      timeTravelTransitioning, timeTravelSupported, contrastMode,
+      timeTravelTransitioning, timeTravelSupported, contrastMode, allNodes
     } = this.props;
 
+    // console.log(11);
+    // console.log(allNodes.toList().toJS());
     const className = classNames('scope-app', {
       'contrast-mode': contrastMode,
       'time-travel-open': timeTravelSupported,
     });
     const isIframe = window !== window.top;
-
     return (
       <ThemeProvider theme={theme}>
         <div className={className} ref={this.saveAppRef}>
@@ -243,8 +247,9 @@ class App extends React.Component {
 
           <Nodes />
           <div className='err-wrapper'>
-            {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
+            {/* {showingNetworkSelector && isGraphViewMode && <ErrorBar />} */}
+            {/* {isGraphViewMode && <ErrorBar />} */}
           </div>
           
           {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
@@ -262,6 +267,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
+    allNodes: state.get('nodesByTopology'),
     contrastMode: state.get('contrastMode'),
     currentTopology: state.get('currentTopology'),
     isDashboardViewMode: isDashboardViewModeSelector(state),
