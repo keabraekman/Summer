@@ -74,7 +74,6 @@ function omitDefaultValues(urlState) {
 }
 
 export function getUrlState(state) {
-  console.log(15);
   const cp = state.get('controlPipes').last();
   const nodeDetails = state.get('nodeDetails').toIndexedSeq().map(details => ({
     id: details.id, topologyId: details.topologyId

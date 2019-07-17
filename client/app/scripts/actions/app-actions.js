@@ -229,7 +229,6 @@ export function getNodesbyTopology(topoId, topologyOptions = makeMap()) {
  }
 
 export function changeTopologyOption(option, value, topologyId, addOrRemove) {
-  console.log(1);
   return (dispatch, getState) => {
     dispatch({
       addOrRemove,
@@ -246,7 +245,6 @@ export function changeTopologyOption(option, value, topologyId, addOrRemove) {
 }
 
 export function clickBackground() {
-  console.log(9);
   return (dispatch, getState) => {
     dispatch({
       type: ActionTypes.CLICK_BACKGROUND
@@ -400,7 +398,6 @@ export function clickRelative(nodeId, topologyId, label, origin) {
 }
 
 function updateTopology(dispatch, getState) {
-  console.log(3);
   const state = getState();
   // If we're in the resource view, get the snapshot of all the relevant node topologies.
   if (isResourceViewModeSelector(state)) {
@@ -589,10 +586,7 @@ export function resumeTime() {
 export function receiveAllNodes() {
   return (dispatch, getState) => {
     getAllNodes(getState(), dispatch);
-    console.log(getState().toList().toJS());
-    console.log(getState().get('nodesByTopology').toList().toJS());
     const nodes = getState().get('nodesByTopology');
-    console.log(10);
     dispatch(receiveNodes(nodes));
   }
 }
@@ -625,7 +619,6 @@ export function jumpToTime(timestamp) {
 }
 
 export function receiveNodesForTopology(nodes, topologyId) {
-  console.log(11);
   return {
     nodes,
     topologyId,

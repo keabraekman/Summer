@@ -346,7 +346,6 @@ export function rootReducer(state = initialState, action) {
         'nodeDetails',
         nodeDetails => nodeDetails.filter((v, k) => k === action.nodeId)
       );
-      console.log(23);
       state = state.update('controlPipes', controlPipes => controlPipes.clear());
       state = state.set('selectedNodeId', action.nodeId);
       state = closeAllNodeDetails(state);
@@ -615,8 +614,6 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.RECEIVE_NODES: {
-      console.log(6);
-      console.log(action.nodes);
       state = state.set('timeTravelTransitioning', false);
       state = state.set('nodes', fromJS(action.nodes));
       state = state.set('nodesLoaded', true);
@@ -624,11 +621,9 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY: {
-      console.log(12);
-      console.log(action.nodes);
       return state.setIn(['nodesByTopology', action.topologyId], fromJS(action.nodes));
     }
-
+    
     case ActionTypes.RECEIVE_NOT_FOUND: {
       if (state.hasIn(['nodeDetails', action.nodeId])) {
         state = state.updateIn(['nodeDetails', action.nodeId], obj => ({

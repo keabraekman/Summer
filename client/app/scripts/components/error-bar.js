@@ -35,8 +35,6 @@ export const formatData = (nodes, topologyId) => {
     return return_data;
 
   var data = nodes.get(topologyId).toList().toJS();
-  // console.log(16);
-  // console.log(data);
   var i;
   for(i = 0; i < data.length; i++){
     if(topologyId === "pods" && data[i].hasOwnProperty("parents") && data[i]['metadata'][0]['value'] === "Running"){
@@ -64,7 +62,6 @@ export class ErrorBar extends React.Component {
     this.error_data = new Map();
   }
   componentDidMount() {
-    console.log(18);
     this.props.getNodesbyTopology("pods");
   }
   makeToastable(data){

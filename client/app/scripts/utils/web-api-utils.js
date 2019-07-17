@@ -124,7 +124,6 @@ function buildWebsocketUrl(topologyUrl, topologyOptions = makeMap(), state) {
     topologyOptions = topologyOptions.set('t', updateFrequency);
     optionsQuery = buildUrlQuery(topologyOptions, state);
   }
-  console.log(optionsQuery);
   return `${getWebsocketUrl()}${topologyUrl}/ws?${optionsQuery}`;
 }
 
@@ -228,7 +227,6 @@ export function doRequest(opts) {
  */
 function getNodesForTopologies(state, dispatch, topologyIds, topologyOptions = makeMap()) {
   // fetch sequentially
-  console.log(state.get('topologyUrlsById'));
   state.get('topologyUrlsById')
     .filter((_, topologyId) => topologyIds.contains(topologyId))
     .reduce(
@@ -256,9 +254,9 @@ export function getTopoFromId(id) {
       topo = "containers";
       break;
     default:
-      topo = "";
+      topo = "processes";
       break;
-    }
+  }
   return topo;
 }
 
@@ -278,7 +276,6 @@ function getNodesOnce(getState, dispatch) {
     url = `${getApiPath()}/api/topology/${topo}/${viewNodeId}`
   }
   //Either nest doRequests inside each other or use a .then?
-  console.log(url);
   doRequest({
     error: (req) => {
       log(`Error in nodes request: ${req.responseText}`);
@@ -289,7 +286,7 @@ function getNodesOnce(getState, dispatch) {
         let _map = {};
         res.node.children[0].nodes.map((x) => {
           _map[x.id] = x;
-        });
+        });    
         dispatch(receiveNodes(_map));
       } else {
         dispatch(receiveNodes(findContainerParents(res.nodes)));
