@@ -2,6 +2,8 @@
 @import '~@fortawesome/fontawesome-free/css/v4-shims.css';
 @import '~rc-slider/dist/rc-slider.css';
 
+$color-ashPurple: #b19cd9;
+
 /* sass-lint:disable variable-for-property */
 @font-face {
   font-family: 'proxima-nova';
@@ -225,11 +227,13 @@ a {
 }
 
 .header {
-  background-color: transparentize($color-purple-25, 0.2);
+  // background-color: transparentize($color-purple-25, 0.2);
   z-index: $layer-front;
   padding: 15px 10px 0;
   position: relative;
   width: 100%;
+
+  background-image: linear-gradient($color-ashPurple, $color-purple-25);
 
   .selectors {
     display: flex;
@@ -1844,7 +1848,6 @@ a {
 }
 
 .err-toggle-closed { 
-  width: 332px;
   position: absolute;
   bottom: 10px;
 }

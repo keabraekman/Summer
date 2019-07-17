@@ -60,14 +60,13 @@ var isVisible = true;
 
 export function changeVisibility(){
   isVisible = !isVisible;
+  this.forceUpdate();
 }
 
 var numErrors = 0;
 
 export function setNumErrors(nodes) {
-  // console.log(nodes);
   numErrors = nodes.length;
-  // console.log(numErrors);
 }
 
 export function getNumErrors() {
@@ -78,6 +77,8 @@ export class ErrorBar extends React.Component {
   constructor(props){
     super(props);
     this.error_data = new Map();
+
+    changeVisibility = changeVisibility.bind(this);
   }
 
   componentDidMount() {
@@ -115,7 +116,6 @@ export class ErrorBar extends React.Component {
   render() {
     const { isDashboardViewMode } = this.props;
     var nodes = this.props.current_nodes;
-    //ASH MADE THIS HERE
     var data = formatData(nodes, "pods");
     setNumErrors(data);
     var allGoodMsg = false;
@@ -138,11 +138,10 @@ export class ErrorBar extends React.Component {
        }  
       </div>
     );
-    }
+  }
     else {
       return(<div></div>);
     }
-
   }
 }
 
