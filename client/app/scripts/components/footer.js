@@ -42,7 +42,7 @@ class Footer extends React.Component {
 
     return (
       <div className="footer">
-        <div className="footer-status">
+        {/* <div className="footer-status">
           {versionUpdate &&
             <a
               className="footer-versionupdate"
@@ -57,11 +57,11 @@ class Footer extends React.Component {
           {version || '...'}
           <span className="footer-label">on</span>
           {hostname}
-        </div>
+        </div> */}
 
-        <div className="footer-plugins">
+        {/* <div className="footer-plugins">
           <Plugins />
-        </div>
+        </div> */}
 
         <div className="footer-tools">
           <button

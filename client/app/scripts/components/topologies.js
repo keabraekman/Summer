@@ -80,7 +80,8 @@ class Topologies extends React.Component {
         </div>
         <div className="topologies-sub">
           {topology.has('sub_topologies')
-            && topology.get('sub_topologies').map(subTop => this.renderSubTopology(subTop))}
+            // && topology.get('sub_topologies').map(subTop => this.renderSubTopology(subTop))}
+            }
         </div>
       </div>
     );
