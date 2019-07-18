@@ -7,6 +7,7 @@ import { debounce, isEqual } from 'lodash';
 import { ThemeProvider } from 'styled-components';
 import theme from 'weaveworks-ui-components/lib/theme';
 
+import ErrorToggle from './error-toggle';
 import ErrorBar from './error-bar';
 import FilterModal from './filter-modal';
 import Logo from './logo';
@@ -244,14 +245,17 @@ class App extends React.Component {
               <TimeControl />
             </div>
           </div>
-
+          
           <Nodes />
+        
           <div className='err-wrapper'>
             {isGraphViewMode && <ErrorBar />}
             {/* {showingNetworkSelector && isGraphViewMode && <ErrorBar />} */}
             {/* {isGraphViewMode && <ErrorBar />} */}
           </div>
           
+          {isGraphViewMode && <ErrorToggle /> }
+
           {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
             
           </Sidebar> */}

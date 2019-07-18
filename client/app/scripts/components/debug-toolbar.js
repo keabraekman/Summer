@@ -12,7 +12,7 @@ import { getNodeColor, getNodeColorDark, text2degree } from '../utils/color-util
 import { availableMetricsSelector } from '../selectors/node-metric';
 
 
-const SHAPES = ['square', 'hexagon', 'heptagon', 'circle'];
+const SHAPES = ['square', 'hexagon', 'heptagon', 'circle', 'visualkube'];
 const STACK_VARIANTS = [false, true];
 const METRIC_FILLS = [0, 0.1, 50, 99.9, 100];
 const NETWORKS = [

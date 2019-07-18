@@ -56,11 +56,31 @@ export const formatData = (nodes, topologyId) => {
   return return_data;
 }
 
+var isVisible = true;
+
+export function changeVisibility(){
+  isVisible = !isVisible;
+  this.forceUpdate();
+}
+
+var numErrors = 0;
+
+export function setNumErrors(nodes) {
+  numErrors = nodes.length;
+}
+
+export function getNumErrors() {
+  return numErrors;
+}
+
 export class ErrorBar extends React.Component {
   constructor(props){
     super(props);
     this.error_data = new Map();
+
+    changeVisibility = changeVisibility.bind(this);
   }
+
   componentDidMount() {
     this.props.getNodesbyTopology("pods");
   }
@@ -97,10 +117,13 @@ export class ErrorBar extends React.Component {
     const { isDashboardViewMode } = this.props;
     var nodes = this.props.current_nodes;
     var data = formatData(nodes, "pods");
+    setNumErrors(data);
     var allGoodMsg = false;
    if (data.length === 0 && isDashboardViewMode) {
     allGoodMsg = true;
    }
+
+   if (isVisible){
     return (
       <div className='err-bar' >
         { allGoodMsg ? 
@@ -115,6 +138,10 @@ export class ErrorBar extends React.Component {
        }  
       </div>
     );
+  }
+    else {
+      return(<div></div>);
+    }
   }
 }
 
