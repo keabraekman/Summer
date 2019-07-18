@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import NodesJumbotron from '../components/nodes-jumbotron';
 import NodesChartElements from './nodes-chart-elements';
 import ZoomableCanvas from '../components/zoomable-canvas';
 import { transformToString } from '../utils/transform-utils';
@@ -65,7 +64,6 @@ class NodesChart extends React.Component {
   render() {
     return (
       <div className="nodes-chart">
-        {/* <NodesJumbotron/> */}
         <ZoomableCanvas
           onClick={this.handleMouseClick}
           boundContent={CONTENT_INCLUDED}
