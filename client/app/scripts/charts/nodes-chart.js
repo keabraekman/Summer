@@ -41,6 +41,12 @@ class NodesChart extends React.Component {
     this.handleMouseClick = this.handleMouseClick.bind(this);
   }
 
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.props.receiveAllNodes(); 
+  //   }, 2000);
+  // }
+
   handleMouseClick() {
     if (this.props.selectedNodeId) {
       this.props.clickBackground();
@@ -77,11 +83,12 @@ class NodesChart extends React.Component {
 function mapStateToProps(state) {
   return {
     selectedNodeId: state.get('selectedNodeId'),
+    clickBackground: clickBackground(),
+    nodes: state.get('nodes'),
   };
 }
 
 
 export default connect(
-  mapStateToProps,
-  { clickBackground }
+  mapStateToProps
 )(NodesChart);

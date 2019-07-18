@@ -187,6 +187,7 @@ export function updateSearch(searchQuery = '', pinnedSearches = []) {
 }
 
 export function focusSearch() {
+  console.log(8);
   return (dispatch, getState) => {
     dispatch({ type: ActionTypes.FOCUS_SEARCH });
     // update nodes cache to allow search across all topologies,
@@ -580,6 +581,14 @@ export function resumeTime() {
       }
     }
   };
+}
+
+export function receiveAllNodes() {
+  return (dispatch, getState) => {
+    getAllNodes(getState(), dispatch);
+    const nodes = getState().get('nodesByTopology');
+    dispatch(receiveNodes(nodes));
+  }
 }
 
 export function receiveNodes(nodes) {

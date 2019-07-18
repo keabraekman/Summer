@@ -9,6 +9,7 @@ import { getNodesbyTopology } from '../actions/app-actions';
   
   class Dashboard extends React.Component {
   componentDidMount() {
+    console.log(17);  
     this.props.getNodesbyTopology("hosts");
   }
   
@@ -78,6 +79,7 @@ import { getNodesbyTopology } from '../actions/app-actions';
   const mapStateToProps = (state)  => ({
   hostNodes: state.get('nodesByTopology'),
   allNodes: state.get('topologies').toList().toJS(),
+  topo1: state.get('topo1')
   })
   
   const mapDispatchToProps = dispatch => ({

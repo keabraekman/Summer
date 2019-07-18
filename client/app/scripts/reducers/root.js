@@ -42,6 +42,7 @@ const topologySorter = topology => topology.get('rank');
 // Initial values
 
 export const initialState = makeMap({
+  viewingNodeId: null,
   capabilities: makeMap(),
   contrastMode: false,
   controlPipes: makeOrderedMap(), // pipeId -> controlPipe
@@ -347,11 +348,13 @@ export function rootReducer(state = initialState, action) {
       );
       state = state.update('controlPipes', controlPipes => controlPipes.clear());
       state = state.set('selectedNodeId', action.nodeId);
-
-      if (action.topologyId !== state.get('currentTopologyId')) {
-        state = setTopology(state, action.topologyId);
-        state = clearNodes(state);
-      }
+      state = closeAllNodeDetails(state);
+      state = state.set('viewingNodeId', action.nodeId);
+      
+      // if (action.topologyId !== state.get('currentTopologyId')) {
+      //   state = setTopology(state, action.topologyId);
+      //   state = clearNodes(state);
+      // }
 
       return state;
     }
@@ -620,7 +623,7 @@ export function rootReducer(state = initialState, action) {
     case ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY: {
       return state.setIn(['nodesByTopology', action.topologyId], fromJS(action.nodes));
     }
-
+    
     case ActionTypes.RECEIVE_NOT_FOUND: {
       if (state.hasIn(['nodeDetails', action.nodeId])) {
         state = state.updateIn(['nodeDetails', action.nodeId], obj => ({
