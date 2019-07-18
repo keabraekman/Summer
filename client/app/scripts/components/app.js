@@ -58,6 +58,7 @@ import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
   ESC_KEY_CODE,
 } from '../constants/key-codes';
+import Breadcrumb from './breadcrumb';
 
 const keyPressLog = debug('scope:app-key-press');
 
@@ -240,6 +241,8 @@ class App extends React.Component {
               <TimeControl />
             </div>
           </div>
+
+          <Breadcrumb />
 
           <Nodes />
           <div className='err-wrapper'>
