@@ -98,33 +98,6 @@ class NodeContainer extends React.Component {
 
   ashX(x)
   {
-    if (this.props.nodeDetails) 
-    {
-      if (this.props.nodeDetails.toList().toJS())
-      {
-        if (this.props.nodeDetails.toList().toJS()[0])
-        {
-          if (this.props.nodeDetails.toList().toJS()[0]['details'])
-          {
-            if (this.props.nodeDetails.toList().toJS()[0]['details']['children'])
-            {
-              if (this.props.nodeDetails.toList().toJS()[0]['details']['children'][0])
-              {
-                if (this.props.nodeDetails.toList().toJS()[0]['details']['children'][0]['nodes'])
-                {
-          
-                  var index = this.props.nodeDetails.toList().toJS()[0]['details']['children'][0]['nodes'].indexOf(ashLabel);
-              
-                  var myX = index*ashGetGraphWidth()/(this.props.nodeDetails.toList().toJS()[0]['details']['children'][0]['nodes'].length);
-                  x = myX;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
     return x;
   }
 
@@ -185,8 +158,8 @@ class NodeContainer extends React.Component {
         onMouseLeave={this.props.leaveNode}
         onClick={this.handleMouseClick}
         graphNodeRef={this.saveRef}
-        x={this.ashX(this.props.x)}
-        y={this.ashY(this.props.y)}
+        x={this.props.x}
+        y={this.props.y}
       />
     );
   }

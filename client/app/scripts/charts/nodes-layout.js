@@ -100,7 +100,9 @@ function layoutSingleNodes(layout, opts) {
   if (singleNodes.size) {
     let offsetX;
     let offsetY;
-    const nonSingleNodes = nodes.filter(node => node.get('degree') !== 0);
+    // const nonSingleNodes = nodes.filter(node => node.get('degree') !== 0);
+    const nonSingleNodes = makeMap();
+
     if (nonSingleNodes.size > 0) {
       if (aspectRatio < 1) {
         log('laying out single nodes to the right', aspectRatio);
