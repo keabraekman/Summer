@@ -93,7 +93,9 @@ function layoutSingleNodes(layout, opts) {
   let { nodes } = layout;
 
   // 0-degree nodes
-  const singleNodes = nodes.filter(node => node.get('degree') === 0);
+
+  // const singleNodes = nodes.filter(node => node.get('degree') === 0);
+  const singleNodes = nodes;
 
   if (singleNodes.size) {
     let offsetX;
@@ -187,7 +189,7 @@ function runLayoutEngine(graph, imNodes, imEdges, opts) {
       });
     }
   });
-
+  
   // remove nodes that are no longer there or are 0-degree nodes
   graph.nodes().forEach((gNodeId) => {
     const nodeId = fromGraphNodeId(gNodeId);
@@ -234,8 +236,9 @@ function runLayoutEngine(graph, imNodes, imEdges, opts) {
 
     edges = edges.setIn([graphEdgeMeta.id, 'points'], waypoints);
   });
-
+  
   const { width, height } = graph.graph();
+
   let layout = {
     edges,
     graphHeight: height,

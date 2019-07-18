@@ -241,7 +241,7 @@ class App extends React.Component {
               <TimeControl />
             </div>
           </div>
-
+          
           <Nodes />
         
           <div className='err-wrapper'>

@@ -60,6 +60,7 @@ class Nodes extends React.Component {
       isGraphViewMode,
       isTableViewMode, isResourceViewMode, isDashboardViewMode
     } = this.props;
+
     // TODO: Rename view mode components.
     return (
       <div className="nodes-wrapper">

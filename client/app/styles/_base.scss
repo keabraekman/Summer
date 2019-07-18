@@ -3,6 +3,7 @@
 @import '~rc-slider/dist/rc-slider.css';
 
 $color-ashPurple: #b19cd9;
+$color-ashBlue: #99cccc;
 
 /* sass-lint:disable variable-for-property */
 @font-face {
@@ -233,7 +234,7 @@ a {
   position: relative;
   width: 100%;
 
-  background-image: linear-gradient($color-ashPurple, $color-purple-25);
+  background-image: linear-gradient($color-ashBlue, $color-purple-25);
 
   .selectors {
     display: flex;
@@ -391,6 +392,7 @@ a {
   pointer-events: none;
   opacity: $node-elements-in-background-opacity;
 
+
   &:not(.active) {
     display: none;
   }
@@ -459,6 +461,7 @@ a {
 
   .nodes-chart-elements .matched-results {
     background-color: $label-background-color;
+    
   }
 
   .edge {
