@@ -153,7 +153,6 @@ class NodesChartElements extends React.Component {
     // old versions of scope reports have a node shape of `storagesheet`
     // if so, normalise to `sheet`
     const shape = node.get('shape') === 'storagesheet' ? 'sheet' : node.get('shape');
-
     return (
       <NodeContainer
         matches={node.get('matches')}
@@ -208,7 +207,7 @@ class NodesChartElements extends React.Component {
         fill={theme.colors.purple25}
         x={-1}
         y={-1}
-        width={2}
+        width={10}
         height={2}
       />
     );

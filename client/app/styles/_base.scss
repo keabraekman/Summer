@@ -2,6 +2,9 @@
 @import '~@fortawesome/fontawesome-free/css/v4-shims.css';
 @import '~rc-slider/dist/rc-slider.css';
 
+$color-ashPurple: #b19cd9;
+$color-ashBlue: #99cccc;
+
 /* sass-lint:disable variable-for-property */
 @font-face {
   font-family: 'proxima-nova';
@@ -225,11 +228,13 @@ a {
 }
 
 .header {
-  background-color: transparentize($color-purple-25, 0.2);
+  // background-color: transparentize($color-purple-25, 0.2);
   z-index: $layer-front;
   padding: 15px 10px 0;
   position: relative;
   width: 100%;
+
+  background-image: linear-gradient($color-ashPurple, $color-purple-25);
 
   .selectors {
     display: flex;
@@ -387,6 +392,7 @@ a {
   pointer-events: none;
   opacity: $node-elements-in-background-opacity;
 
+
   &:not(.active) {
     display: none;
   }
@@ -455,6 +461,7 @@ a {
 
   .nodes-chart-elements .matched-results {
     background-color: $label-background-color;
+    
   }
 
   .edge {
@@ -1420,9 +1427,9 @@ a {
 
 .sidebar {
   //OLD THINGS ARE COMMENTED OUT
-  position: fixed;
-  bottom: 11px;
-  left: 11px;
+  // position: fixed;
+  // bottom: 11px;
+  // left: 11px;
   height: 300px;
   justify-content: center;
   padding: 5px;
@@ -1837,11 +1844,21 @@ a {
   cursor: pointer;
 }
 
+.err-toggle-open {
+  width: 332px;
+  position: absolute;
+  bottom: 410px;
+}
+
+.err-toggle-closed { 
+  position: absolute;
+  bottom: 10px;
+}
+
 .err-wrapper {
   position: absolute;
-  width: 400px;
+  width: 350px;
   height: 400px;
-  display: flex;
   bottom: 10px;
 }
 
