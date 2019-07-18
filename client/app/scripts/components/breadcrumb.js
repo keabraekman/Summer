@@ -42,8 +42,12 @@ export class BreadCrumb extends React.Component{
     if(this.props.details.toList().toJS()[0]){
       if(this.props.details.toList().toJS()[0]['details']){
         if(this.props.details.toList().toJS()[0]['details']['parents']){
+          // Keep if we get rid of processes breadcrumb
+          if(level == 'processes'){
+            return null;
+          }
           // the host is the last element in the array
-          if(level == 'pods'){
+          else if(level == 'pods'){
             let parents = this.props.details.toList().toJS()[0]['details']['parents']
             let id = parents[parents.length-1]['id']
             let topologyId = parents[parents.length-1]['topologyId']
@@ -51,8 +55,14 @@ export class BreadCrumb extends React.Component{
               <div>
               <BreadcrumbItem className = "breadcrumbitem"
               onClick={ev => this.handleClick(ev, id, topologyId)}
-              >Host: {parents[parents.length-1]['label'].toString()}</BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem" active>Active Pod: {this.getLabel()}</BreadcrumbItem>
+              >
+                <span className = 'level'>Host :    </span> 
+              {parents[parents.length-1]['label'].toString()}
+              </BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem">
+                <span className = 'level'>Pod :       </span>
+                {this.getLabel()}
+                </BreadcrumbItem>
               </div>
             );
           }
@@ -67,7 +77,7 @@ export class BreadCrumb extends React.Component{
                 parents[2]['id'], 
                 parents[2]['topologyId'])}
                 ref={this.saveNodeRef}>
-                Host: {this.props.details.toList().toJS()[0]['details']['parents'][2]['label']}
+                <span className = 'level'>Host:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][2]['label']}
                 </BreadcrumbItem>
               <BreadcrumbItem 
               className = "breadcrumbitem"
@@ -76,11 +86,13 @@ export class BreadCrumb extends React.Component{
                 parents[1]['id'], 
                 parents[1]['topologyId'])}
                 ref={this.saveNodeRef}
-              >Pod: {this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem" active>Active Container: {this.getLabel()}</BreadcrumbItem>
+              ><span className = 'level'>Pod:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem">
+                <span className = 'level'>Container:   </span>{this.getLabel()}</BreadcrumbItem>
               </div>
             );
           }
+          // Commented out because we got rid of processes breadcrumb
           // else if(level == 'processes'){
           //   if(this.props.details.toList().toJS()[0]['details']['parents'][0] && this.props.details.toList().toJS()[0]['details']['parents'][2]){
           //     return(<div>
@@ -99,8 +111,8 @@ export class BreadCrumb extends React.Component{
           //   }
           // }
         }
-        else{
-          return(<BreadcrumbItem className = "breadcrumbitem">Active: {this.getLabel()}</BreadcrumbItem>)
+        if(level != 'Processes'){
+          return(<BreadcrumbItem className = "breadcrumbitem"> <span className = 'level'> Host:   </span>{this.getLabel()}</BreadcrumbItem>)
         }
       }
     }
