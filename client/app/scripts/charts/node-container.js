@@ -59,7 +59,7 @@ class NodeContainer extends React.Component {
     return (
       <GraphNode
         id={this.props.id}
-        shape={this.props.shape}
+        shape={ashShape(this.props.shape)}
         tag={this.props.tag}
         label={this.props.label}
         labelMinor={this.props.labelMinor}
@@ -96,6 +96,12 @@ function mapStateToProps(state) {
     searchTerms: [state.get('searchQuery')],
     showingNetworks: state.get('showingNetworks'),
   };
+}
+
+function ashShape(shapeString)
+{
+  shapeString = 'hexagon';
+  return shapeString;
 }
 
 export default connect(

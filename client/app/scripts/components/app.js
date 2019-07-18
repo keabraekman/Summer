@@ -10,7 +10,7 @@ import theme from 'weaveworks-ui-components/lib/theme';
 import ErrorBar from './error-bar';
 import FilterModal from './filter-modal';
 import Logo from './logo';
-// import Footer from './footer';
+import Footer from './footer';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
@@ -37,7 +37,6 @@ import {
   setViewportDimensions,
   getTopologiesWithInitialPoll,
 } from '../actions/app-actions';
-import Breadcrumb from './Breadcrumb.js';
 import Details from './details';
 import Nodes from './nodes';
 import TimeControl from './time-control';
@@ -241,21 +240,17 @@ class App extends React.Component {
               <TimeControl />
             </div>
           </div>
-          <Breadcrumb />
 
           <Nodes />
-
-          <div>
+          <div className='err-wrapper'>
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
           </div>
-
+          
           {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-            {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
-            {isGraphViewMode && <ErrorBar />}
+            
           </Sidebar> */}
-
-          {/* <Footer /> */}
+          <Footer />
 
           <Overlay faded={timeTravelTransitioning} />
         </div>
