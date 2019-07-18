@@ -1939,3 +1939,18 @@ a {
     }
   }
 }
+
+//Breadcrumb
+
+.breadcrumb{
+  z-index: $layer-modal;
+  background-color: $label-background-color;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  .breadcrumbitem{
+    font-size: $font-size-normal;
+    float: none;
+    display: inline;
+  }
+}
