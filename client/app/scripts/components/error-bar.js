@@ -64,6 +64,7 @@ export class ErrorBar extends React.Component {
   componentDidMount() {
     this.props.getNodesbyTopology("pods");
   }
+
   makeToastable(data){
     var temp = data;
     if(this.error_data.length === 0){

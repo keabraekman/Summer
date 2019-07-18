@@ -19,6 +19,7 @@ import {
 import {
   graphExceedsComplexityThreshSelector,
   isResourceViewModeSelector,
+  isGraphViewModeSelector
 } from '../selectors/topology';
 import { isPausedSelector } from '../selectors/time-travel';
 import { activeTopologyZoomCacheKeyPathSelector } from '../selectors/zooming';
@@ -202,7 +203,7 @@ function updateStateFromNodes(state) {
 
   // Update the nodes cache only if we're not in the resource view mode, as we
   // intentionally want to keep it static before we figure how to keep it up-to-date.
-  if (!isResourceViewModeSelector(state)) {
+  if (!isResourceViewModeSelector(state) && !isGraphViewModeSelector(state)) {
     const nodesForCurrentTopologyKey = ['nodesByTopology', state.get('currentTopologyId')];
     state = state.setIn(nodesForCurrentTopologyKey, state.get('nodes'));
   }
