@@ -13,7 +13,7 @@ import {
 
 import { getCurrentTopologyUrl } from '../utils/topology-utils';
 import { layersTopologyIdsSelector } from '../selectors/resource-view/layout';
-import { activeTopologyOptionsSelector } from '../selectors/topology';
+import { activeTopologyOptionsSelector, isGraphViewModeSelector, isDashboardViewModeSelector } from '../selectors/topology';
 import { isPausedSelector } from '../selectors/time-travel';
 
 import { API_REFRESH_INTERVAL, TOPOLOGY_REFRESH_INTERVAL } from '../constants/timer';
@@ -383,9 +383,11 @@ function getTopologiesOnce(getState, dispatch) {
 function updateWebsocketChannel(getState, dispatch, forceRequest) {
   let topologyUrl;
   let topologyOptions;
-  if (getState().get('topologyViewMode') === "topo") {
+  if (isGraphViewModeSelector(getState())) {
     // Specify web socket url to /containers
-    topologyUrl = '/api/topology/containers';
+    topologyUrl = '/api/topology/pods';
+  } else if (isDashboardViewModeSelector(getState())) {
+    topologyUrl = 'api/topology/hosts';
   } else {
     topologyUrl = getCurrentTopologyUrl(getState());
     topologyOptions = activeTopologyOptionsSelector(getState());
@@ -463,6 +465,9 @@ export function getTopologies(getState, dispatch, forceRequest) {
 export function getNodes(getState, dispatch, forceRequest = false) {
   if (isPausedSelector(getState()) || (getState().get("topologyViewMode") === "topo")) {
     getNodesOnce(getState, dispatch);
+  } else if (isGraphViewModeSelector(getState()) || isDashboardViewModeSelector(getState())) {
+    getNodesOnce(getState, dispatch);
+    updateWebsocketChannel(getState, dispatch, forceRequest);
   } else {
     updateWebsocketChannel(getState, dispatch, forceRequest);
   }

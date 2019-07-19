@@ -1857,8 +1857,11 @@ a {
 
 .err-wrapper {
   position: absolute;
-  width: 350px;
-  height: 400px;
+  width: 400px;
+  max-height: 400px;
+  overflow: auto;
+  // height: 400px;
+  display: flex;
   bottom: 10px;
 }
 
