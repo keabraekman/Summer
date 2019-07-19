@@ -54,9 +54,9 @@ class NodesChart extends React.Component {
 
   renderContent(transform) {
     return (
-      <g transform={transformToString(transform)}>
-        <EdgeMarkerDefinition selectedNodeId={this.props.selectedNodeId} />
-        <NodesChartElements />
+      <g id="NodeJumbotron" transform={transformToString(transform)}>
+      <EdgeMarkerDefinition selectedNodeId={this.props.selectedNodeId} />
+      <NodesChartElements />
       </g>
     );
   }

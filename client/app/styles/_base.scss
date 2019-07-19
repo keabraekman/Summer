@@ -460,7 +460,7 @@ a {
   }
 
   .nodes-chart-elements .matched-results {
-    background-color: $label-background-color;
+    // background-color: $label-background-color;
     
   }
 
@@ -533,6 +533,11 @@ a {
     bottom: 48px;
     transition: transform 0.33333s cubic-bezier(0,0,0.21,1), margin-top .15s $base-ease;
   }
+}
+
+
+#NodeJumbotron {
+  background-color: $color-gray-200;
 }
 
 .node-details {
