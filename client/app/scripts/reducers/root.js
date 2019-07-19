@@ -19,6 +19,7 @@ import {
 import {
   graphExceedsComplexityThreshSelector,
   isResourceViewModeSelector,
+  isGraphViewModeSelector
 } from '../selectors/topology';
 import { isPausedSelector } from '../selectors/time-travel';
 import { activeTopologyZoomCacheKeyPathSelector } from '../selectors/zooming';
@@ -42,6 +43,7 @@ const topologySorter = topology => topology.get('rank');
 // Initial values
 
 export const initialState = makeMap({
+  viewingNodeId: null,
   capabilities: makeMap(),
   contrastMode: false,
   controlPipes: makeOrderedMap(), // pipeId -> controlPipe
@@ -201,7 +203,7 @@ function updateStateFromNodes(state) {
 
   // Update the nodes cache only if we're not in the resource view mode, as we
   // intentionally want to keep it static before we figure how to keep it up-to-date.
-  if (!isResourceViewModeSelector(state)) {
+  if (!isResourceViewModeSelector(state) && !isGraphViewModeSelector(state)) {
     const nodesForCurrentTopologyKey = ['nodesByTopology', state.get('currentTopologyId')];
     state = state.setIn(nodesForCurrentTopologyKey, state.get('nodes'));
   }
@@ -262,6 +264,8 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.SET_VIEW_MODE: {
+      state = state.set('viewingNodeId', null);
+      state = state.set('nodes', makeMap());     
       return state.set('topologyViewMode', action.viewMode);
     }
 
@@ -347,11 +351,13 @@ export function rootReducer(state = initialState, action) {
       );
       state = state.update('controlPipes', controlPipes => controlPipes.clear());
       state = state.set('selectedNodeId', action.nodeId);
-
-      if (action.topologyId !== state.get('currentTopologyId')) {
-        state = setTopology(state, action.topologyId);
-        state = clearNodes(state);
-      }
+      state = closeAllNodeDetails(state);
+      state = state.set('viewingNodeId', action.nodeId);
+      
+      // if (action.topologyId !== state.get('currentTopologyId')) {
+      //   state = setTopology(state, action.topologyId);
+      //   state = clearNodes(state);
+      // }
 
       return state;
     }
@@ -620,7 +626,7 @@ export function rootReducer(state = initialState, action) {
     case ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY: {
       return state.setIn(['nodesByTopology', action.topologyId], fromJS(action.nodes));
     }
-
+    
     case ActionTypes.RECEIVE_NOT_FOUND: {
       if (state.hasIn(['nodeDetails', action.nodeId])) {
         state = state.updateIn(['nodeDetails', action.nodeId], obj => ({

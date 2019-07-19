@@ -49,21 +49,42 @@ export const formatData = (nodes, topologyId) => {
 
       return_data[i]={name: data[i]['rank'], status: data[i]['metadata'][0]['value'], id: data[i]['id'], label: data[i]['label']};
     }
-    else if(topologyId === "hosts"){
+    else if(topologyId === "hosts" && data[i]['metrics']){
       return_data={cpu: {value: data[i]['metrics'][0]['value'], max: data[i]['metrics'][0]['max']}, memory: {value: data[i]['metrics'][1]['value'], max: data[i]['metrics'][1]['max']}}
     }
   }
   return return_data;
 }
 
+var isVisible = true;
+
+export function changeVisibility(){
+  isVisible = !isVisible;
+  this.forceUpdate();
+}
+
+var numErrors = 0;
+
+export function setNumErrors(nodes) {
+  numErrors = nodes.length;
+}
+
+export function getNumErrors() {
+  return numErrors;
+}
+
 export class ErrorBar extends React.Component {
   constructor(props){
     super(props);
     this.error_data = new Map();
+
+    changeVisibility = changeVisibility.bind(this);
   }
+
   componentDidMount() {
     this.props.getNodesbyTopology("pods");
   }
+
   makeToastable(data){
     var temp = data;
     if(this.error_data.length === 0){
@@ -85,7 +106,6 @@ export class ErrorBar extends React.Component {
     this.error_data = data;
   }
   onClickErr(ev, node, nodes) {
-    // console.log(node)
     trackAnalyticsEvent('scope.node.click', {
       layout: GRAPH_VIEW_MODE,
       parentTopologyId: nodes.get('parentId'),
@@ -97,11 +117,13 @@ export class ErrorBar extends React.Component {
     const { isDashboardViewMode } = this.props;
     var nodes = this.props.current_nodes;
     var data = formatData(nodes, "pods");
+    setNumErrors(data);
     var allGoodMsg = false;
    if (data.length === 0 && isDashboardViewMode) {
     allGoodMsg = true;
    }
-  //  console.log(nodes);
+
+   if (isVisible){
     return (
       <div className='err-bar' >
         { allGoodMsg ? 
@@ -116,6 +138,10 @@ export class ErrorBar extends React.Component {
        }  
       </div>
     );
+  }
+    else {
+      return(<div></div>);
+    }
   }
 }
 

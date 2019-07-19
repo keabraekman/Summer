@@ -40,6 +40,12 @@ class NodesChart extends React.Component {
     this.handleMouseClick = this.handleMouseClick.bind(this);
   }
 
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.props.receiveAllNodes(); 
+  //   }, 2000);
+  // }
+
   handleMouseClick() {
     if (this.props.selectedNodeId) {
       this.props.clickBackground();
@@ -64,7 +70,7 @@ class NodesChart extends React.Component {
           limitsSelector={graphLimitsSelector}
           zoomStateSelector={graphZoomStateSelector}
           disabled={this.props.selectedNodeId}>
-          {transform => this.renderContent(transform)}
+          {transform => this.renderContent(transform)} 
         </ZoomableCanvas>
       </div>
     );
@@ -80,6 +86,5 @@ function mapStateToProps(state) {
 
 
 export default connect(
-  mapStateToProps,
-  { clickBackground }
+  mapStateToProps, { clickBackground }
 )(NodesChart);

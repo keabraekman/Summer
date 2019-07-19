@@ -50,7 +50,7 @@ class NodeDetails extends React.Component {
   }
 
   renderTools() {
-    const showSwitchTopology = this.props.nodeId !== this.props.selectedNodeId;
+    const showSwitchTopology = this.props.nodeId !== this.props.viewingNodeId;
     const topologyTitle = `View ${this.props.label} in ${this.props.topologyId}`;
 
     return (
@@ -61,7 +61,7 @@ class NodeDetails extends React.Component {
               title={topologyTitle}
               className="fa fa-long-arrow-alt-left"
               onClick={this.handleShowTopologyForNode}>
-              <span>Show in <span>{this.props.topologyId.replace(/-/g, ' ')}</span></span>
+              <span>Inspect Contents</span>
             </i>
           }
           <i
@@ -304,6 +304,7 @@ function mapStateToProps(state, ownProps) {
     nodes: state.get('nodes'),
     selectedNodeId: state.get('selectedNodeId'),
     transitioning: state.get('pausedAt') !== ownProps.timestamp,
+    viewingNodeId: state.get('viewingNodeId')
   };
 }
 

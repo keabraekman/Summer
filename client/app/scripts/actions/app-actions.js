@@ -205,25 +205,27 @@ export function blurSearch() {
   return { type: ActionTypes.BLUR_SEARCH };
 }
 
-export function getNodesbyTopology(topoId, topologyOptions = makeMap()) {
+export function getNodesbyTopology(topologyId, topologyOptions = makeMap()) {
+  // debugger;
   return (dispatch, getState) => {
     const state = getState();
-    const topologyIds = [topoId];
-  state.get('topologyUrlsById')
-    .filter((_, topologyId) => topologyIds.includes(topologyId))
-    .reduce(
-      (sequence, topologyUrl, topologyId) => sequence
-        .then(() => {
+    // const topologyIds = [topoId];
+  // state.get('topologyUrlsById')
+    // .filter((_, topologyId) => topologyIds.includes(topologyId))
+    // .reduce(
+      // (sequence, topologyUrl, topologyId) => sequence
+        // .then(() => {
           const optionsQuery = buildUrlQuery(topologyOptions.get(topologyId), state);
-          return doRequest({ url: `${getApiPath()}${topologyUrl}?${optionsQuery}` });
-        })
+          // return doRequest({ url: `${getApiPath()}${topologyUrl}?${optionsQuery}` });
+          doRequest({ url: `${getApiPath()}/api/topology/${topologyId}?${optionsQuery}` })
         .then(json => {
           dispatch({
               nodes: json.nodes,
               topologyId,
               type: ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY
             })
-        }), Promise.resolve());
+        // }), Promise.resolve());
+      });
       }
  }
 
@@ -580,6 +582,14 @@ export function resumeTime() {
       }
     }
   };
+}
+
+export function receiveAllNodes() {
+  return (dispatch, getState) => {
+    getAllNodes(getState(), dispatch);
+    const nodes = getState().get('nodesByTopology');
+    dispatch(receiveNodes(nodes));
+  }
 }
 
 export function receiveNodes(nodes) {

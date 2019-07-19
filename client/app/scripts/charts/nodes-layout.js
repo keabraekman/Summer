@@ -18,7 +18,7 @@ export const DEFAULT_MARGINS = { left: 0, top: 0 };
 // Pretend the nodes are bigger than they are so that the edges would not enter
 // them under a high curvature which would cause arrow heads to be misplaced.
 const NODE_SIZE_FACTOR = 1.5 * NODE_BASE_SIZE;
-const NODE_SEPARATION_FACTOR = 1 * NODE_BASE_SIZE;
+const NODE_SEPARATION_FACTOR = 1.5 * NODE_BASE_SIZE;
 const RANK_SEPARATION_FACTOR = 2 * NODE_BASE_SIZE;
 const NODE_CENTERS_SEPARATION_FACTOR = NODE_SIZE_FACTOR + NODE_SEPARATION_FACTOR;
 let layoutRuns = 0;
@@ -88,15 +88,21 @@ function layoutSingleNodes(layout, opts) {
   const graphWidth = layout.graphWidth || layout.width;
   const aspectRatio = graphHeight ? graphWidth / graphHeight : 1;
 
+  ashSetGraphWidth(graphWidth);
+
   let { nodes } = layout;
 
   // 0-degree nodes
-  const singleNodes = nodes.filter(node => node.get('degree') === 0);
+
+  // const singleNodes = nodes.filter(node => node.get('degree') === 0);
+  const singleNodes = nodes;
 
   if (singleNodes.size) {
     let offsetX;
     let offsetY;
-    const nonSingleNodes = nodes.filter(node => node.get('degree') !== 0);
+    // const nonSingleNodes = nodes.filter(node => node.get('degree') !== 0);
+    const nonSingleNodes = makeMap();
+
     if (nonSingleNodes.size > 0) {
       if (aspectRatio < 1) {
         log('laying out single nodes to the right', aspectRatio);
@@ -185,7 +191,7 @@ function runLayoutEngine(graph, imNodes, imEdges, opts) {
       });
     }
   });
-
+  
   // remove nodes that are no longer there or are 0-degree nodes
   graph.nodes().forEach((gNodeId) => {
     const nodeId = fromGraphNodeId(gNodeId);
@@ -232,8 +238,9 @@ function runLayoutEngine(graph, imNodes, imEdges, opts) {
 
     edges = edges.setIn([graphEdgeMeta.id, 'points'], waypoints);
   });
-
+  
   const { width, height } = graph.graph();
+
   let layout = {
     edges,
     graphHeight: height,
@@ -263,6 +270,17 @@ function setSimpleEdgePoints(edge, nodeCache) {
     {x: source.get('x'), y: source.get('y')},
     {x: target.get('x'), y: target.get('y')}
   ]));
+}
+
+var totalWidth = 0;
+
+export function ashSetGraphWidth(graphWidth) {
+  totalWidth = graphWidth;
+  return 0;
+}
+export function ashGetGraphWidth()
+{
+  return totalWidth;
 }
 
 /**
