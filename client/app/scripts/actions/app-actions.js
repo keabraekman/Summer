@@ -187,7 +187,6 @@ export function updateSearch(searchQuery = '', pinnedSearches = []) {
 }
 
 export function focusSearch() {
-  console.log(8);
   return (dispatch, getState) => {
     dispatch({ type: ActionTypes.FOCUS_SEARCH });
     // update nodes cache to allow search across all topologies,
@@ -206,25 +205,27 @@ export function blurSearch() {
   return { type: ActionTypes.BLUR_SEARCH };
 }
 
-export function getNodesbyTopology(topoId, topologyOptions = makeMap()) {
+export function getNodesbyTopology(topologyId, topologyOptions = makeMap()) {
+  // debugger;
   return (dispatch, getState) => {
     const state = getState();
-    const topologyIds = [topoId];
-  state.get('topologyUrlsById')
-    .filter((_, topologyId) => topologyIds.includes(topologyId))
-    .reduce(
-      (sequence, topologyUrl, topologyId) => sequence
-        .then(() => {
+    // const topologyIds = [topoId];
+  // state.get('topologyUrlsById')
+    // .filter((_, topologyId) => topologyIds.includes(topologyId))
+    // .reduce(
+      // (sequence, topologyUrl, topologyId) => sequence
+        // .then(() => {
           const optionsQuery = buildUrlQuery(topologyOptions.get(topologyId), state);
-          return doRequest({ url: `${getApiPath()}${topologyUrl}?${optionsQuery}` });
-        })
+          // return doRequest({ url: `${getApiPath()}${topologyUrl}?${optionsQuery}` });
+          doRequest({ url: `${getApiPath()}/api/topology/${topologyId}?${optionsQuery}` })
         .then(json => {
           dispatch({
               nodes: json.nodes,
               topologyId,
               type: ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY
             })
-        }), Promise.resolve());
+        // }), Promise.resolve());
+      });
       }
  }
 

@@ -81,12 +81,10 @@ class NodesChart extends React.Component {
 function mapStateToProps(state) {
   return {
     selectedNodeId: state.get('selectedNodeId'),
-    clickBackground: clickBackground(),
-    nodes: state.get('nodes'),
   };
 }
 
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, { clickBackground }
 )(NodesChart);
