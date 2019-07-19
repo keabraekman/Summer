@@ -173,9 +173,7 @@ a {
 .hide {
   opacity: 0;
 }
-// breadcrumb {
 
-// }
 .scope-app, .terminal-app {
   -webkit-font-smoothing: antialiased;
   background: $body-background-color;
@@ -1432,6 +1430,7 @@ a {
   border-radius: $border-radius-soft;
   border: 1px solid transparent;
   pointer-events: none;
+  z-index: $layer-front;
 }
 
 .sidebar-gridmode {
@@ -1833,8 +1832,17 @@ a {
   position: static;
   overflow: auto;
   height: 100%;
-  bottom: 10px;
   line-height: 120%;
+  z-index: $layer-modal;
+  cursor: pointer;
+}
+
+.err-wrapper {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  bottom: 10px;
 }
 
 // Dashboard
@@ -1878,6 +1886,7 @@ a {
         
         .errors {
           position: relative;
+          min-width: 520px;
           margin: 5px;
           height: 80%;
           display: flex;
@@ -1931,9 +1940,10 @@ a {
   }
 }
 
-// breadcrumb
+//Breadcrumb
 
 .breadcrumb{
+  z-index: $layer-modal;
   background-color: $label-background-color;
   overflow-x: hidden;
   text-overflow: ellipsis;
@@ -1942,5 +1952,9 @@ a {
     font-size: $font-size-normal;
     float: none;
     display: inline;
+  }
+  .level{
+    // font-size: $font-size-tiny;
+    color: $color-blue-700;
   }
 }

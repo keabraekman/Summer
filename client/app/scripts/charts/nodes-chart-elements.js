@@ -161,7 +161,7 @@ class NodesChartElements extends React.Component {
         metric={node.get('metric')}
         focused={node.get('focused')}
         highlighted={node.get('highlighted')}
-        shape={shape}
+        shape={node.get('shape')}
         tag={node.get('tag')}
         stacked={node.get('stack')}
         key={node.get('id')}

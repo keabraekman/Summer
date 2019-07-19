@@ -10,7 +10,7 @@ import theme from 'weaveworks-ui-components/lib/theme';
 import ErrorBar from './error-bar';
 import FilterModal from './filter-modal';
 import Logo from './logo';
-// import Footer from './footer';
+import Footer from './footer';
 import Sidebar from './sidebar';
 import HelpPanel from './help-panel';
 import TroubleshootingMenu from './troubleshooting-menu';
@@ -37,7 +37,6 @@ import {
   setViewportDimensions,
   getTopologiesWithInitialPoll,
 } from '../actions/app-actions';
-import Breadcrumb from './Breadcrumb.js';
 import Details from './details';
 import Nodes from './nodes';
 import TimeControl from './time-control';
@@ -59,6 +58,9 @@ import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
   ESC_KEY_CODE,
 } from '../constants/key-codes';
+import Breadcrumb from './breadcrumb';
+import NodeDetailsRelativesLink from './node-details/node-details-relatives-link';
+import NodeDetailsRelatives from './node-details/node-details-relatives';
 
 const keyPressLog = debug('scope:app-key-press');
 
@@ -241,16 +243,21 @@ class App extends React.Component {
               <TimeControl />
             </div>
           </div>
+
           <Breadcrumb />
+          {/* <NodeDetailsRelatives /> */}
+          {/* <NodeDetailsRelativesLink /> */}
 
           <Nodes />
-
-          <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
+          <div className='err-wrapper'>
             {showingNetworkSelector && isGraphViewMode && <ErrorBar />}
             {isGraphViewMode && <ErrorBar />}
-          </Sidebar>
-
-          {/* <Footer /> */}
+          </div>
+          
+          {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
+            
+          </Sidebar> */}
+          <Footer />
 
           <Overlay faded={timeTravelTransitioning} />
         </div>

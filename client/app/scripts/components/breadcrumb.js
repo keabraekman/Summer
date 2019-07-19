@@ -4,77 +4,128 @@ import { statement } from '@babel/template';
 import { clickNode } from '../actions/app-actions';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { clickRelative } from '../actions/app-actions';
+import { trackAnalyticsEvent } from '../utils/tracking-utils';
+import MatchedText from './matched-text';
 
 export class BreadCrumb extends React.Component{
   getLabel(){
-    const details = this.props.details.toList().toJS()[0]
-    if(details){
-      if(details['details']){
-        return (details['details']['label'])
+    if(this.props.details.toList().toJS()[0]){
+      if(this.props.details.toList().toJS()[0]['details']){
+        // console.log(this.props.details.toList().toJS()[0]['details']['label'])
+        return (this.props.details.toList().toJS()[0]['details']['label'])
       }
     }
   }
 
+  handleClick(ev, id, topologyId) {
+    ev.preventDefault();
+    // trackAnalyticsEvent('scope.node.relative.click', {
+    //   topologyId: this.props.topologyId,
+    // });
+    this.props.clickRelative(
+      id,
+      topologyId,
+      // label
+      // this.props.id,
+      // this.props.topologyId,
+      // this.props.label,
+      // this.node.getBoundingClientRect()
+    );
+  }
+
+  saveNodeRef(ref) {
+    this.node = ref;
+  }
+
   makeBreadcrumb(level){
-    const details = this.props.details.toList().toJS()[0]
-    if(details){
-      if(details['details']){
-        if(details['details']['parents']){
+    if(this.props.details.toList().toJS()[0]){
+      if(this.props.details.toList().toJS()[0]['details']){
+        if(this.props.details.toList().toJS()[0]['details']['parents']){
+          // Keep if we get rid of processes breadcrumb
+          if(level == 'processes'){
+            return null;
+          }
           // the host is the last element in the array
-          if(level == 'pods'){
-            const parentsIndex = details['details']['parents'].length-1
+          else if(level == 'pods'){
+            let parents = this.props.details.toList().toJS()[0]['details']['parents']
+            let id = parents[parents.length-1]['id']
+            let topologyId = parents[parents.length-1]['topologyId']
             return(
               <div>
-              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][
-                parentsIndex
-              ]['label'].toString()}</a></BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem"
+              onClick={ev => this.handleClick(ev, id, topologyId)}
+              >
+                <span className = 'level'>Host :    </span> 
+              {parents[parents.length-1]['label'].toString()}
+              </BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem">
+                <span className = 'level'>Pod :       </span>
+                {this.getLabel()}
+                </BreadcrumbItem>
               </div>
             );
           }
           else if(level == 'containers'){
+            let parents = this.props.details.toList().toJS()[0]['details']['parents']
             return(
               <div>
-              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][2]['label']}</a></BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][1]['label']}</a></BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
+              <BreadcrumbItem 
+              className = "breadcrumbitem"
+              onClick={ev => this.handleClick(
+                ev,
+                parents[2]['id'], 
+                parents[2]['topologyId'])}
+                ref={this.saveNodeRef}>
+                <span className = 'level'>Host:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][2]['label']}
+                </BreadcrumbItem>
+              <BreadcrumbItem 
+              className = "breadcrumbitem"
+              onClick={ev => this.handleClick(
+                ev,
+                parents[1]['id'], 
+                parents[1]['topologyId'])}
+                ref={this.saveNodeRef}
+              ><span className = 'level'>Pod:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem">
+                <span className = 'level'>Container:   </span>{this.getLabel()}</BreadcrumbItem>
               </div>
             );
           }
-          else if(level == 'processes'){
-            if(details['details']['parents'][0] && details['details']['parents'][2]){
-              return(<div>
-                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][2]['label'].toString()}</a></BreadcrumbItem>
-                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][1]['label'].toString()}</a></BreadcrumbItem>
-                <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
-                </div>)
-            }
-            else{
-              return(
-                <div>
-                <BreadcrumbItem className = "breadcrumbitem"><a href=''>{details['details']['parents'][0]['label']}</a></BreadcrumbItem>
-                <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
-                </div>
-              );
-            }
-          }
+          // Commented out because we got rid of processes breadcrumb
+          // else if(level == 'processes'){
+          //   if(this.props.details.toList().toJS()[0]['details']['parents'][0] && this.props.details.toList().toJS()[0]['details']['parents'][2]){
+          //     return(<div>
+          //       <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][2]['label'].toString()}</a></BreadcrumbItem>
+          //       <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][1]['label'].toString()}</a></BreadcrumbItem>
+          //       <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
+          //       </div>)
+          //   }
+          //   else{
+          //     return(
+          //       <div>
+          //       <BreadcrumbItem className = "breadcrumbitem"><a href=''>{this.props.details.toList().toJS()[0]['details']['parents'][0]['label']}</a></BreadcrumbItem>
+          //       <BreadcrumbItem className = "breadcrumbitem" active>{this.getLabel()}</BreadcrumbItem>
+          //       </div>
+          //     );
+          //   }
+          // }
         }
-        else{
-          return(<BreadcrumbItem className = "breadcrumbitem">{this.getLabel()}</BreadcrumbItem>)
+        if(level != 'Processes'){
+          return(<BreadcrumbItem className = "breadcrumbitem"> <span className = 'level'> Host:   </span>{this.getLabel()}</BreadcrumbItem>)
         }
       }
     }
   }
 
   render() {
-    const details = this.props.details.toList().toJS()[0]
     let label = this.getLabel();
-    if(details){
-      if(details['details']){
+    if(this.props.details.toList().toJS()[0]){
+      if(this.props.details.toList().toJS()[0]['details']){
         return (
           <div>
             <Breadcrumb className = "breadcrumb">
-              {this.makeBreadcrumb(details['topologyId'])}
+              {this.makeBreadcrumb(this.props.details.toList().toJS()[0]['topologyId'])}
             </Breadcrumb>
           </div>
         );
@@ -100,5 +151,5 @@ function mapStatetoProps(state){
 
 export default connect(
  mapStatetoProps,
- { clickNode }
+ { clickRelative }
 )(BreadCrumb);

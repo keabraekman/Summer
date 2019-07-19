@@ -219,7 +219,7 @@ function runLayoutEngine(graph, imNodes, imEdges, opts) {
   graph.nodes().forEach((gNodeId) => {
     const graphNode = graph.node(gNodeId);
     const nodeId = fromGraphNodeId(gNodeId);
-    nodes = nodes.setIn([nodeId, 'x'], graphNode.x);
+    nodes = nodes.setIn([nodeId, 'x'], graphNode.x); //last value sets the x coordinate of the node
     nodes = nodes.setIn([nodeId, 'y'], graphNode.y);
   });
   graph.edges().forEach((graphEdge) => {
