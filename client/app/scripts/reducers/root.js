@@ -264,6 +264,8 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.SET_VIEW_MODE: {
+      state = state.set('viewingNodeId', null);
+      state = state.set('nodes', makeMap());     
       return state.set('topologyViewMode', action.viewMode);
     }
 
