@@ -390,16 +390,18 @@ function getTopologiesOnce(getState, dispatch) {
 function updateWebsocketChannel(getState, dispatch, forceRequest) {
   let topologyUrl;
   let topologyOptions;
-  if (isGraphViewModeSelector(getState())) {
-    // Specify web socket url to /containers
-    topologyUrl = '/api/topology/pods';
-  } else if (isDashboardViewModeSelector(getState())) {
-    topologyUrl = 'api/topology/hosts';
+  // if (isGraphViewModeSelector(getState())) {
+  //   // Specify web socket url to /containers
+  //   topologyUrl = '/api/topology/pods';
+  // } else if (isDashboardViewModeSelector(getState())) {
+    if (isDashboardViewModeSelector(getState()) || isGraphViewModeSelector(getState())) {
+    topologyUrl = '/api/topology/hosts';
   } else {
     topologyUrl = getCurrentTopologyUrl(getState());
     topologyOptions = activeTopologyOptionsSelector(getState());
   }
   const websocketUrl = buildWebsocketUrl(topologyUrl, topologyOptions, getState());
+  console.log(1);
   // Only recreate websocket if url changed or if forced (weave cloud instance reload);
   const isNewUrl = websocketUrl !== currentUrl;
   // `topologyUrl` can be undefined initially, so only create a socket if it is truthy
@@ -470,6 +472,7 @@ export function getTopologies(getState, dispatch, forceRequest) {
 }
 
 export function getNodes(getState, dispatch, forceRequest = false) {
+  console.log(2);
   if (isPausedSelector(getState()) || (isGraphViewModeSelector(getState()))) {
     getNodesOnce(getState, dispatch);
   } else if (isGraphViewModeSelector(getState()) || isDashboardViewModeSelector(getState())) {
