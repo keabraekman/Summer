@@ -205,6 +205,7 @@ export function blurSearch() {
   return { type: ActionTypes.BLUR_SEARCH };
 }
 
+<<<<<<< HEAD
 export function getNodesbyTopology(topoId, topologyOptions = makeMap()) {
   return (dispatch, getState) => {
     const state = getState();
@@ -226,6 +227,21 @@ export function getNodesbyTopology(topoId, topologyOptions = makeMap()) {
         }), Promise.resolve());
       }
  }
+=======
+export function getNodesbyTopology(topologyId) {
+  // debugger;
+  return (dispatch) => {
+    doRequest({ url: `${getApiPath()}/api/topology/${topologyId}` })
+      .then(json => {
+        dispatch({
+          nodes: json.nodes,
+          topologyId,
+          type: ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY
+        })
+    });
+  }
+}
+>>>>>>> master
 
 export function changeTopologyOption(option, value, topologyId, addOrRemove) {
   return (dispatch, getState) => {
