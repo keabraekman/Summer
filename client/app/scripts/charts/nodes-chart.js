@@ -54,8 +54,8 @@ class NodesChart extends React.Component {
     }
     else {
       console.log("Hi");
-      console.log(this.props.viewingNodeId);
-      clickNode(this.props.viewingNodeId)
+      // console.log(this.props.viewingNodeId);
+      // clickNode(this.props.viewingNodeId, "ashNode");
     }
   }
 
