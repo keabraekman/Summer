@@ -266,10 +266,15 @@ function getNodesOnce(getState, dispatch) {
   const topologyOptions = activeTopologyOptionsSelector(state);
   const optionsQuery = buildUrlQuery(topologyOptions, state);
   let url = `${getApiPath()}${topologyUrl}?${optionsQuery}`;
-  if (state.get('topologyViewMode') === "topo" && !state.get('viewingNodeId')) {
-    // option 1
-    url = `${getApiPath()}/api/topology/containers`;
-  } else if (state.get('topologyViewMode') === "topo" && state.get('viewingNodeId')) {
+  // if (state.get('topologyViewMode') === "topo" && !state.get('viewingNodeId')) {
+  //   // option 1
+  //   url = `${getApiPath()}/api/topology/containers`;
+  // } else if (state.get('topologyViewMode') === "topo" && state.get('viewingNodeId')) {
+    if (state.get('topologyViewMode') === "topo" && !state.get('viewingNodeId')) {
+      // if viewingNodeId is null, make an API request for hosts
+      url = `${getApiPath()}/api/topology/hosts`
+    }
+    if (state.get('topologyViewMode') === "topo" && state.get('viewingNodeId')) {
     // option 2
     const viewNodeId = state.get('viewingNodeId');
     const topo = getTopoFromId(viewNodeId);
@@ -288,36 +293,38 @@ function getNodesOnce(getState, dispatch) {
           _map[x.id] = x;
         });    
         dispatch(receiveNodes(_map));
+      // } else {
+        // dispatch(receiveNodes(findContainerParents(res.nodes)));
       } else {
-        dispatch(receiveNodes(findContainerParents(res.nodes)));
+        dispatch(receiveNodes(res.nodes));
       }
     },
     url
   })
 }
 
-function findContainerParents(containers) {
-  let returnObject = containers;
-  let parentMap = new Map();
-  for (var key in containers) {
-    if ("parents" in containers[key]) {
-      for (let i = 0; i < containers[key]["parents"].length; i++) {
-        let topo = getTopoFromId(containers[key]["parents"][i]["id"]);
-        if (topo == "hosts" || topo == "pods") {
-          parentMap[containers[key]["parents"][i]["id"]] = containers[key]["parents"][i];
-        }
-      }
-    } else {
-      // This property does not have "parents"
-      delete returnObject[key]
-    }
-  }
-  // Add values of parentMap to returnObject
-  for (var parent in parentMap) {
-    returnObject[parent] = parentMap[parent];
-  }
-  return returnObject;
-}
+// function findContainerParents(containers) {
+//   let returnObject = containers;
+//   let parentMap = new Map();
+//   for (var key in containers) {
+//     if ("parents" in containers[key]) {
+//       for (let i = 0; i < containers[key]["parents"].length; i++) {
+//         let topo = getTopoFromId(containers[key]["parents"][i]["id"]);
+//         if (topo == "hosts" || topo == "pods") {
+//           parentMap[containers[key]["parents"][i]["id"]] = containers[key]["parents"][i];
+//         }
+//       }
+//     } else {
+//       // This property does not have "parents"
+//       delete returnObject[key]
+//     }
+//   }
+//   // Add values of parentMap to returnObject
+//   for (var parent in parentMap) {
+//     returnObject[parent] = parentMap[parent];
+//   }
+//   return returnObject;
+// }
 
 /**
  * Gets nodes for all topologies (for search).
@@ -463,7 +470,7 @@ export function getTopologies(getState, dispatch, forceRequest) {
 }
 
 export function getNodes(getState, dispatch, forceRequest = false) {
-  if (isPausedSelector(getState()) || (getState().get("topologyViewMode") === "topo")) {
+  if (isPausedSelector(getState()) || (isGraphViewModeSelector(getState()))) {
     getNodesOnce(getState, dispatch);
   } else if (isGraphViewModeSelector(getState()) || isDashboardViewModeSelector(getState())) {
     getNodesOnce(getState, dispatch);
