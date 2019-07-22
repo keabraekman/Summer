@@ -37,6 +37,8 @@ class NodeDetails extends React.Component {
   }
 
   handleShowTopologyForNode = (ev) => {
+    // console.log('this.props.topId = ', this.props.topologyId)
+    // console.log('this.props.nodeId = ', this.props.nodeId)
     ev.preventDefault();
     this.props.clickShowTopologyForNode(this.props.topologyId, this.props.nodeId);
   }

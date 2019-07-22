@@ -410,6 +410,7 @@ function updateTopology(dispatch, getState) {
 }
 
 export function clickShowTopologyForNode(topologyId, nodeId) {
+  console.log('Click Show Topology FOr Node')
   return (dispatch, getState) => {
     dispatch({
       nodeId,
