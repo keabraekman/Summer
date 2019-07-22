@@ -7,6 +7,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { clickRelative } from '../actions/app-actions';
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import MatchedText from './matched-text';
+import {clickShowTopologyForNode} from '../actions/app-actions';
+import ActionTypes from '../constants/action-types';
+import {handleShowTopologyForNode} from './node-details'
+
 
 export class BreadCrumb extends React.Component{
   getLabel(){
@@ -20,19 +24,46 @@ export class BreadCrumb extends React.Component{
 
   handleClick(ev, id, topologyId) {
     ev.preventDefault();
-    // trackAnalyticsEvent('scope.node.relative.click', {
-    //   topologyId: this.props.topologyId,
-    // });
     this.props.clickRelative(
       id,
       topologyId,
-      // label
-      // this.props.id,
-      // this.props.topologyId,
-      // this.props.label,
-      // this.node.getBoundingClientRect()
     );
   }
+
+  // clickShowTopologyForNode(topologyId, nodeId) {
+  //   console.log('Click Show Topology FOr Node')
+  //   return (dispatch, getState) => {
+  //     dispatch({
+  //       nodeId,
+  //       topologyId,
+  //       type: ActionTypes.CLICK_SHOW_TOPOLOGY_FOR_NODE
+  //     });
+  //     updateTopology(dispatch, getState);
+  //   };
+  // }
+
+  handleShowTopologyForNode = (ev, topologyId, nodeId) => {
+    ev.preventDefault();
+    console.log('this.props.topId = ', topologyId)
+    console.log('this.props.nodeId = ', nodeId)
+    this.props.clickShowTopologyForNode(topologyId, nodeId);
+    // this.props.clickShowTopologyForNode(topologyId, nodeId);
+  }
+
+
+  // ORIGINAL HANDLECLICK
+  // handleClick(ev) {
+  //   ev.preventDefault();
+  //   trackAnalyticsEvent('scope.node.relative.click', {
+  //     topologyId: this.props.topologyId,
+  //   });
+  //   this.props.dispatch(clickRelative(
+  //     this.props.id,
+  //     this.props.topologyId,
+  //     this.props.label,
+  //     this.node.getBoundingClientRect()
+  //   ));
+  // }
 
   saveNodeRef(ref) {
     this.node = ref;
@@ -54,7 +85,8 @@ export class BreadCrumb extends React.Component{
             return(
               <div>
               <BreadcrumbItem className = "breadcrumbitem"
-              onClick={ev => this.handleClick(ev, id, topologyId)}
+              // onClick={ev => this.handleClick(ev,id, topologyId)}
+              onClick={ev => this.handleShowTopologyForNode(ev, topologyId, id)}
               >
                 <span className = 'level'>Host :    </span> 
               {parents[parents.length-1]['label'].toString()}
@@ -72,19 +104,21 @@ export class BreadCrumb extends React.Component{
               <div>
               <BreadcrumbItem 
               className = "breadcrumbitem"
-              onClick={ev => this.handleClick(
-                ev,
-                parents[2]['id'], 
-                parents[2]['topologyId'])}
+              onClick={ev => this.handleShowTopologyForNode(ev, parents[2]['topologyId'], parents[2]['id'])}
+              // onClick={ev => this.handleClick(
+              //   ev,
+              //   parents[2]['id'], 
+              //   parents[2]['topologyId'])}
                 ref={this.saveNodeRef}>
                 <span className = 'level'>Host:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][2]['label']}
                 </BreadcrumbItem>
               <BreadcrumbItem 
               className = "breadcrumbitem"
-              onClick={ev => this.handleClick(
-                ev,
-                parents[1]['id'], 
-                parents[1]['topologyId'])}
+              onClick={ev => this.handleShowTopologyForNode(ev, parents[1]['topologyId'], parents[1]['id'])}
+              // onClick={ev => this.handleClick(
+              //   ev,
+              //   parents[1]['id'], 
+              //   parents[1]['topologyId'])}
                 ref={this.saveNodeRef}
               ><span className = 'level'>Pod:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</BreadcrumbItem>
               <BreadcrumbItem className = "breadcrumbitem">
@@ -151,5 +185,5 @@ function mapStatetoProps(state){
 
 export default connect(
  mapStatetoProps,
- { clickRelative }
+ { clickRelative, clickShowTopologyForNode }
 )(BreadCrumb);
