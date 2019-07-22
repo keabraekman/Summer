@@ -13,7 +13,7 @@ import {
 
 import { getCurrentTopologyUrl } from '../utils/topology-utils';
 import { layersTopologyIdsSelector } from '../selectors/resource-view/layout';
-import { activeTopologyOptionsSelector, isGraphViewModeSelector, isDashboardViewModeSelector } from '../selectors/topology';
+import { activeTopologyOptionsSelector, isGraphViewModeSelector, isDashboardViewModeSelector, isTableViewModeSelector } from '../selectors/topology';
 import { isPausedSelector } from '../selectors/time-travel';
 
 import { API_REFRESH_INTERVAL, TOPOLOGY_REFRESH_INTERVAL } from '../constants/timer';
@@ -270,11 +270,11 @@ function getNodesOnce(getState, dispatch) {
   //   // option 1
   //   url = `${getApiPath()}/api/topology/containers`;
   // } else if (state.get('topologyViewMode') === "topo" && state.get('viewingNodeId')) {
-    if (state.get('topologyViewMode') === "topo" && !state.get('viewingNodeId')) {
+    if (isGraphViewModeSelector(state) && !state.get('viewingNodeId')) {
       // if viewingNodeId is null, make an API request for hosts
       url = `${getApiPath()}/api/topology/hosts`
     }
-    if (state.get('topologyViewMode') === "topo" && state.get('viewingNodeId')) {
+    if (isGraphViewModeSelector(state) && state.get('viewingNodeId')) {
     // option 2
     const viewNodeId = state.get('viewingNodeId');
     const topo = getTopoFromId(viewNodeId);
@@ -287,6 +287,7 @@ function getNodesOnce(getState, dispatch) {
       dispatch(receiveError(url));
     },
     success: (res) => {
+      console.log(8);
       if (state.get('viewingNodeId')) {
         let _map = {};
         res.node.children[0].nodes.map((x) => {
@@ -374,6 +375,7 @@ function pollTopologies(getState, dispatch, initialPoll = false) {
 }
 
 function getTopologiesOnce(getState, dispatch) {
+  console.log(9);
   const url = topologiesUrl(getState());
   doRequest({
     error: (req) => {
@@ -388,25 +390,31 @@ function getTopologiesOnce(getState, dispatch) {
 }
 
 function updateWebsocketChannel(getState, dispatch, forceRequest) {
+  console.log(12);
   let topologyUrl;
   let topologyOptions;
   // if (isGraphViewModeSelector(getState())) {
   //   // Specify web socket url to /containers
   //   topologyUrl = '/api/topology/pods';
   // } else if (isDashboardViewModeSelector(getState())) {
-    if (isDashboardViewModeSelector(getState()) || isGraphViewModeSelector(getState())) {
+  if (getState().get('viewingNodeId') === null || isDashboardViewModeSelector(getState())) {
     topologyUrl = '/api/topology/hosts';
   } else {
     topologyUrl = getCurrentTopologyUrl(getState());
-    topologyOptions = activeTopologyOptionsSelector(getState());
+    console.log(topologyUrl);
+    // topologyOptions = activeTopologyOptionsSelector(getState());
+    topologyOptions = makeMap();
+    console.log(topologyOptions);
   }
   const websocketUrl = buildWebsocketUrl(topologyUrl, topologyOptions, getState());
   console.log(1);
+  console.log(websocketUrl);
   // Only recreate websocket if url changed or if forced (weave cloud instance reload);
   const isNewUrl = websocketUrl !== currentUrl;
   // `topologyUrl` can be undefined initially, so only create a socket if it is truthy
   // and no socket exists, or if we get a new url.
   if (topologyUrl && (!socket || isNewUrl || forceRequest)) {
+    console.log(6);
     createWebsocket(websocketUrl, getState, dispatch);
     currentUrl = websocketUrl;
   }
@@ -464,6 +472,7 @@ export function getNodeDetails(getState, dispatch) {
 }
 
 export function getTopologies(getState, dispatch, forceRequest) {
+  console.log(10);
   if (isPausedSelector(getState())) {
     getTopologiesOnce(getState, dispatch);
   } else {
@@ -473,9 +482,9 @@ export function getTopologies(getState, dispatch, forceRequest) {
 
 export function getNodes(getState, dispatch, forceRequest = false) {
   console.log(2);
-  if (isPausedSelector(getState()) || (isGraphViewModeSelector(getState()))) {
+  if (isPausedSelector(getState())) {
     getNodesOnce(getState, dispatch);
-  } else if (isGraphViewModeSelector(getState()) || isDashboardViewModeSelector(getState())) {
+  } else if (isGraphViewModeSelector(getState()) || isDashboardViewModeSelector(getState()) || isTableViewModeSelector(getState())) {
     getNodesOnce(getState, dispatch);
     updateWebsocketChannel(getState, dispatch, forceRequest);
   } else {

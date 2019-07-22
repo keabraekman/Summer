@@ -20,7 +20,8 @@ import {
   graphExceedsComplexityThreshSelector,
   isResourceViewModeSelector,
   isGraphViewModeSelector,
-  isDashboardViewModeSelector
+  isDashboardViewModeSelector,
+  isTableViewModeSelector
 } from '../selectors/topology';
 import { isPausedSelector } from '../selectors/time-travel';
 import { activeTopologyZoomCacheKeyPathSelector } from '../selectors/zooming';
@@ -265,8 +266,10 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.SET_VIEW_MODE: {
-      state = state.set('viewingNodeId', null);
-      state = state.set('nodes', makeMap());     
+      console.log(3);
+      // state = state.set('viewingNodeId', null);
+      // possibly only do the below line if in table view
+      // state = state.set('nodes', makeMap());     
       return state.set('topologyViewMode', action.viewMode);
     }
 
@@ -595,7 +598,7 @@ export function rootReducer(state = initialState, action) {
       } else {
         topo = 'hosts'
       }
-      if (isGraphViewModeSelector(state) || isDashboardViewModeSelector(state)) {
+      if (isGraphViewModeSelector(state) || isDashboardViewModeSelector(state) || isTableViewModeSelector(state)) {
 
         if (action.delta.reset) {
           state = state.setIn(['nodesByTopology', topo], makeMap());
