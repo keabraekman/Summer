@@ -81,7 +81,7 @@ class NodeContainer extends React.Component {
     }
     else if (ashColorCode === 2)
     {
-      return rgb(135, 245, 153);
+      return rgb(177, 156, 217);
     }
     else if (ashColorCode === 3)
     {
