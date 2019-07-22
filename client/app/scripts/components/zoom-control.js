@@ -52,6 +52,9 @@ export default class ZoomControl extends React.Component {
   }
 
   render() {
+    
+    this.props.zoomAction(this.toZoomScale(this.getSliderValue() + CLICK_STEP));
+    
     const value = this.getSliderValue();
 
     return (

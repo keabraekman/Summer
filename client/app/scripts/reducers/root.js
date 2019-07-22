@@ -303,7 +303,6 @@ export function rootReducer(state = initialState, action) {
     case ActionTypes.CLICK_NODE: {
       const prevSelectedNodeId = state.get('selectedNodeId');
       const prevDetailsStackSize = state.get('nodeDetails').size;
-
       // click on sibling closes all
       state = closeAllNodeDetails(state);
       // select new node if it's not the same (in that case just delesect)

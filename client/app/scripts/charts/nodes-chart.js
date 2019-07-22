@@ -13,6 +13,7 @@ import {
 import { CONTENT_INCLUDED } from '../constants/naming';
 
 import { clickNode } from '../actions/app-actions';
+import { getTopoFromId } from '../utils/web-api-utils';
 
 
 const EdgeMarkerDefinition = ({ selectedNodeId }) => {
@@ -48,15 +49,17 @@ class NodesChart extends React.Component {
   //   }, 2000);
   // }
 
-  handleMouseClick() {
+  handleMouseClick = (ev) => {
+    ev.stopPropagation();
+
     if (this.props.selectedNodeId) {
       this.props.clickBackground();
     }
+
     else {
-      console.log("Hi");
-      // console.log(this.props.viewingNodeId);
-      // clickNode(this.props.viewingNodeId, "ashNode");
+      this.props.clickNode(this.props.viewingNodeId, "")
     }
+
   }
 
   renderContent(transform) {
@@ -92,8 +95,14 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch){
+  return {
+    clickBackground: () => dispatch(clickBackground()),
+    clickNode: (id, label, ev, topo) => dispatch(clickNode(id, label, ev, topo))
+  }
+}
 
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   { clickNode, clickBackground }
 )(NodesChart);

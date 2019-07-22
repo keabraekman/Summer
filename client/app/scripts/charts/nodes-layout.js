@@ -88,8 +88,6 @@ function layoutSingleNodes(layout, opts) {
   const graphWidth = layout.graphWidth || layout.width;
   const aspectRatio = graphHeight ? graphWidth / graphHeight : 1;
 
-  ashSetGraphWidth(graphWidth);
-
   let { nodes } = layout;
 
   // 0-degree nodes
@@ -270,17 +268,6 @@ function setSimpleEdgePoints(edge, nodeCache) {
     {x: source.get('x'), y: source.get('y')},
     {x: target.get('x'), y: target.get('y')}
   ]));
-}
-
-var totalWidth = 0;
-
-export function ashSetGraphWidth(graphWidth) {
-  totalWidth = graphWidth;
-  return 0;
-}
-export function ashGetGraphWidth()
-{
-  return totalWidth;
 }
 
 /**

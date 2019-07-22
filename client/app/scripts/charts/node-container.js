@@ -19,8 +19,6 @@ import { rgb } from 'polished';
 import { ashGetGraphWidth } from './nodes-layout';
 
 var ashColorCode = 0;
-var ashId = '';
-var ashLabel = '';
 
 class NodeContainer extends React.Component {
 
@@ -37,18 +35,6 @@ class NodeContainer extends React.Component {
     });
     this.props.clickNode(nodeId, this.props.label, this.ref.getBoundingClientRect());
   };
-
-  ashId(idString)
-  {
-    ashId = idString;
-    return idString;
-  }
-
-  ashLabel(labelString)
-  {
-    ashLabel = labelString;
-    return labelString;
-  }
 
   ashShape(ashShapeString)
   {
@@ -98,16 +84,6 @@ class NodeContainer extends React.Component {
     return rgb(177, 156, 217);
   }
 
-  ashX(x)
-  {
-    return x;
-  }
-
-  ashY(y)
-  {
-    return y;
-  }
-
   renderPrependedInfo = () => {
     const { showingNetworks, networks } = this.props;
     if (!showingNetworks) return null;
@@ -136,10 +112,10 @@ class NodeContainer extends React.Component {
 
     return (
       <GraphNode
-        id={this.ashId(this.props.id)}
+        id={this.props.id}
         shape={this.ashShape(this.props.shape)}
         tag={this.props.tag}
-        label={this.ashLabel(this.props.label)}
+        label={this.props.label}
         labelMinor={this.props.labelMinor}
         labelOffset={labelOffset}
         stacked={this.props.stacked}
