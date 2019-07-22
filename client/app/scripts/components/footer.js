@@ -42,8 +42,8 @@ class Footer extends React.Component {
 
     return (
       <div className="footer">
-        {/* <div className="footer-status">
-          {versionUpdate &&
+        <div className="footer-status">
+          {/* {versionUpdate &&
             <a
               className="footer-versionupdate"
               title={versionUpdateTitle}
@@ -52,12 +52,12 @@ class Footer extends React.Component {
               rel="noopener noreferrer">
               Update available: {versionUpdate.get('version')}
             </a>
-          }
-          <span className="footer-label">Version</span>
-          {version || '...'}
+          } */}
+          <span className="footer-label">VisualKube Version 1.0</span>
+          {/* {version || '...'}
           <span className="footer-label">on</span>
-          {hostname}
-        </div> */}
+          {hostname} */}
+        </div>
 
         {/* <div className="footer-plugins">
           <Plugins />

@@ -92,8 +92,10 @@ export class BreadCrumb extends React.Component{
               {parents[parents.length-1]['label'].toString()}
               </BreadcrumbItem>
               <BreadcrumbItem className = "breadcrumbitem">
+                <b>
                 <span className = 'level'>Pod :       </span>
                 {this.getLabel()}
+                </b>
                 </BreadcrumbItem>
               </div>
             );
@@ -121,8 +123,8 @@ export class BreadCrumb extends React.Component{
               //   parents[1]['topologyId'])}
                 ref={this.saveNodeRef}
               ><span className = 'level'>Pod:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</BreadcrumbItem>
-              <BreadcrumbItem className = "breadcrumbitem">
-                <span className = 'level'>Container:   </span>{this.getLabel()}</BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem"><b>
+                <span className = 'level'>Container:   </span>{this.getLabel()}</b></BreadcrumbItem>
               </div>
             );
           }
@@ -146,7 +148,7 @@ export class BreadCrumb extends React.Component{
           // }
         }
         if(level != 'Processes'){
-          return(<BreadcrumbItem className = "breadcrumbitem"> <span className = 'level'> Host:   </span>{this.getLabel()}</BreadcrumbItem>)
+          return(<BreadcrumbItem className = "breadcrumbitem"> <b> <span className = 'level'> Host:   </span>{this.getLabel()}</b></BreadcrumbItem>)
         }
       }
     }
@@ -159,7 +161,8 @@ export class BreadCrumb extends React.Component{
         return (
           <div>
             <Breadcrumb className = "breadcrumb">
-              {this.makeBreadcrumb(this.props.details.toList().toJS()[0]['topologyId'])}
+            {this.makeBreadcrumb(this.props.details.toList().toJS()[0]['topologyId'])}
+              {/* {this.makeBreadcrumb(this.props.details.toList().toJS()[0]['topologyId'])} */}
             </Breadcrumb>
           </div>
         );
