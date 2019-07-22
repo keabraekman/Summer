@@ -3,8 +3,3 @@ build-external/
 coverage/
 test/*png
 weave-scope.tgz
-<<<<<<< HEAD
-node_modules/
-=======
-# node_modules/
->>>>>>> master
