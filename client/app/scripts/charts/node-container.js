@@ -75,25 +75,27 @@ class NodeContainer extends React.Component {
 
   ashColor(rank, label, pseudo)
   {
-    if (ashColorCode === 1)
-    {
-      return rgb(112, 234, 251);
-    }
-    else if (ashColorCode === 2)
-    {
-      return rgb(135, 245, 153);
-    }
-    else if (ashColorCode === 3)
-    {
-      return rgb(173, 206, 255);
-    }
-    else if (ashColorCode === 4)
-    {
-      return rgb(151, 255, 205);
-    }
-    else {
-      return rgb(0,0,0);
-    }
+    // if (ashColorCode === 1)
+    // {
+    //   return rgb(112, 234, 251);
+    // }
+    // else if (ashColorCode === 2)
+    // {
+    //   return rgb(135, 245, 153);
+    // }
+    // else if (ashColorCode === 3)
+    // {
+    //   return rgb(173, 206, 255);
+    // }
+    // else if (ashColorCode === 4)
+    // {
+    //   return rgb(151, 255, 205);
+    // }
+    // else {
+    //   return rgb(0,0,0);
+    // }
+
+    return rgb(177, 156, 217);
   }
 
   ashX(x)

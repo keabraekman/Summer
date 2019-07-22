@@ -460,7 +460,7 @@ a {
   }
 
   .nodes-chart-elements .matched-results {
-    // background-color: $label-background-color;
+    background-color: $label-background-color;
     
   }
 
@@ -535,9 +535,18 @@ a {
   }
 }
 
+$border-radius-hard: 25px;
 
 #NodeJumbotron {
-  background-color: $color-gray-200;
+  width: 75%;
+  height: 75%;
+  position: absolute;
+  left: 15%;
+  top: 20%;
+  border-style: solid;
+  border-color: $color-ashPurple;
+  border-width: 5px;
+  border-radius: $border-radius-hard;
 }
 
 .node-details {
@@ -1849,22 +1858,38 @@ a {
   cursor: pointer;
 }
 
+.err-toggle {
+  background-color: $color-white;
+  opacity: 1;
+}
+
+$color-ashRed: 	#DC3545;
+
+.err-toggle:hover {
+  background-color: $color-ashRed;
+}
+
 .err-toggle-open {
   width: 348px;
   position: absolute;
-  bottom: 410px;
+  bottom: 195px;
+  
+  // position: relative;
+  // bottom: 10px;
 }
 
 .err-toggle-closed { 
   position: absolute;
   bottom: 10px;
+  width: 348px;
 }
 
 .err-wrapper {
   position: absolute;
   width: 350px;
-  height: 400px;
+  max-height: 180px;
   bottom: 10px;
+  overflow: auto;
 }
 
 // Dashboard
