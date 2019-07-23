@@ -60,6 +60,7 @@ import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
   ESC_KEY_CODE,
 } from '../constants/key-codes';
+import { nodesLoadedSelector } from '../selectors/node-filters';
 
 const keyPressLog = debug('scope:app-key-press');
 
@@ -249,12 +250,12 @@ class App extends React.Component {
           <Nodes />
         
           <div className='err-wrapper'>
-            {isGraphViewMode && <ErrorBar />}
+            {isGraphViewMode && this.props.nodesLoaded && <ErrorBar />}
             {/* {showingNetworkSelector && isGraphViewMode && <ErrorBar />} */}
             {/* {isGraphViewMode && <ErrorBar />} */}
           </div>
           
-          {isGraphViewMode && <ErrorToggle /> }
+          {isGraphViewMode && this.props.nodesLoaded && <ErrorToggle /> }
 
           {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
             
@@ -290,7 +291,8 @@ function mapStateToProps(state) {
     timeTravelSupported: timeTravelSupportedSelector(state),
     timeTravelTransitioning: state.get('timeTravelTransitioning'),
     topologyViewMode: state.get('topologyViewMode'),
-    urlState: getUrlState(state)
+    urlState: getUrlState(state),
+    nodesLoaded: nodesLoadedSelector(state)
   };
 }
 

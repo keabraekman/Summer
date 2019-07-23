@@ -36,7 +36,7 @@ import { getNodesbyTopology } from '../actions/app-actions';
          <div className="top">
            <div className="dash-status">
            <div className="title">
-              Errors:
+              Alerts:
             </div>
             <div className="errors">
               <ErrorBar />

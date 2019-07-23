@@ -535,6 +535,20 @@ a {
   }
 }
 
+$border-radius-hard: 25px;
+
+#NodeJumbotron {
+  width: 75%;
+  height: 75%;
+  position: absolute;
+  left: 15%;
+  top: 20%;
+  border-style: solid;
+  border-color: $color-ashPurple;
+  border-width: 5px;
+  border-radius: $border-radius-hard;
+}
+
 .node-details {
   height: 100%;
   width: $details-window-width;
@@ -1844,25 +1858,38 @@ a {
   cursor: pointer;
 }
 
+.err-toggle {
+  background-color: $color-white;
+  opacity: 1;
+}
+
+$color-ashRed: 	#DC3545;
+
+.err-toggle:hover {
+  background-color: $color-ashRed;
+}
+
 .err-toggle-open {
   width: 348px;
   position: absolute;
-  bottom: 410px;
+  bottom: 195px;
+  
+  // position: relative;
+  // bottom: 10px;
 }
 
 .err-toggle-closed { 
   position: absolute;
   bottom: 10px;
+  width: 348px;
 }
 
 .err-wrapper {
   position: absolute;
-  width: 400px;
-  max-height: 400px;
-  overflow: auto;
-  // height: 400px;
-  display: flex;
+  width: 350px;
+  max-height: 180px;
   bottom: 10px;
+  overflow: auto;
 }
 
 // Dashboard

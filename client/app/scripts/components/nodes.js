@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
 import NodesChart from '../charts/nodes-chart';
 import NodesGrid from '../charts/nodes-grid';
 import NodesResources from '../components/nodes-resources';
@@ -22,6 +21,7 @@ import {
 } from '../selectors/topology';
 
 import { TOPOLOGY_LOADER_DELAY } from '../constants/timer';
+import NodesJumbotron from './nodes-jumbotron';
 
 
 // TODO: The information that we already have available on the frontend should enable
@@ -73,11 +73,11 @@ class Nodes extends React.Component {
 
         {topologiesLoaded && nodesLoaded && this.renderConditionalEmptyTopologyError()}
 
-        {isGraphViewMode && <NodesChart />}
+        {/* {isGraphViewMode && <NodesChart />} */}
+        {isGraphViewMode && nodesLoaded && <NodesJumbotron/>}
         {isTableViewMode && <NodesGrid />}
         {isResourceViewMode && <NodesResources />}
         {nodesLoaded && isDashboardViewMode && <Dashboard />}
-        
       </div>
     );
   }

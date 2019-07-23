@@ -351,7 +351,7 @@ export function clickNode(nodeId, label, origin, topologyId = null) {
       label,
       nodeId,
       origin,
-      topologyId,
+      topologyId, 
       type: ActionTypes.CLICK_NODE,
     });
     updateRoute(getState);

@@ -19,8 +19,6 @@ import { rgb } from 'polished';
 import { ashGetGraphWidth } from './nodes-layout';
 
 var ashColorCode = 0;
-var ashId = '';
-var ashLabel = '';
 
 class NodeContainer extends React.Component {
 
@@ -37,18 +35,6 @@ class NodeContainer extends React.Component {
     });
     this.props.clickNode(nodeId, this.props.label, this.ref.getBoundingClientRect());
   };
-
-  ashId(idString)
-  {
-    ashId = idString;
-    return idString;
-  }
-
-  ashLabel(labelString)
-  {
-    ashLabel = labelString;
-    return labelString;
-  }
 
   ashShape(ashShapeString)
   {
@@ -75,35 +61,27 @@ class NodeContainer extends React.Component {
 
   ashColor(rank, label, pseudo)
   {
-    if (ashColorCode === 1)
-    {
-      return rgb(112, 234, 251);
-    }
-    else if (ashColorCode === 2)
-    {
-      return rgb(177, 156, 217);
-    }
-    else if (ashColorCode === 3)
-    {
-      return rgb(173, 206, 255);
-    }
-    else if (ashColorCode === 4)
-    {
-      return rgb(151, 255, 205);
-    }
-    else {
-      return rgb(0,0,0);
-    }
-  }
+    // if (ashColorCode === 1)
+    // {
+    //   return rgb(112, 234, 251);
+    // }
+    // else if (ashColorCode === 2)
+    // {
+    //   return rgb(135, 245, 153);
+    // }
+    // else if (ashColorCode === 3)
+    // {
+    //   return rgb(173, 206, 255);
+    // }
+    // else if (ashColorCode === 4)
+    // {
+    //   return rgb(151, 255, 205);
+    // }
+    // else {
+    //   return rgb(0,0,0);
+    // }
 
-  ashX(x)
-  {
-    return x;
-  }
-
-  ashY(y)
-  {
-    return y;
+    return rgb(177, 156, 217);
   }
 
   renderPrependedInfo = () => {
@@ -134,10 +112,10 @@ class NodeContainer extends React.Component {
 
     return (
       <GraphNode
-        id={this.ashId(this.props.id)}
+        id={this.props.id}
         shape={this.ashShape(this.props.shape)}
         tag={this.props.tag}
-        label={this.ashLabel(this.props.label)}
+        label={this.props.label}
         labelMinor={this.props.labelMinor}
         labelOffset={labelOffset}
         stacked={this.props.stacked}
