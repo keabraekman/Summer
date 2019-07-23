@@ -3,4 +3,4 @@ build-external/
 coverage/
 test/*png
 weave-scope.tgz
-node_modules
+node_modules/
