@@ -61,7 +61,7 @@ class NodeDetails extends React.Component {
               title={topologyTitle}
               className="fa fa-long-arrow-alt-left"
               onClick={this.handleShowTopologyForNode}>
-              <span>Inspect Contents</span>
+              {/* <span>Inspect Contents</span> */}
             </i>
           }
           <i
