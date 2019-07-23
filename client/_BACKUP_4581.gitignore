@@ -1,0 +1,10 @@
+build/
+build-external/
+coverage/
+test/*png
+weave-scope.tgz
+<<<<<<< HEAD
+node_modules
+=======
+node_modules/
+>>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848

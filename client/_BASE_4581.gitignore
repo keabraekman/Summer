@@ -1,0 +1,5 @@
+build/
+build-external/
+coverage/
+test/*png
+weave-scope.tgz
