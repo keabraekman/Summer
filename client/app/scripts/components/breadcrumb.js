@@ -12,6 +12,8 @@ import ActionTypes from '../constants/action-types';
 import {handleShowTopologyForNode} from './node-details';
 import {getTopoFromId} from '../utils/web-api-utils';
 
+// import {handleShowTopologyForNode} from '../actions/app-actions'
+
 export class BreadCrumb extends React.Component{
   getLabel(){
     if(this.props.details.toList().toJS()[0]){
@@ -30,14 +32,18 @@ export class BreadCrumb extends React.Component{
     );
   }
 
-
-  handleShowTopologyForNode = (ev, topologyId, nodeId) => {
+  handleShowTopologyForNode = (ev) => {
     ev.preventDefault();
-    console.log('this.props.topId = ', topologyId)
-    console.log('this.props.nodeId = ', nodeId)
-    this.props.clickShowTopologyForNode(topologyId, nodeId);
-    // this.props.clickShowTopologyForNode(topologyId, nodeId);
+    this.props.clickShowTopologyForNode(this.props.topologyId, this.props.nodeId);
   }
+
+  // handleShowTopologyForNode = (ev, topologyId, nodeId) => {
+  //   ev.preventDefault();
+  //   console.log('this.props.topId = ', topologyId)
+  //   console.log('this.props.nodeId = ', nodeId)
+  //   this.props.clickShowTopologyForNode(topologyId, nodeId);
+  //   // this.props.clickShowTopologyForNode(topologyId, nodeId);
+  // }
 
   saveNodeRef(ref) {
     this.node = ref;
@@ -60,7 +66,8 @@ export class BreadCrumb extends React.Component{
               <div>
               <BreadcrumbItem className = "breadcrumbitem"
               // onClick={ev => this.handleClick(ev,id, topologyId)}
-              onClick={ev => this.handleShowTopologyForNode(ev, topologyId, id)}
+              onClick={ev => this.handleShowTopologyForNode(ev)}
+              // onClick={ev => this.handleShowTopologyForNode(ev, topologyId, id)}
               >
                 <span className = 'level'>Host :    </span> 
               {parents[parents.length-1]['label'].toString()}
@@ -80,7 +87,8 @@ export class BreadCrumb extends React.Component{
               <div>
               <BreadcrumbItem 
               className = "breadcrumbitem"
-              onClick={ev => this.handleShowTopologyForNode(ev, parents[2]['topologyId'], parents[2]['id'])}
+              onClick={ev => this.handleShowTopologyForNode(ev)}
+              // onClick={ev => this.handleShowTopologyForNode(ev, parents[2]['topologyId'], parents[2]['id'])}
               // onClick={ev => this.handleClick(
               //   ev,
               //   parents[2]['id'], 
@@ -90,7 +98,8 @@ export class BreadCrumb extends React.Component{
                 </BreadcrumbItem>
               <BreadcrumbItem 
               className = "breadcrumbitem"
-              onClick={ev => this.handleShowTopologyForNode(ev, parents[1]['topologyId'], parents[1]['id'])}
+              onClick={ev => this.handleShowTopologyForNode(ev)}
+              // onClick={ev => this.handleShowTopologyForNode(ev, parents[1]['topologyId'], parents[1]['id'])}
               // onClick={ev => this.handleClick(
               //   ev,
               //   parents[1]['id'], 
@@ -141,11 +150,11 @@ export class BreadCrumb extends React.Component{
 function mapStatetoProps(state){
     return {
    state: state,
-   details : state.get('nodeDetails')
+   details : state.get('nodeDetails'),
     };
 }
 
 export default connect(
  mapStatetoProps,
- { clickRelative, clickShowTopologyForNode }
+ { clickRelative, clickShowTopologyForNode, handleShowTopologyForNode }
 )(BreadCrumb);
