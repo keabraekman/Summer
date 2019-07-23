@@ -19,7 +19,9 @@ import {
 import {
   graphExceedsComplexityThreshSelector,
   isResourceViewModeSelector,
-  isGraphViewModeSelector
+  isGraphViewModeSelector,
+  isDashboardViewModeSelector,
+  isTableViewModeSelector
 } from '../selectors/topology';
 import { isPausedSelector } from '../selectors/time-travel';
 import { activeTopologyZoomCacheKeyPathSelector } from '../selectors/zooming';
@@ -264,8 +266,10 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.SET_VIEW_MODE: {
-      state = state.set('viewingNodeId', null);
-      state = state.set('nodes', makeMap());     
+      console.log(3);
+      // state = state.set('viewingNodeId', null);
+      // possibly only do the below line if in table view
+      // state = state.set('nodes', makeMap());     
       return state.set('topologyViewMode', action.viewMode);
     }
 
@@ -587,31 +591,63 @@ export function rootReducer(state = initialState, action) {
         'add', size(action.delta.add),
         'reset', action.delta.reset
       );
-
-      if (action.delta.reset) {
-        state = state.set('nodes', makeMap());
+      let topo;
+      if (isGraphViewModeSelector(state)) {
+        topo = 'pods'
+      } else {
+        topo = 'hosts'
       }
+      if (isGraphViewModeSelector(state) || isDashboardViewModeSelector(state) || isTableViewModeSelector(state)) {
 
-      // remove nodes that no longer exist
-      each(action.delta.remove, (nodeId) => {
-        state = state.deleteIn(['nodes', nodeId]);
-      });
-
-      // update existing nodes
-      each(action.delta.update, (node) => {
-        if (state.hasIn(['nodes', node.id])) {
-          // TODO: Implement a manual deep update here, as it might bring a great benefit
-          // to our nodes selectors (e.g. layout engine would be completely bypassed if the
-          // adjacencies would stay the same but the metrics would get updated).
-          state = state.setIn(['nodes', node.id], fromJS(node));
+        if (action.delta.reset) {
+          state = state.setIn(['nodesByTopology', topo], makeMap());
         }
-      });
+  
+        // remove nodes that no longer exist
+        each(action.delta.remove, (nodeId) => {
+          state = state.deleteIn(['nodesByTopology', topo, nodeId]);
+        });
+  
+        // update existing nodes
+        each(action.delta.update, (node) => {
+          if (state.hasIn(['nodesByTopology', topo, node.id])) {
+            // TODO: Implement a manual deep update here, as it might bring a great benefit
+            // to our nodes selectors (e.g. layout engine would be completely bypassed if the
+            // adjacencies would stay the same but the metrics would get updated).
+            state = state.setIn(['nodesByTopology', topo, node.id], fromJS(node));
+          }
+        });
+  
+        // add new nodes
+        each(action.delta.add, (node) => {
+          state = state.setIn(['nodesByTopology', topo, node.id], fromJS(node));
+        });
+  
+      } else {
+        if (action.delta.reset) {
+          state = state.set('nodes', makeMap());
+        }
 
-      // add new nodes
-      each(action.delta.add, (node) => {
-        state = state.setIn(['nodes', node.id], fromJS(node));
-      });
+        // remove nodes that no longer exist
+        each(action.delta.remove, (nodeId) => {
+          state = state.deleteIn(['nodes', nodeId]);
+        });
 
+        // update existing nodes
+        each(action.delta.update, (node) => {
+          if (state.hasIn(['nodes', node.id])) {
+            // TODO: Implement a manual deep update here, as it might bring a great benefit
+            // to our nodes selectors (e.g. layout engine would be completely bypassed if the
+            // adjacencies would stay the same but the metrics would get updated).
+            state = state.setIn(['nodes', node.id], fromJS(node));
+          }
+        });
+
+        // add new nodes
+        each(action.delta.add, (node) => {
+          state = state.setIn(['nodes', node.id], fromJS(node));
+        });
+        }
       return updateStateFromNodes(state);
     }
 

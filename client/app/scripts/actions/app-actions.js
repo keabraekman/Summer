@@ -205,29 +205,19 @@ export function blurSearch() {
   return { type: ActionTypes.BLUR_SEARCH };
 }
 
-export function getNodesbyTopology(topologyId, topologyOptions = makeMap()) {
+export function getNodesbyTopology(topologyId) {
   // debugger;
-  return (dispatch, getState) => {
-    const state = getState();
-    // const topologyIds = [topoId];
-  // state.get('topologyUrlsById')
-    // .filter((_, topologyId) => topologyIds.includes(topologyId))
-    // .reduce(
-      // (sequence, topologyUrl, topologyId) => sequence
-        // .then(() => {
-          const optionsQuery = buildUrlQuery(topologyOptions.get(topologyId), state);
-          // return doRequest({ url: `${getApiPath()}${topologyUrl}?${optionsQuery}` });
-          doRequest({ url: `${getApiPath()}/api/topology/${topologyId}?${optionsQuery}` })
-        .then(json => {
-          dispatch({
-              nodes: json.nodes,
-              topologyId,
-              type: ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY
-            })
-        // }), Promise.resolve());
-      });
-      }
- }
+  return (dispatch) => {
+    doRequest({ url: `${getApiPath()}/api/topology/${topologyId}` })
+      .then(json => {
+        dispatch({
+          nodes: json.nodes,
+          topologyId,
+          type: ActionTypes.RECEIVE_NODES_FOR_TOPOLOGY
+        })
+    });
+  }
+}
 
 export function changeTopologyOption(option, value, topologyId, addOrRemove) {
   return (dispatch, getState) => {

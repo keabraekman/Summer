@@ -9,7 +9,6 @@ import { getNodesbyTopology } from '../actions/app-actions';
   
   class Dashboard extends React.Component {
   componentDidMount() {
-    console.log(17);  
     this.props.getNodesbyTopology("hosts");
   }
   

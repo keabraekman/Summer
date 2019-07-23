@@ -81,30 +81,6 @@ export class ErrorBar extends React.Component {
     changeVisibility = changeVisibility.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getNodesbyTopology("pods");
-  }
-
-  makeToastable(data){
-    var temp = data;
-    if(this.error_data.length === 0){
-      this.toastable_data.add = data;
-    }
-    else if(data.length === 0){
-      this.toastable_data.remove = this.error_data;
-    }
-    else {
-      for(var key in temp){
-        if(this.error_data[key]){
-          delete this.error_data[key];
-          delete temp[key];
-        }
-      }
-      this.toastable_data.add = temp;
-      this.toastable_data.remove = this.error_data;
-    }
-    this.error_data = data;
-  }
   onClickErr(ev, node, nodes) {
     trackAnalyticsEvent('scope.node.click', {
       layout: GRAPH_VIEW_MODE,
