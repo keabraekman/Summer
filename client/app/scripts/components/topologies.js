@@ -6,6 +6,7 @@ import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import { searchMatchCountByTopologySelector } from '../selectors/search';
 import { isResourceViewModeSelector } from '../selectors/topology';
 import { clickTopology } from '../actions/app-actions';
+import { getTopoFromId } from '../utils/web-api-utils';
 
 
 function basicTopologyInfo(topology, searchMatchCount) {
@@ -21,7 +22,6 @@ function basicTopologyInfo(topology, searchMatchCount) {
 
 class Topologies extends React.Component {
   onTopologyClick = (ev, topology) => {
-    console.log(11);
     ev.preventDefault();
     trackAnalyticsEvent('scope.topology.selector.click', {
       parentTopologyId: topology.get('parentId'),
@@ -58,8 +58,11 @@ class Topologies extends React.Component {
   }
 
   renderTopology(topology) {
+    const { viewingNodeId } = this.props;
     const topologyId = topology.get('id');
-    const isActive = topology === this.props.currentTopology;
+    // this topology is considered active if it is the current topology, 
+    // or the topology is that of the children of the current viewingNode
+    const isActive = topology === this.props.currentTopology && !viewingNodeId;
     const searchMatchCount = this.props.searchMatchCountByTopology.get(topology.get('id')) || 0;
     const className = classnames(`tour-step-anchor topologies-item-main topologies-item-${topologyId}`, {
       'topologies-item-main-active': isActive,
@@ -102,6 +105,7 @@ function mapStateToProps(state) {
     isResourceViewMode: isResourceViewModeSelector(state),
     searchMatchCountByTopology: searchMatchCountByTopologySelector(state),
     topologies: state.get('topologies'),
+    viewingNodeId: state.get('viewingNodeId')
   };
 }
 
