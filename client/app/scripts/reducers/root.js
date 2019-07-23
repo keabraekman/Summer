@@ -20,7 +20,12 @@ import {
   graphExceedsComplexityThreshSelector,
   isResourceViewModeSelector,
   isGraphViewModeSelector,
+<<<<<<< HEAD
   isDashboardViewModeSelector
+=======
+  isDashboardViewModeSelector,
+  isTableViewModeSelector
+>>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
 } from '../selectors/topology';
 import { isPausedSelector } from '../selectors/time-travel';
 import { activeTopologyZoomCacheKeyPathSelector } from '../selectors/zooming';
@@ -265,8 +270,10 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.SET_VIEW_MODE: {
-      state = state.set('viewingNodeId', null);
-      state = state.set('nodes', makeMap());     
+      console.log(3);
+      // state = state.set('viewingNodeId', null);
+      // possibly only do the below line if in table view
+      // state = state.set('nodes', makeMap());     
       return state.set('topologyViewMode', action.viewMode);
     }
 
@@ -304,7 +311,6 @@ export function rootReducer(state = initialState, action) {
     case ActionTypes.CLICK_NODE: {
       const prevSelectedNodeId = state.get('selectedNodeId');
       const prevDetailsStackSize = state.get('nodeDetails').size;
-
       // click on sibling closes all
       state = closeAllNodeDetails(state);
       // select new node if it's not the same (in that case just delesect)
@@ -595,7 +601,11 @@ export function rootReducer(state = initialState, action) {
       } else {
         topo = 'hosts'
       }
+<<<<<<< HEAD
       if (isGraphViewModeSelector(state) || isDashboardViewModeSelector(state)) {
+=======
+      if (isGraphViewModeSelector(state) || isDashboardViewModeSelector(state) || isTableViewModeSelector(state)) {
+>>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
 
         if (action.delta.reset) {
           state = state.setIn(['nodesByTopology', topo], makeMap());

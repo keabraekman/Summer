@@ -50,6 +50,24 @@ export class BreadCrumb extends React.Component{
     // this.props.clickShowTopologyForNode(topologyId, nodeId);
   }
 
+<<<<<<< HEAD
+=======
+
+  // ORIGINAL HANDLECLICK
+  // handleClick(ev) {
+  //   ev.preventDefault();
+  //   trackAnalyticsEvent('scope.node.relative.click', {
+  //     topologyId: this.props.topologyId,
+  //   });
+  //   this.props.dispatch(clickRelative(
+  //     this.props.id,
+  //     this.props.topologyId,
+  //     this.props.label,
+  //     this.node.getBoundingClientRect()
+  //   ));
+  // }
+
+>>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
   saveNodeRef(ref) {
     this.node = ref;
   }
@@ -77,10 +95,15 @@ export class BreadCrumb extends React.Component{
               {parents[parents.length-1]['label'].toString()}
               </BreadcrumbItem>
               <BreadcrumbItem className = "breadcrumbitem">
+<<<<<<< HEAD
                 <b>
                 <span className = 'level'>Pod :       </span>
                 {this.getLabel()}
                 </b>
+=======
+                <span className = 'level'>Pod :       </span>
+                {this.getLabel()}
+>>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
                 </BreadcrumbItem>
               </div>
             );
@@ -109,9 +132,13 @@ export class BreadCrumb extends React.Component{
                 ref={this.saveNodeRef}
               ><span className = 'level'>Pod:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</BreadcrumbItem>
               <BreadcrumbItem className = "breadcrumbitem">
+<<<<<<< HEAD
                 <b>
                 <span className = 'level'>Container:   </span>{this.getLabel()}
                 </b></BreadcrumbItem>
+=======
+                <span className = 'level'>Container:   </span>{this.getLabel()}</BreadcrumbItem>
+>>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
               </div>
             );
           }
@@ -135,7 +162,11 @@ export class BreadCrumb extends React.Component{
           // }
         }
         if(level != 'Processes'){
+<<<<<<< HEAD
           return(<BreadcrumbItem className = "breadcrumbitem"> <b><span className = 'level'> Host:   </span>{this.getLabel()}</b></BreadcrumbItem>)
+=======
+          return(<BreadcrumbItem className = "breadcrumbitem"> <span className = 'level'> Host:   </span>{this.getLabel()}</BreadcrumbItem>)
+>>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
         }
       }
     }

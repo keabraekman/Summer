@@ -12,6 +12,9 @@ import {
 
 import { CONTENT_INCLUDED } from '../constants/naming';
 
+import { clickNode } from '../actions/app-actions';
+import { getTopoFromId } from '../utils/web-api-utils';
+
 
 const EdgeMarkerDefinition = ({ selectedNodeId }) => {
   const markerOffset = selectedNodeId ? '35' : '40';
@@ -46,17 +49,24 @@ class NodesChart extends React.Component {
   //   }, 2000);
   // }
 
-  handleMouseClick() {
+  handleMouseClick = (ev) => {
+    ev.stopPropagation();
+
     if (this.props.selectedNodeId) {
       this.props.clickBackground();
     }
+
+    else {
+      this.props.clickNode(this.props.viewingNodeId, "")
+    }
+
   }
 
   renderContent(transform) {
     return (
       <g transform={transformToString(transform)}>
-        <EdgeMarkerDefinition selectedNodeId={this.props.selectedNodeId} />
-        <NodesChartElements />
+          <EdgeMarkerDefinition selectedNodeId={this.props.selectedNodeId} />
+          <NodesChartElements />
       </g>
     );
   }
@@ -81,10 +91,18 @@ class NodesChart extends React.Component {
 function mapStateToProps(state) {
   return {
     selectedNodeId: state.get('selectedNodeId'),
+    viewingNodeId: state.get('viewingNodeId'),
   };
 }
 
+function mapDispatchToProps(dispatch){
+  return {
+    clickBackground: () => dispatch(clickBackground()),
+    clickNode: (id, label, ev, topo) => dispatch(clickNode(id, label, ev, topo))
+  }
+}
 
 export default connect(
-  mapStateToProps, { clickBackground }
+  mapStateToProps,
+  { clickNode, clickBackground }
 )(NodesChart);

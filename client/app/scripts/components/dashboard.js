@@ -9,7 +9,6 @@ import { getNodesbyTopology } from '../actions/app-actions';
   
   class Dashboard extends React.Component {
   componentDidMount() {
-    console.log(17);  
     this.props.getNodesbyTopology("hosts");
   }
   
@@ -37,7 +36,7 @@ import { getNodesbyTopology } from '../actions/app-actions';
          <div className="top">
            <div className="dash-status">
            <div className="title">
-              Errors:
+              Alerts:
             </div>
             <div className="errors">
               <ErrorBar />

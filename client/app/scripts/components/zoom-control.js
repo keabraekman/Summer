@@ -52,6 +52,7 @@ export default class ZoomControl extends React.Component {
   }
 
   render() {
+
     const value = this.getSliderValue();
 
     return (
