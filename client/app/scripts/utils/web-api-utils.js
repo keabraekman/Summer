@@ -13,11 +13,7 @@ import {
 
 import { getCurrentTopologyUrl } from '../utils/topology-utils';
 import { layersTopologyIdsSelector } from '../selectors/resource-view/layout';
-<<<<<<< HEAD
-import { activeTopologyOptionsSelector, isGraphViewModeSelector, isDashboardViewModeSelector } from '../selectors/topology';
-=======
 import { activeTopologyOptionsSelector, isGraphViewModeSelector, isDashboardViewModeSelector, isTableViewModeSelector } from '../selectors/topology';
->>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
 import { isPausedSelector } from '../selectors/time-travel';
 
 import { API_REFRESH_INTERVAL, TOPOLOGY_REFRESH_INTERVAL } from '../constants/timer';
@@ -397,20 +393,12 @@ function updateWebsocketChannel(getState, dispatch, forceRequest) {
   console.log(12);
   let topologyUrl;
   let topologyOptions;
-<<<<<<< HEAD
-  if (isGraphViewModeSelector(getState())) {
-    // Specify web socket url to /containers
-    topologyUrl = '/api/topology/pods';
-  } else if (isDashboardViewModeSelector(getState())) {
-    topologyUrl = 'api/topology/hosts';
-=======
   // if (isGraphViewModeSelector(getState())) {
   //   // Specify web socket url to /containers
   //   topologyUrl = '/api/topology/pods';
   // } else if (isDashboardViewModeSelector(getState())) {
   if (getState().get('viewingNodeId') === null || isDashboardViewModeSelector(getState())) {
     topologyUrl = '/api/topology/hosts';
->>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
   } else {
     topologyUrl = getCurrentTopologyUrl(getState());
     console.log(topologyUrl);
@@ -498,11 +486,6 @@ export function getNodes(getState, dispatch, forceRequest = false) {
     getNodesOnce(getState, dispatch);
   } else if (isGraphViewModeSelector(getState()) || isDashboardViewModeSelector(getState()) || isTableViewModeSelector(getState())) {
     getNodesOnce(getState, dispatch);
-<<<<<<< HEAD
-  } else if (isGraphViewModeSelector(getState()) || isDashboardViewModeSelector(getState())) {
-    getNodesOnce(getState, dispatch);
-=======
->>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
     updateWebsocketChannel(getState, dispatch, forceRequest);
   } else {
     updateWebsocketChannel(getState, dispatch, forceRequest);

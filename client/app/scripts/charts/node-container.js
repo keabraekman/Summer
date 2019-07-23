@@ -61,37 +61,6 @@ class NodeContainer extends React.Component {
 
   ashColor(rank, label, pseudo)
   {
-<<<<<<< HEAD
-    if (ashColorCode === 1)
-    {
-      return rgb(112, 234, 251);
-    }
-    else if (ashColorCode === 2)
-    {
-      return rgb(177, 156, 217);
-    }
-    else if (ashColorCode === 3)
-    {
-      return rgb(173, 206, 255);
-    }
-    else if (ashColorCode === 4)
-    {
-      return rgb(151, 255, 205);
-    }
-    else {
-      return rgb(0,0,0);
-    }
-  }
-
-  ashX(x)
-  {
-    return x;
-  }
-
-  ashY(y)
-  {
-    return y;
-=======
     // if (ashColorCode === 1)
     // {
     //   return rgb(112, 234, 251);
@@ -113,7 +82,6 @@ class NodeContainer extends React.Component {
     // }
 
     return rgb(177, 156, 217);
->>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
   }
 
   renderPrependedInfo = () => {

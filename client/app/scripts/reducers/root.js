@@ -20,12 +20,8 @@ import {
   graphExceedsComplexityThreshSelector,
   isResourceViewModeSelector,
   isGraphViewModeSelector,
-<<<<<<< HEAD
-  isDashboardViewModeSelector
-=======
   isDashboardViewModeSelector,
   isTableViewModeSelector
->>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
 } from '../selectors/topology';
 import { isPausedSelector } from '../selectors/time-travel';
 import { activeTopologyZoomCacheKeyPathSelector } from '../selectors/zooming';
@@ -601,11 +597,7 @@ export function rootReducer(state = initialState, action) {
       } else {
         topo = 'hosts'
       }
-<<<<<<< HEAD
-      if (isGraphViewModeSelector(state) || isDashboardViewModeSelector(state)) {
-=======
       if (isGraphViewModeSelector(state) || isDashboardViewModeSelector(state) || isTableViewModeSelector(state)) {
->>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
 
         if (action.delta.reset) {
           state = state.setIn(['nodesByTopology', topo], makeMap());

@@ -60,13 +60,9 @@ import { VIEWPORT_RESIZE_DEBOUNCE_INTERVAL } from '../constants/timer';
 import {
   ESC_KEY_CODE,
 } from '../constants/key-codes';
-<<<<<<< HEAD
 import Breadcrumb from './breadcrumb';
 import NodeDetailsRelativesLink from './node-details/node-details-relatives-link';
 import NodeDetailsRelatives from './node-details/node-details-relatives';
-=======
-import { nodesLoadedSelector } from '../selectors/node-filters';
->>>>>>> 3e4b844206ea807b8e1786c29a5552a929815848
 
 const keyPressLog = debug('scope:app-key-press');
 
@@ -302,7 +298,7 @@ function mapStateToProps(state) {
     timeTravelTransitioning: state.get('timeTravelTransitioning'),
     topologyViewMode: state.get('topologyViewMode'),
     urlState: getUrlState(state),
-    nodesLoaded: nodesLoadedSelector(state)
+    // nodesLoaded: nodesLoadedSelector(state)
   };
 }
 

@@ -53,7 +53,7 @@ class NodeDetails extends React.Component {
   renderTools() {
     const showSwitchTopology = this.props.nodeId !== this.props.viewingNodeId;
     const topologyTitle = `View ${this.props.label} in ${this.props.topologyId}`;
-    if(this.props.topologyId != 'processes'){
+    if(getTopoFromId(this.props.id) != 'processes'){
       return (
         <div className="node-details-tools-wrapper">
           <div className="node-details-tools">
