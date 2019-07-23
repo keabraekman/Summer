@@ -50,21 +50,6 @@ export class BreadCrumb extends React.Component{
     // this.props.clickShowTopologyForNode(topologyId, nodeId);
   }
 
-
-  // ORIGINAL HANDLECLICK
-  // handleClick(ev) {
-  //   ev.preventDefault();
-  //   trackAnalyticsEvent('scope.node.relative.click', {
-  //     topologyId: this.props.topologyId,
-  //   });
-  //   this.props.dispatch(clickRelative(
-  //     this.props.id,
-  //     this.props.topologyId,
-  //     this.props.label,
-  //     this.node.getBoundingClientRect()
-  //   ));
-  // }
-
   saveNodeRef(ref) {
     this.node = ref;
   }

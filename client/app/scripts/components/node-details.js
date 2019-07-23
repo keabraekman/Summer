@@ -22,6 +22,7 @@ import NodeDetailsRelatives from './node-details/node-details-relatives';
 import NodeDetailsTable from './node-details/node-details-table';
 import Warning from './warning';
 
+import {getTopoFromId} from '../utils/web-api-utils';
 
 const log = debug('scope:node-details');
 
@@ -52,26 +53,27 @@ class NodeDetails extends React.Component {
   renderTools() {
     const showSwitchTopology = this.props.nodeId !== this.props.viewingNodeId;
     const topologyTitle = `View ${this.props.label} in ${this.props.topologyId}`;
-
-    return (
-      <div className="node-details-tools-wrapper">
-        <div className="node-details-tools">
-          {showSwitchTopology &&
+    if(this.props.topologyId != 'processes'){
+      return (
+        <div className="node-details-tools-wrapper">
+          <div className="node-details-tools">
+            {showSwitchTopology &&
+              <i
+                title={topologyTitle}
+                className="fa fa-long-arrow-alt-left"
+                onClick={this.handleShowTopologyForNode}>
+                <span>Inspect Contents</span>
+              </i>
+            }
             <i
-              title={topologyTitle}
-              className="fa fa-long-arrow-alt-left"
-              onClick={this.handleShowTopologyForNode}>
-              {/* <span>Inspect Contents</span> */}
-            </i>
-          }
-          <i
-            title="Close details"
-            className="fa fa-times close-details"
-            onClick={this.handleClickClose}
-          />
+              title="Close details"
+              className="fa fa-times close-details"
+              onClick={this.handleClickClose}
+            />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   renderLoading() {
