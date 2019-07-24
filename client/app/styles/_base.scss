@@ -1990,14 +1990,18 @@ $color-ashRed: 	#DC3545;
 //Breadcrumb
 
 .breadcrumb{
-  z-index: $layer-modal;
+  position: relative;
+  left : 65px;
+  bottom: -20px;
+  z-index: $layer-front;
   background-color: $label-background-color;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  // overflow-x: hidden;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
   .breadcrumbitem{
+    // left : 900px;
     font-size: $font-size-normal;
-    float: none;
+    // float: none;
     display: inline;
   }
   .level{
