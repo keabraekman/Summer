@@ -367,7 +367,7 @@ export function rootReducer(state = initialState, action) {
 
     case ActionTypes.CLICK_TOPOLOGY: {
       state = closeAllNodeDetails(state);
-
+      state = state.set('viewingNodeId', null);
       const currentTopologyId = state.get('currentTopologyId');
       if (action.topologyId !== currentTopologyId) {
         state = setTopology(state, action.topologyId);

@@ -4,7 +4,7 @@ CardTitle } from 'reactstrap';
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PieChart from './pieChart';
-import ErrorBar, { formatData } from './error-bar';
+import ErrorBar from './error-bar';
 import { getNodesbyTopology } from '../actions/app-actions';
   
   class Dashboard extends React.Component {
@@ -20,10 +20,25 @@ import { getNodesbyTopology } from '../actions/app-actions';
    }
    return overallData;
   }
+
+  formatData = (nodes, topologyId) => {
+    if (!nodes.get(topologyId)) {
+      return { cpu: { value: 0, max: 0}, memory: { value: 0, max: 0}};
+    }
+
+    var data = nodes.get(topologyId).toList().toJS();
+    // Just return information from the first host in the host array
+    return { 
+      cpu: {value: data[0]['metrics'][0]['value'], 
+        max: data[0]['metrics'][0]['max']},
+      memory: {value: data[0]['metrics'][1]['value'],
+        max: data[0]['metrics'][1]['max']}
+    }
+  }
   
   render() {
   const { hostNodes, allNodes } = this.props;
-  const hostData = formatData(hostNodes, "hosts");
+  const hostData = this.formatData(hostNodes, "hosts");
   const overallData = this.getOverallStats(allNodes);
   let hostDataReceived = false;
   if (!hostDataReceived && hostData.memory.max !== 0 && hostData.cpu.value !== 0) {
