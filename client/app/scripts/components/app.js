@@ -249,7 +249,7 @@ class App extends React.Component {
             </div>
           </div>
 
-          <Breadcrumb />
+          {/* <Breadcrumb /> */}
           {/* <NodeDetailsRelatives /> */}
           {/* <NodeDetailsRelativesLink /> */}
 
