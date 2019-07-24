@@ -10,7 +10,7 @@ import MatchedText from './matched-text';
 import {clickShowTopologyForNode} from '../actions/app-actions';
 import ActionTypes from '../constants/action-types';
 import {handleShowTopologyForNode} from './node-details';
-import {getTopoFromId} from '../utils/web-api-utils';
+import {getTopoFromId, getNodeDetails} from '../utils/web-api-utils';
 
 // import {handleShowTopologyForNode} from '../actions/app-actions'
 
@@ -88,22 +88,12 @@ export class BreadCrumb extends React.Component{
               <BreadcrumbItem 
               className = "breadcrumbitem"
               onClick={ev => this.handleShowTopologyForNode(ev)}
-              // onClick={ev => this.handleShowTopologyForNode(ev, parents[2]['topologyId'], parents[2]['id'])}
-              // onClick={ev => this.handleClick(
-              //   ev,
-              //   parents[2]['id'], 
-              //   parents[2]['topologyId'])}
                 ref={this.saveNodeRef}>
                 <span className = 'level'>Host:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][2]['label']}
                 </BreadcrumbItem>
               <BreadcrumbItem 
               className = "breadcrumbitem"
               onClick={ev => this.handleShowTopologyForNode(ev)}
-              // onClick={ev => this.handleShowTopologyForNode(ev, parents[1]['topologyId'], parents[1]['id'])}
-              // onClick={ev => this.handleClick(
-              //   ev,
-              //   parents[1]['id'], 
-              //   parents[1]['topologyId'])}
                 ref={this.saveNodeRef}
               ><span className = 'level'>Pod:   </span> {this.props.details.toList().toJS()[0]['details']['parents'][1]['label']}</BreadcrumbItem>
               <BreadcrumbItem className = "breadcrumbitem">
@@ -123,23 +113,40 @@ export class BreadCrumb extends React.Component{
 
   render() {
     let label = this.getLabel();
+    
     if(this.props.details.toList().toJS()[0]){
       if(this.props.details.toList().toJS()[0]['details']){
+        console.log('this.props.viewingNodeId = ', this.props.viewingNodeId)
         return (
           <div>
             <Breadcrumb className = "breadcrumb">
-              {console.log("TOPOLOGYID 1 = ", this.props.details.toList().toJS()[0]['topologyId'])}
-              {console.log("TOPOLOGYID 2 = ", getTopoFromId(this.props.details.toList().toJS()[0]['id']))}
+              {/* {console.log("TOPOLOGYID 1 = ", this.props.details.toList().toJS()[0]['topologyId'])}
+              {console.log("TOPOLOGYID 2 = ", getTopoFromId(this.props.details.toList().toJS()[0]['id']))} */}
               {this.makeBreadcrumb(getTopoFromId(this.props.details.toList().toJS()[0]['id']))}
             </Breadcrumb>
           </div>
         );
       }
       else{
+        console.log('NOTHING 1')
+        if(this.props.viewingNodeId){
+        console.log('this.props.viewingNodeId = ', this.props.viewingNodeId)
+        console.log('topo ID = ', getTopoFromId(this.props.viewingNodeId))
+        }
         return (<Breadcrumb></Breadcrumb>)
       }
     }
     else{
+      // console.log('NOTHING 2')
+      if(this.props.viewingNodeId){
+        // console.log('this.props.viewingNodeId = ', this.props.viewingNodeId)
+        // console.log('topo ID = ', getTopoFromId(this.props.viewingNodeId))
+        // console.log(this.props.getNodeDetails(this.props.viewingNodeId))
+        return(
+        <BreadcrumbItem className = "breadcrumbitem"> 
+        <b><span className = 'level'> Host:   </span>{this.props.viewingNodeId}</b>
+        </BreadcrumbItem>)
+      }
       return (<Breadcrumb></Breadcrumb>)
     }
   }
@@ -151,10 +158,11 @@ function mapStatetoProps(state){
     return {
    state: state,
    details : state.get('nodeDetails'),
+   viewingNodeId : state.get('viewingNodeId')
     };
 }
 
 export default connect(
  mapStatetoProps,
- { clickRelative, clickShowTopologyForNode, handleShowTopologyForNode }
+ { clickRelative, clickShowTopologyForNode, handleShowTopologyForNode, getNodeDetails }
 )(BreadCrumb);

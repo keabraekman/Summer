@@ -241,7 +241,7 @@ function getNodesForTopologies(state, dispatch, topologyIds, topologyOptions = m
 }
 
 export function getTopoFromId(id) {
-  let slicedId = id.slice(-5);
+  let slicedId = id.slice(-5); 
   let topo;
   switch (slicedId) {
     case "<pod>":
@@ -266,10 +266,6 @@ function getNodesOnce(getState, dispatch) {
   const topologyOptions = activeTopologyOptionsSelector(state);
   const optionsQuery = buildUrlQuery(topologyOptions, state);
   let url = `${getApiPath()}${topologyUrl}?${optionsQuery}`;
-  // if (state.get('topologyViewMode') === "topo" && !state.get('viewingNodeId')) {
-  //   // option 1
-  //   url = `${getApiPath()}/api/topology/containers`;
-  // } else if (state.get('topologyViewMode') === "topo" && state.get('viewingNodeId')) {
     if (isGraphViewModeSelector(state) && !state.get('viewingNodeId')) {
       // if viewingNodeId is null, make an API request for hosts
       url = `${getApiPath()}/api/topology/hosts`
@@ -421,6 +417,8 @@ function updateWebsocketChannel(getState, dispatch, forceRequest) {
 }
 
 export function getNodeDetails(getState, dispatch) {
+  // console.log('getState = ', getState)
+  // console.log('dispatch = ', dispatch)
   const state = getState();
   const nodeMap = state.get('nodeDetails');
   const topologyUrlsById = state.get('topologyUrlsById');
