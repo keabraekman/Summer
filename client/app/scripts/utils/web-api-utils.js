@@ -260,21 +260,57 @@ export function getTopoFromId(id) {
   return topo;
 }
 
+export async function getLabelFromId(id, callback){
+  console.log('ITS DONE', callback)
+  const topology = getTopoFromId(id)
+  let url = `${getApiPath()}/api/topology/${topology}/${id}`
+  doRequest({
+    error: (req) => {
+      log(`Error in nodes request: ${req.responseText}`);
+      dispatch(receiveError(url));
+    },
+    success: (res) => {
+      console.log('res.node.label = ', res.node.label)
+      let label = res.node.label;
+      if(callback){
+        console.log('ITS IN THE IF ')
+        callback(label);
+      }
+    },
+    url
+  })
+}
+
+
+
+// export function getLabelFromId(id, callback){
+//   console.log('ITS DONE', callback)
+//   const topology = getTopoFromId(id)
+//   let url = `${getApiPath()}/api/topology/${topology}/${id}`
+//   doRequest({
+//     error: (req) => {
+//       log(`Error in nodes request: ${req.responseText}`);
+//       dispatch(receiveError(url));
+//     },
+//     success: (res) => {
+//       console.log('res.node.label = ', res.node.label)
+//       let label = res.node.label;
+//       if(callback){
+//         console.log('ITS IN THE IF ')
+//         callback(label);
+//       }
+//     },
+//     url
+//   })
+// }
+
+
 function getNodesOnce(getState, dispatch) {
   const state = getState();
   let topologyUrl; 
   let topologyOptions; 
   let optionsQuery; 
   let url; 
-  // if (state.get('topologyViewMode') === "topo" && !state.get('viewingNodeId')) {
-  //   // option 1
-  //   url = `${getApiPath()}/api/topology/containers`;
-  // } else if (state.get('topologyViewMode') === "topo" && state.get('viewingNodeId')) {
-    // if (isGraphViewModeSelector(state) && !state.get('viewingNodeId')) {
-    //   // if viewingNodeId is null, make an API request for what topology is specified in the URL
-    //   // url = `${getApiPath()}/api/topology/hosts`
-      
-    // }
   if (isGraphViewModeSelector(state) && state.get('viewingNodeId')) {
     // option 2
     const viewNodeId = state.get('viewingNodeId');

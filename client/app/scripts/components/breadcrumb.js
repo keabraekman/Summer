@@ -10,11 +10,17 @@ import MatchedText from './matched-text';
 import {clickShowTopologyForNode} from '../actions/app-actions';
 import ActionTypes from '../constants/action-types';
 import {handleShowTopologyForNode} from './node-details';
-import {getTopoFromId, getNodeDetails} from '../utils/web-api-utils';
+import {getTopoFromId, getLabelFromId, getNodeDetails} from '../utils/web-api-utils';
 
 // import {handleShowTopologyForNode} from '../actions/app-actions'
 
 export class BreadCrumb extends React.Component{
+
+  returnLabel = (label) => {
+    console.log('ITS IN THE RETURN LABEL')
+    return label;
+  }
+
   getLabel(){
     if(this.props.details.toList().toJS()[0]){
       if(this.props.details.toList().toJS()[0]['details']){
@@ -142,9 +148,10 @@ export class BreadCrumb extends React.Component{
         // console.log('this.props.viewingNodeId = ', this.props.viewingNodeId)
         // console.log('topo ID = ', getTopoFromId(this.props.viewingNodeId))
         // console.log(this.props.getNodeDetails(this.props.viewingNodeId))
+        // console.log('getLabelFromId(this.props.viewingNodeId) = ', getLabelFromId(this.props.viewingNodeId, this.returnLabel))
         return(
         <BreadcrumbItem className = "breadcrumbitem"> 
-        <b><span className = 'level'> Host:   </span>{this.props.viewingNodeId}</b>
+        <b><span className = 'level'> {getTopoFromId(this.props.viewingNodeId)}   </span>{getLabelFromId(this.props.viewingNodeId, this.returnLabel)}</b>
         </BreadcrumbItem>)
       }
       return (<Breadcrumb></Breadcrumb>)
