@@ -145,28 +145,25 @@ export class BreadCrumb extends React.Component{
             <Breadcrumb className = "breadcrumb">
             <BreadcrumbItem className = "breadcrumbitem"
             onClick={ev => this.handleShowTopologyForNode(ev)}> 
-            <b><span className = 'level'> {getTopoFromId(this.props.viewingNodeId)} :  </span>
+            <b><span className = 'level'> Host:  </span>
             {this.props.breadcrumb[0]}
             </b>
             </BreadcrumbItem>
             </Breadcrumb>
             )
         }
-        else if(getTopoFromId(this.props.viewingNodeId) == 'pods' && this.props.breadcrumb[1]){
-          console.log('THE ANSWER = ', this.props.breadcrumb)
-          console.log('THE THING I NEED = ', this.props.breadcrumb[1]["2"].label)
+        else if(getTopoFromId(this.props.viewingNodeId) == 'pods' && this.props.breadcrumb[1]["2"]){
           return(
             <Breadcrumb className = "breadcrumb">
             <BreadcrumbItem className = "breadcrumbitem"
             onClick={ev => this.handleShowTopologyForNode(ev)}> 
-            <b><span className = 'level'> Host :  </span>
+            <span className = 'level'> Host:  </span>
             {this.props.breadcrumb[1]["2"].label}
             {/* {this.props.breadcrumb[1]["0"]} */}
-            </b>
             </BreadcrumbItem>
             <BreadcrumbItem className = "breadcrumbitem"
             onClick={ev => this.handleShowTopologyForNode(ev)}> 
-            <b><span className = 'level'> {getTopoFromId(this.props.viewingNodeId)} :  </span>
+            <b><span className = 'level'> Pod:  </span>
             {this.props.breadcrumb[0]}
             </b>
             </BreadcrumbItem>
