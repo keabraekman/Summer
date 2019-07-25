@@ -271,12 +271,13 @@ export function getLabelAndParentsFromId(id, dispatch){
     },
     success: (res) => {
       let label = res.node.label;
+      let nodeId = res.node.id
       if(res.node.parents){
       let parents = res.node.parents;
-      dispatch(addLabelAndParentsToState(label, parents));
+      dispatch(addLabelAndParentsToState(label, nodeId, parents));
     }
     else{
-      dispatch(addLabelAndParentsToState(label, ''));
+      dispatch(addLabelAndParentsToState(label, nodeId, ''));
     }
     },
     url

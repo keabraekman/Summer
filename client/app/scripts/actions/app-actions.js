@@ -403,7 +403,6 @@ function updateTopology(dispatch, getState) {
 }
 
 export function clickShowTopologyForNode(topologyId, nodeId) {
-
   return (dispatch, getState) => {
     dispatch({
       nodeId,
@@ -825,9 +824,9 @@ export function setStoreViewState(storeViewState) {
 }
 
 // function added for getLabelAndParentsFromId
-export function addLabelAndParentsToState(label, parents){
+export function addLabelAndParentsToState(label, nodeId, parents){
   return {
-    breadcrumb: [label, parents],
+    breadcrumb: [label, nodeId,parents],
     type: ActionTypes.UPDATE_BREADCRUMB
     }
 }
