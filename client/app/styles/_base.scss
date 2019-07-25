@@ -1991,15 +1991,12 @@ $color-ashRed: 	#DC3545;
 
 .breadcrumb{
   // position: relative;
-  // left : 95px;
-  // bottom: -20px;
   z-index: $layer-front;
   background-color: $label-background-color;
   // overflow-x: hidden;
   // text-overflow: ellipsis;
   // white-space: nowrap;
   .breadcrumbitem{
-    // left : 900px;
     font-size: $font-size-normal;
     // float: none;
     display: inline;
