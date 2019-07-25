@@ -45,6 +45,7 @@ const topologySorter = topology => topology.get('rank');
 // Initial values
 
 export const initialState = makeMap({
+  breadcrumb: [],
   viewingNodeId: null,
   capabilities: makeMap(),
   contrastMode: false,
@@ -266,7 +267,6 @@ export function rootReducer(state = initialState, action) {
     }
 
     case ActionTypes.SET_VIEW_MODE: {
-      console.log(3);
       // state = state.set('viewingNodeId', null);
       // possibly only do the below line if in table view
       // state = state.set('nodes', makeMap());     
@@ -363,6 +363,11 @@ export function rootReducer(state = initialState, action) {
       // }
 
       return state;
+    }
+
+    case ActionTypes.UPDATE_BREADCRUMB: {
+      state = state.set('breadcrumb', action.breadcrumb);
+      return state
     }
 
     case ActionTypes.CLICK_TOPOLOGY: {

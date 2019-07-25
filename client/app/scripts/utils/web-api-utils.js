@@ -9,6 +9,7 @@ import {
   receiveControlNodeRemoved, receiveControlPipe, receiveControlPipeStatus,
   receiveControlSuccess, receiveTopologies, receiveNotFound,
   receiveNodesForTopology, receiveNodes,
+  addLabelAndParentsToState
 } from '../actions/app-actions';
 
 import { getCurrentTopologyUrl } from '../utils/topology-utils';
@@ -260,22 +261,23 @@ export function getTopoFromId(id) {
   return topo;
 }
 
-export async function getLabelFromId(id, callback){
-  console.log('ITS DONE', callback)
+export function getLabelAndParentsFromId(id, dispatch){
   const topology = getTopoFromId(id)
   let url = `${getApiPath()}/api/topology/${topology}/${id}`
-  doRequest({
+  return doRequest({
     error: (req) => {
       log(`Error in nodes request: ${req.responseText}`);
       dispatch(receiveError(url));
     },
     success: (res) => {
-      console.log('res.node.label = ', res.node.label)
       let label = res.node.label;
-      if(callback){
-        console.log('ITS IN THE IF ')
-        callback(label);
-      }
+      if(res.node.parents){
+      let parents = res.node.parents;
+      dispatch(addLabelAndParentsToState(label, parents));
+    }
+    else{
+      dispatch(addLabelAndParentsToState(label, ''));
+    }
     },
     url
   })
@@ -283,7 +285,7 @@ export async function getLabelFromId(id, callback){
 
 
 
-// export function getLabelFromId(id, callback){
+// export function getLabelAndParentsFromId(id, callback){
 //   console.log('ITS DONE', callback)
 //   const topology = getTopoFromId(id)
 //   let url = `${getApiPath()}/api/topology/${topology}/${id}`
@@ -329,7 +331,6 @@ function getNodesOnce(getState, dispatch) {
       dispatch(receiveError(url));
     },
     success: (res) => {
-      console.log(state.get('viewingNodeId'));
       if (state.get('viewingNodeId')) {
         let _map = {};
         res.node.children[0].nodes.map((x) => {

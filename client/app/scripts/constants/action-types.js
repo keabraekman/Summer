@@ -1,6 +1,7 @@
 import { zipObject } from 'lodash';
 
 const ACTION_TYPES = [
+  'UPDATE_BREADCRUMB',
   'ADD_QUERY_FILTER',
   'BLUR_SEARCH',
   'CACHE_ZOOM_STATE',

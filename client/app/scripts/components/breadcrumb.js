@@ -10,14 +10,13 @@ import MatchedText from './matched-text';
 import {clickShowTopologyForNode} from '../actions/app-actions';
 import ActionTypes from '../constants/action-types';
 import {handleShowTopologyForNode} from './node-details';
-import {getTopoFromId, getLabelFromId, getNodeDetails} from '../utils/web-api-utils';
+import {getTopoFromId, getLabelAndParentsFromId, getNodeDetails} from '../utils/web-api-utils';
 
 // import {handleShowTopologyForNode} from '../actions/app-actions'
 
 export class BreadCrumb extends React.Component{
 
   returnLabel = (label) => {
-    console.log('ITS IN THE RETURN LABEL')
     return label;
   }
 
@@ -119,10 +118,9 @@ export class BreadCrumb extends React.Component{
 
   render() {
     let label = this.getLabel();
-    
+    // IF A NODE IS SELECTED
     if(this.props.details.toList().toJS()[0]){
       if(this.props.details.toList().toJS()[0]['details']){
-        console.log('this.props.viewingNodeId = ', this.props.viewingNodeId)
         return (
           <div>
             <Breadcrumb className = "breadcrumb">
@@ -134,25 +132,47 @@ export class BreadCrumb extends React.Component{
         );
       }
       else{
-        console.log('NOTHING 1')
         if(this.props.viewingNodeId){
-        console.log('this.props.viewingNodeId = ', this.props.viewingNodeId)
-        console.log('topo ID = ', getTopoFromId(this.props.viewingNodeId))
         }
         return (<Breadcrumb></Breadcrumb>)
       }
     }
+    // VIEWING NODE, NO SELECTED NODE : 
     else{
-      // console.log('NOTHING 2')
       if(this.props.viewingNodeId){
-        // console.log('this.props.viewingNodeId = ', this.props.viewingNodeId)
-        // console.log('topo ID = ', getTopoFromId(this.props.viewingNodeId))
-        // console.log(this.props.getNodeDetails(this.props.viewingNodeId))
-        // console.log('getLabelFromId(this.props.viewingNodeId) = ', getLabelFromId(this.props.viewingNodeId, this.returnLabel))
-        return(
-        <BreadcrumbItem className = "breadcrumbitem"> 
-        <b><span className = 'level'> {getTopoFromId(this.props.viewingNodeId)}   </span>{getLabelFromId(this.props.viewingNodeId, this.returnLabel)}</b>
-        </BreadcrumbItem>)
+        if(getTopoFromId(this.props.viewingNodeId) == 'hosts'){
+          return(
+            <Breadcrumb className = "breadcrumb">
+            <BreadcrumbItem className = "breadcrumbitem"
+            onClick={ev => this.handleShowTopologyForNode(ev)}> 
+            <b><span className = 'level'> {getTopoFromId(this.props.viewingNodeId)} :  </span>
+            {this.props.breadcrumb[0]}
+            </b>
+            </BreadcrumbItem>
+            </Breadcrumb>
+            )
+        }
+        else if(getTopoFromId(this.props.viewingNodeId) == 'pods' && this.props.breadcrumb[1]){
+          console.log('THE ANSWER = ', this.props.breadcrumb)
+          console.log('THE THING I NEED = ', this.props.breadcrumb[1]["2"].label)
+          return(
+            <Breadcrumb className = "breadcrumb">
+            <BreadcrumbItem className = "breadcrumbitem"
+            onClick={ev => this.handleShowTopologyForNode(ev)}> 
+            <b><span className = 'level'> Host :  </span>
+            {this.props.breadcrumb[1]["2"].label}
+            {/* {this.props.breadcrumb[1]["0"]} */}
+            </b>
+            </BreadcrumbItem>
+            <BreadcrumbItem className = "breadcrumbitem"
+            onClick={ev => this.handleShowTopologyForNode(ev)}> 
+            <b><span className = 'level'> {getTopoFromId(this.props.viewingNodeId)} :  </span>
+            {this.props.breadcrumb[0]}
+            </b>
+            </BreadcrumbItem>
+            </Breadcrumb>
+          )
+        }
       }
       return (<Breadcrumb></Breadcrumb>)
     }
@@ -165,7 +185,8 @@ function mapStatetoProps(state){
     return {
    state: state,
    details : state.get('nodeDetails'),
-   viewingNodeId : state.get('viewingNodeId')
+   viewingNodeId : state.get('viewingNodeId'),
+   breadcrumb : state.get('breadcrumb')
     };
 }
 
