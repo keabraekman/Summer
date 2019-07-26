@@ -61,13 +61,10 @@ export class BreadCrumb extends React.Component{
             let parents = this.props.details.toList().toJS()[0]['details']['parents']
             let id = parents[parents.length-1]['id']
             let topologyId = parents[parents.length-1]['topologyId']
+            console.log("LEVEL = PODS")
             return(
               <div>
-              <BreadcrumbItem className = "breadcrumbitem"
-              // onClick={ev => this.handleClick(ev,id, topologyId)}
-              // onClick={ev => this.handleShowTopologyForNode(ev, getTopoFromId(parents[parents.length-1]['id']), parents[parents.length-1]['id'])}
-              // onClick={ev => this.handleShowTopologyForNode(ev, topologyId, id)}
-              >
+              <BreadcrumbItem className = "breadcrumbitem">
                 <span className = 'level'>Host:    </span>
               {parents[parents.length-1]['label'].toString()}
               </BreadcrumbItem>
@@ -120,7 +117,7 @@ export class BreadCrumb extends React.Component{
       if(this.props.details.toList().toJS()[0]['details']){
         return (
           <div>
-            <Breadcrumb className = "breadcrumb">
+            <Breadcrumb className = "breadcrumbInactive">
               {/* {console.log("TOPOLOGYID 1 = ", this.props.details.toList().toJS()[0]['topologyId'])}
               {console.log("TOPOLOGYID 2 = ", getTopoFromId(this.props.details.toList().toJS()[0]['id']))} */}
               {this.makeBreadcrumb(getTopoFromId(this.props.details.toList().toJS()[0]['id']))}
@@ -155,8 +152,9 @@ export class BreadCrumb extends React.Component{
         else if(getTopoFromId(this.props.viewingNodeId) == 'pods' && this.props.breadcrumb[2]["2"]){
           return(
             <Breadcrumb className = "breadcrumb">
-            <BreadcrumbItem className = "breadcrumbitem"
-            onClick={ev => this.handleShowTopologyForNode(ev, this.props.breadcrumb[2]['2'].topologyId, this.props.breadcrumb[2]['2'].id)}> 
+            <BreadcrumbItem className = "breadcrumbitemclick"
+            onClick={ev => this.handleShowTopologyForNode(ev, this.props.breadcrumb[2]['2'].topologyId, this.props.breadcrumb[2]['2'].id)}
+            >
             <span className = 'level'> Host:  </span>
             {this.props.breadcrumb[2]["2"].label}
             {/* {this.props.breadcrumb[1]["0"]} */}

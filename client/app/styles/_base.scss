@@ -1989,6 +1989,20 @@ $color-ashRed: 	#DC3545;
 
 //Breadcrumb
 
+.breadcrumbInactive{
+  z-index: $layer-front;
+  background-color: transparent;
+  // background-size: 99;
+  // opacity : 0.1;
+  .breadcrumbitem{
+    font-size: $font-size-normal;
+    display: inline;
+  }
+  .level{
+    color: $color-blue-700;
+  }
+}
+
 .breadcrumb{
   // position: relative;
   z-index: $layer-front;
@@ -1999,6 +2013,12 @@ $color-ashRed: 	#DC3545;
   .breadcrumbitem{
     font-size: $font-size-normal;
     // float: none;
+    display: inline;
+  }
+  .breadcrumbitemclick{
+    font-size: $font-size-normal;
+    // float: none;
+    cursor: pointer;
     display: inline;
   }
   .level{
