@@ -144,6 +144,7 @@ export class BreadCrumb extends React.Component{
 
 
   render() {
+    console.log(this.props.breadcrumb);
     // IF A NODE IS SELECTED
     if(this.props.details.toList().toJS()[0]){
       if(this.props.details.toList().toJS()[0]['details']){
@@ -191,10 +192,9 @@ export class BreadCrumb extends React.Component{
             )
         }
         else if(getTopoFromId(this.props.viewingNodeId) == 'pods' && this.props.breadcrumb[2] != undefined){
-          if(this.props.breadcrumb[2]['2'] != undefined){
+          if(this.props.breadcrumb[2]['2']){
             return(
               <Breadcrumb className = "breadcrumb">
-
               <BreadcrumbItem className = "breadcrumbitemclick"
               onClick={ev => this.onTopologyClick(ev)}
               >
@@ -202,26 +202,47 @@ export class BreadCrumb extends React.Component{
               10.194.70.72
               {/* {this.props.breadcrumb[1]["0"]} */}
               </BreadcrumbItem>
-
               <BreadcrumbItem className = "breadcrumbitemclick"
               onClick={ev => this.handleShowTopologyForNode(ev, this.props.breadcrumb[2]['2'].topologyId, this.props.breadcrumb[2]['2'].id)}
               >
               <span className = 'level'> Host:  </span>
               {this.props.breadcrumb[2]["2"].label}
-              {/* {this.props.breadcrumb[1]["0"]} */}
               </BreadcrumbItem>
-
               <BreadcrumbItem className = "breadcrumbitem"
-              // onClick={ev => this.handleShowTopologyForNode(ev, getTopoFromId(this.props.breadcrumb[1]), this.props.breadcrumb[1])}
               > 
               <b><span className = 'level'> Pod:  </span>
               {this.props.breadcrumb[0]}
               </b>
               </BreadcrumbItem>
-
               </Breadcrumb>
             )
           }
+          else{
+            if(this.props.breadcrumb[2]['0']){
+            return(
+              <Breadcrumb className = "breadcrumb">
+              <BreadcrumbItem className = "breadcrumbitemclick"
+              onClick={ev => this.onTopologyClick(ev)}
+              >
+              <span className = 'level'> <i class="fas fa-cloud"></i> Cloud:  </span>
+              10.194.70.72
+              </BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitemclick"
+              onClick={ev => this.handleShowTopologyForNode(ev, this.props.breadcrumb[2]['0'].topologyId, this.props.breadcrumb[2]['0'].id)}
+              >
+              <span className = 'level'> Host:  </span>
+              {this.props.breadcrumb[2]['0'].label}
+              </BreadcrumbItem>
+              <BreadcrumbItem className = "breadcrumbitem"
+              > 
+              <b><span className = 'level'> Pod:  </span>
+              {this.props.breadcrumb[0]}
+              </b>
+              </BreadcrumbItem>
+              </Breadcrumb>
+            )
+          }
+        }
         }
         if(getTopoFromId(this.props.viewingNodeId) == 'containers' && this.props.breadcrumb[2]){
           if(this.props.breadcrumb[2]['2']){
