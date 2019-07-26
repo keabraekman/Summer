@@ -249,7 +249,7 @@ class App extends React.Component {
             </div>
           </div>
 
-          <Breadcrumb />
+          {/* <Breadcrumb /> */}
           {/* <NodeDetailsRelatives /> */}
           {/* <NodeDetailsRelativesLink /> */}
 
@@ -263,9 +263,8 @@ class App extends React.Component {
           
           {isGraphViewMode && this.props.nodesLoaded && <ErrorToggle /> }
 
-          {/* <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
-            
-          </Sidebar> */}
+          <Sidebar classNames={isTableViewMode ? 'sidebar-gridmode' : ''}>
+          </Sidebar>
           <Footer />
 
           <Overlay faded={timeTravelTransitioning} />

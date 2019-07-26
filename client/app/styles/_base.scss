@@ -330,6 +330,9 @@ a {
 }
 
 .zoomable-canvas svg {
+  // margin: 50px;
+  padding: 40px;
+  // border: 1px solid #4CAF50;
   @extend .fully-pannable;
 }
 
@@ -1993,7 +1996,7 @@ $color-ashRed: 	#DC3545;
   z-index: $layer-front;
   background-color: transparent;
   // background-size: 99;
-  // opacity : 0.1;
+  opacity : 0.2;
   .breadcrumbitem{
     font-size: $font-size-normal;
     display: inline;
@@ -2003,10 +2006,12 @@ $color-ashRed: 	#DC3545;
   }
 }
 
+$transparent : transparent;
+
 .breadcrumb{
   // position: relative;
   z-index: $layer-front;
-  background-color: $label-background-color;
+  background-color: $transparent;
   // overflow-x: hidden;
   // text-overflow: ellipsis;
   // white-space: nowrap;
