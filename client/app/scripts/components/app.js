@@ -20,6 +20,7 @@ import Status from './status';
 import Topologies from './topologies';
 import TopologyOptions from './topology-options';
 import Overlay from './overlay';
+
 import { getApiDetails } from '../utils/web-api-utils';
 import {
   focusSearch,
@@ -233,8 +234,9 @@ class App extends React.Component {
 
             <div className="selectors">
               <div className="logo">
+                <img className="my-image" src="https://anagarajan25.github.io/favicon/favicon.png" />
                 {!isIframe &&
-                  <svg width="100%" height="100%" viewBox="100 -40 20 100">
+                  <svg width="100%" height="100%" viewBox="100 -25 20 100">
                     <Logo />
                   </svg>
                 }

@@ -246,10 +246,9 @@ a {
     }
 
     .logo {
-      margin: -16px 0 0 8px;
-      height: 64px;
-      max-width: 250px;
-      min-width: 0;
+      display: flex;
+      height: 45px;
+      min-width: 175px;
     }
   }
 }
@@ -2030,4 +2029,25 @@ $transparent : transparent;
     // font-size: $font-size-tiny;
     color: $color-blue-700;
   }
+}
+
+.banner{
+  // max-width: 100%;
+  // resize: both;
+  width: 60px;
+  position: relative;
+  // height: auto;
+  // left: 0px;
+  // right: 0px;
+}
+
+.image-div {
+  width: 30px;
+  height: 20px;
+}
+
+.my-image {
+  width: 35%;
+  height: 65%;
+  object-fit: contain;
 }
